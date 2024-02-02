@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -26,53 +27,41 @@
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
       max-width: 400px;
       width: 90%; /* Modifica per adattare la larghezza del form */
+      margin: auto;
+      margin-top: 20vh;
     }
     h2 {
       margin-top: 0;
       color: #333333;
     }
-    input[type="text"],
-    input[type="password"],
-    input[type="submit"] {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      transition: border-color 0.3s ease;
-    }
-    input[type="text"]:focus,
-    input[type="password"]:focus {
-      border-color: rgb(158, 15, 158);
-    }
-    input[type="submit"] {
+    .btn-custom {
       background-color: rgb(158, 15, 158);
       color: white;
       border: none;
-      cursor: pointer;
       transition: background-color 0.3s ease;
     }
-    input[type="submit"]:hover {
+
+    .btn-custom:hover {
       background-color: rgb(158, 15, 158);
     }
 
-    /* Media query per dispositivi con larghezza massima di 600px */
-    @media only screen and (max-width: 600px) {
-      form {
-        width: 80%; /* Modifica per adattare la larghezza del form su schermi più piccoli */
-      }
-    }
   </style>
 </head>
 <body>
 
 <form action="process-login.php" method="post">
-  <h2>Login</h2>
-  <input type="text" name="username" placeholder="Username" required>
-  <input type="password" name="password" placeholder="Password" required>
-  <input type="submit" value="Login">
+  <h2 class="text-center">Login</h2>
+  <div class="form-group">
+    <input type="text" class="form-control" name="email" placeholder="Email" required>
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control" name="password" placeholder="Password" required>
+  </div>
+  <button type="submit" class="btn btn-custom btn-block">Login</button>
 </form>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
