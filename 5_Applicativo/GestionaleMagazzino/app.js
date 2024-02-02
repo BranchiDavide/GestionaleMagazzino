@@ -5,5 +5,5 @@ app.listen(3000, () => {
 });
 
 app.get('/', (req, res) => {
-	res.send("It Works!");
+	res.send("The auto deploy works!");
 });
