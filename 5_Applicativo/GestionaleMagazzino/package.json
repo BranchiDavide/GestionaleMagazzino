@@ -1,0 +1,14 @@
+{
+  "name": "gestionalemagazzino",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Davide Branchi, Gioele Cappellari, Amir Kawsarani",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
