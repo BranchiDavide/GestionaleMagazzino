@@ -22,8 +22,8 @@ CREATE TABLE `utente` (
   `cognome` varchar(64) DEFAULT NULL,
   `riferimentoFoto` varchar(64) DEFAULT 'default',
   `dataNascita` Date DEFAULT NULL,
-  `email` varchar(128) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
+  `email` varchar(128) NOT NULL UNIQUE,
+  `password` varchar(255) NOT NULL,
   `ruolo` varchar(64) DEFAULT NULL,
   FOREIGN KEY (ruolo) REFERENCES ruolo(nome) ON UPDATE CASCADE,
   PRIMARY KEY (`id`)
@@ -80,6 +80,7 @@ CREATE TABLE `archivio` (
 ) ENGINE=archive;
 
 -- Creazione del trigger archivio_update_noleggio
+DROP TRIGGER IF EXISTS archivio_update_noleggio;
 DELIMITER //
 CREATE TRIGGER archivio_update_noleggio
 BEFORE DELETE ON noleggio FOR EACH ROW BEGIN 
@@ -101,8 +102,13 @@ BEFORE DELETE ON noleggio FOR EACH ROW BEGIN
 END;
 //
 DELIMITER ;
--- Popolare la tabella ruolo con dati di esempio
-INSERT INTO ruolo (nome) VALUES ('Amministratore'), ('Operatore'), ('Cliente'), ('Guest');
+
+-- Inserimento ruoli utente
+INSERT INTO ruolo (nome) VALUES ('amministratore'), ('gestore'), ('utente');
+
+
+
+
 
 -- Popolare la tabella categoria con dati di esempio
 INSERT INTO categoria (nome) VALUES ('Elettronica'), ('Abbigliamento'), ('Casa'), ('Giocattoli');
