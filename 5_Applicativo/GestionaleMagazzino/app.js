@@ -9,5 +9,5 @@ app.listen(PORT, () => {
 });
 
 app.get('/', (req, res) => {
-	res.send("The auto deploy works!");
+    res.send("The auto deploy works!");
 });
