@@ -106,20 +106,16 @@ DELIMITER ;
 -- Inserimento ruoli utente
 INSERT INTO ruolo (nome) VALUES ('amministratore'), ('gestore'), ('utente');
 
-
-
-
-
 -- Popolare la tabella categoria con dati di esempio
 INSERT INTO categoria (nome) VALUES ('Elettronica'), ('Abbigliamento'), ('Casa'), ('Giocattoli');
 
 -- Popolare la tabella utente con dati di esempio
 INSERT INTO utente (nome, cognome, dataNascita, email, password, ruolo)
 VALUES 
-('Mario', 'Rossi', '1990-05-15', 'mario@email.com', 'password123', 'Cliente'),
-('Giulia', 'Bianchi', '1985-10-20', 'giulia@email.com', 'securepwd', 'Operatore'),
-('Luigi', 'Verdi', '1988-07-25', 'luigi@email.com', 'test123', 'Cliente'),
-('Giovanna', 'Neri', '1995-03-12', 'giovanna@email.com', 'password456', 'Guest');
+('Mario', 'Rossi', '1990-05-15', 'mario@email.com', 'password123', 'utente'),
+('Giulia', 'Bianchi', '1985-10-20', 'giulia@email.com', 'securepwd', 'gestore'),
+('Luigi', 'Verdi', '1988-07-25', 'luigi@email.com', 'test123', 'amministratore'),
+('Giovanna', 'Neri', '1995-03-12', 'giovanna@email.com', 'password456', 'utente');
 
 -- Popolare la tabella noleggio con dati di esempio
 INSERT INTO noleggio (nome, dataInizio, dataFine, autore)
@@ -143,11 +139,3 @@ VALUES
 (1, 2, 1),
 (2, 3, 3),
 (3, 4, 5);
-
--- Eseguire una query per eliminare un noleggio
-DELETE FROM noleggio;
-
-SELECT * FROM archivio;
-SELECT * FROM materialeNoleggio;
-SELECT * FROM materiale;
-
