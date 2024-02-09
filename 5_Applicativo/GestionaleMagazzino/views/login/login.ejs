@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <%- include('../_templates/header'); -%>
+  <link rel="stylesheet" href="/css/login/login.css">
+  <title>GestionaleMagazzino Login</title>
+</head>
+
+<body>
+
+  <form action="/login" method="post">
+    <h2 class="text-center">Login</h2>
+    <br>
+    <div class="form-group">
+      <input type="text" class="form-control" name="email" placeholder="Email" required>
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" name="password" placeholder="Password" required>
+    </div>
+    <button type="submit" class="btn btn-custom btn-block">Login</button>
+  </form>
+
+</body>
+</html>

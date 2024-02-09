@@ -1,0 +1,57 @@
+:root {
+  --header-height: 3rem;
+  --nav-width: 68px;
+  --first-color: #4723d9;
+  --first-color-light: #AFA5D9;
+  --white-color: #F7F6FB;
+  --body-font: 'Nunito', sans-serif;
+  --normal-font-size: 1rem;
+  --z-fixed: 100
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)), url(/img/login/magazzino.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+form {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 90%;
+  /* Modifica per adattare la larghezza del form */
+  margin: auto;
+  margin-top: 20vh;
+}
+
+h2 {
+  margin-top: 0;
+  color: #333333;
+}
+
+.btn-custom {
+  background-color: var(--first-color);
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: var(--first-color-light);
+}
+
+div.form-group {
+  margin-bottom: 5%;
+}
