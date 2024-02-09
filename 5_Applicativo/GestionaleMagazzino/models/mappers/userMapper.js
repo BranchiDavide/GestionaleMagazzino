@@ -33,11 +33,7 @@ async function insertUser(nome, cognome, riferimentoFoto, dataNascita, email, pa
         "INSERT INTO utente (nome, cognome, riferimentoFoto, dataNascita, email, password, ruolo) VALUES (?, ?, ?, ?, ?, ?, ?)",
         [nome, cognome, riferimentoFoto, dataNascita, email, password, ruolo]
     );
-    if(result.affectedRows == 1){
-        return true;
-    }else{
-        return false;
-    }
+    return result.affectedRows == 1;
 }
 
 async function updateUser(id, nome, cognome, riferimentoFoto, dataNascita, email, password, ruolo){
@@ -45,20 +41,12 @@ async function updateUser(id, nome, cognome, riferimentoFoto, dataNascita, email
       "UPDATE utente SET nome=?, cognome=?, riferimentoFoto=?, dataNascita=?, email=?, password=?, ruolo=? WHERE id=?",
       [nome, cognome, riferimentoFoto, dataNascita, email, password, ruolo, id]
     );
-    if(result.affectedRows == 1){
-        return true;
-    }else{
-        return false;
-    }
+    return result.affectedRows == 1;
 }
 
 async function deleteUser(id){
     const [result] = await db.query("DELETE FROM utente WHERE id=?", [id]);
-    if(result.affectedRows == 1){
-        return true;
-    }else{
-        return false;
-    }
+    return result.affectedRows == 1;
 }
 
 module.exports = {getAll, getByEmail, getById, insertUser, updateUser, deleteUser};

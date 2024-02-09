@@ -14,10 +14,7 @@ app.use("/", require("./routes/index"));
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });
-<<<<<<< HEAD
 
 app.get('/', (req, res) => {
     res.send("The auto deploy works!");
 });
-=======
->>>>>>> 4705e6fcd81607442a5fc055b766a9be0ffa47fa

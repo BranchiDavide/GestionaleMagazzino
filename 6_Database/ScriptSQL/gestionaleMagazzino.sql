@@ -36,9 +36,9 @@ CREATE TABLE `noleggio` (
   `riferimentoFoto` varchar(64) DEFAULT 'default',
   `dataInizio` Date DEFAULT NULL,
   `dataFine` Date DEFAULT NULL,
-  `autore` int DEFAULT NULL,
+  `idUtente` int DEFAULT NULL,
   `chiusuraForzata` tinyint DEFAULT 0,
-  FOREIGN KEY (autore) REFERENCES utente(id) ON UPDATE CASCADE,
+  FOREIGN KEY (idUtente) REFERENCES utente(id) ON UPDATE CASCADE,
   PRIMARY KEY (`id`)
 );
 
@@ -96,7 +96,7 @@ BEFORE DELETE ON noleggio FOR EACH ROW BEGIN
 		   LEAVE read_loop;
 		END IF;
         INSERT INTO archivio (nome, idNoleggio, idMateriale, idUtente, dataInizio, dataFine, quantita, chiusuraForzata) 
-        VALUES (old.nome, old.id, A, old.autore, old.dataInizio, old.dataFine, B, old.chiusuraForzata);
+        VALUES (old.nome, old.id, A, old.idUtente, old.dataInizio, old.dataFine, B, old.chiusuraForzata);
    END LOOP;
    CLOSE cur1;
 END;
