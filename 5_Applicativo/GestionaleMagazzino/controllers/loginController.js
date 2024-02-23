@@ -36,7 +36,7 @@ async function login(req, res){
  * @param {Response} res la risposta che arriva al controller
  */
 function renderLoginView(req, res){
-    res.render("login/login.ejs");
+    res.render("login/index.ejs");
 }
 
 module.exports = {
