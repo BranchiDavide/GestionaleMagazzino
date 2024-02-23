@@ -19,3 +19,10 @@ app.use("/", require("./routes/index"));
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });
+<<<<<<< HEAD
+=======
+
+app.get('/', (req, res) => {
+	res.send("PROVA SCRIPT");
+});
+>>>>>>> d9ed5286986f1d188a9f8cc478dad87f897b2ba0
