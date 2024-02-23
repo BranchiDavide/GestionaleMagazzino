@@ -4,7 +4,7 @@
   "description": "Progetto terzo anno secondo semestre",
   "main": "app.js",
   "scripts": {
-    "test": "jest",
+    "test": "DOTENV_CONFIG_PATH=test.env jest --setupFiles=dotenv/config --verbose",
     "dev": "nodemon app.js"
   },
   "author": "Davide Branchi, Gioele Cappellari, Amir Kawsarani",
@@ -18,6 +18,7 @@
     "express": "^4.18.2",
     "express-mysql-session": "^3.0.0",
     "express-session": "^1.18.0",
+    "jquery": "^3.7.1",
     "mysql2": "^3.9.1"
   },
   "devDependencies": {

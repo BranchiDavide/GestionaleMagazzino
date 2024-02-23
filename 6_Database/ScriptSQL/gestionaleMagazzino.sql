@@ -22,8 +22,8 @@ CREATE TABLE `utente` (
   `cognome` varchar(64) DEFAULT NULL,
   `riferimentoFoto` varchar(64) DEFAULT 'default',
   `dataNascita` Date DEFAULT NULL,
-  `email` varchar(128) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
+  `email` varchar(128) NOT NULL UNIQUE,
+  `password` varchar(255) NOT NULL,
   `ruolo` varchar(64) DEFAULT NULL,
   FOREIGN KEY (ruolo) REFERENCES ruolo(nome) ON UPDATE CASCADE,
   PRIMARY KEY (`id`)
@@ -36,9 +36,9 @@ CREATE TABLE `noleggio` (
   `riferimentoFoto` varchar(64) DEFAULT 'default',
   `dataInizio` Date DEFAULT NULL,
   `dataFine` Date DEFAULT NULL,
-  `autore` int DEFAULT NULL,
+  `idUtente` int DEFAULT NULL,
   `chiusuraForzata` tinyint DEFAULT 0,
-  FOREIGN KEY (autore) REFERENCES utente(id) ON UPDATE CASCADE,
+  FOREIGN KEY (idUtente) REFERENCES utente(id) ON UPDATE CASCADE,
   PRIMARY KEY (`id`)
 );
 
@@ -51,7 +51,7 @@ CREATE TABLE `materiale` (
   `isConsumabile` tinyint DEFAULT 0,
   `isDisponibile` tinyint DEFAULT 1,
   `categoria` varchar(64) DEFAULT "generico",
-  FOREIGN KEY (categoria) REFERENCES categoria(nome) ON UPDATE CASCADE,
+  FOREIGN KEY (categoria) REFERENCES categoria(nome) ON UPDATE CASCADE ON DELETE SET NULL,
   PRIMARY KEY (`codice`)
 );
 
@@ -61,7 +61,7 @@ CREATE TABLE `materialeNoleggio` (
   `idMateriale` int DEFAULT 0,
   `quantita` int DEFAULT 1,
   FOREIGN KEY (idNoleggio) REFERENCES noleggio(id) ON DELETE CASCADE,
-  FOREIGN KEY (idMateriale) REFERENCES materiale(codice) ON UPDATE CASCADE,
+  FOREIGN KEY (idMateriale) REFERENCES materiale(codice) ON UPDATE CASCADE ON DELETE CASCADE,
   PRIMARY KEY (`idNoleggio`,`idMateriale`)
 );
 
@@ -80,6 +80,7 @@ CREATE TABLE `archivio` (
 ) ENGINE=archive;
 
 -- Creazione del trigger archivio_update_noleggio
+DROP TRIGGER IF EXISTS archivio_update_noleggio;
 DELIMITER //
 CREATE TRIGGER archivio_update_noleggio
 BEFORE DELETE ON noleggio FOR EACH ROW BEGIN 
@@ -95,14 +96,15 @@ BEFORE DELETE ON noleggio FOR EACH ROW BEGIN
 		   LEAVE read_loop;
 		END IF;
         INSERT INTO archivio (nome, idNoleggio, idMateriale, idUtente, dataInizio, dataFine, quantita, chiusuraForzata) 
-        VALUES (old.nome, old.id, A, old.autore, old.dataInizio, old.dataFine, B, old.chiusuraForzata);
+        VALUES (old.nome, old.id, A, old.idUtente, old.dataInizio, old.dataFine, B, old.chiusuraForzata);
    END LOOP;
    CLOSE cur1;
 END;
 //
 DELIMITER ;
--- Popolare la tabella ruolo con dati di esempio
-INSERT INTO ruolo (nome) VALUES ('Amministratore'), ('Operatore'), ('Cliente'), ('Guest');
+
+-- Inserimento ruoli utente
+INSERT INTO ruolo (nome) VALUES ('amministratore'), ('gestore'), ('utente');
 
 -- Popolare la tabella categoria con dati di esempio
 INSERT INTO categoria (nome) VALUES ('Elettronica'), ('Abbigliamento'), ('Casa'), ('Giocattoli');
@@ -110,10 +112,10 @@ INSERT INTO categoria (nome) VALUES ('Elettronica'), ('Abbigliamento'), ('Casa')
 -- Popolare la tabella utente con dati di esempio
 INSERT INTO utente (nome, cognome, dataNascita, email, password, ruolo)
 VALUES 
-('Mario', 'Rossi', '1990-05-15', 'mario@email.com', 'password123', 'Cliente'),
-('Giulia', 'Bianchi', '1985-10-20', 'giulia@email.com', 'securepwd', 'Operatore'),
-('Luigi', 'Verdi', '1988-07-25', 'luigi@email.com', 'test123', 'Cliente'),
-('Giovanna', 'Neri', '1995-03-12', 'giovanna@email.com', 'password456', 'Guest');
+('Mario', 'Rossi', '1990-05-15', 'mario@email.com', 'password123', 'utente'),
+('Giulia', 'Bianchi', '1985-10-20', 'giulia@email.com', 'securepwd', 'gestore'),
+('Luigi', 'Verdi', '1988-07-25', 'luigi@email.com', 'test123', 'amministratore'),
+('Giovanna', 'Neri', '1995-03-12', 'giovanna@email.com', 'password456', 'utente');
 
 -- Popolare la tabella noleggio con dati di esempio
 INSERT INTO noleggio (nome, dataInizio, dataFine, autore)
@@ -137,11 +139,3 @@ VALUES
 (1, 2, 1),
 (2, 3, 3),
 (3, 4, 5);
-
--- Eseguire una query per eliminare un noleggio
-DELETE FROM noleggio;
-
-SELECT * FROM archivio;
-SELECT * FROM materialeNoleggio;
-SELECT * FROM materiale;
-
