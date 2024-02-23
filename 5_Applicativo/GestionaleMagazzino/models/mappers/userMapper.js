@@ -1,6 +1,10 @@
 const User = require("../User");
 const db = require("./../../database/db");
 
+/**
+ * Funzione che ritorna tutti gli utenti
+ * @returns array di oggetti User
+ */
 async function getAll(){
     const [result] = await db.query("SELECT * FROM utente");
     let users = [];
@@ -10,6 +14,12 @@ async function getAll(){
     return users;
 }
 
+/**
+ * Funzione che ritorna un oggetto User corrispondente all'utente
+ * con l'indirizzo email passato come parametro
+ * @param email 
+ * @returns oggetto User
+ */
 async function getByEmail(email){
     const [result] = await db.query("SELECT * FROM utente WHERE email=? LIMIT 1", [email]);
     if(result[0]){
@@ -19,6 +29,12 @@ async function getByEmail(email){
     }
 }
 
+/**
+ * Funzione che ritorna un oggetto User corrispondente all'utente
+ * con l'id passato come parametro
+ * @param id 
+ * @returns oggetto User
+ */
 async function getById(id){
     const [result] = await db.query("SELECT * FROM utente WHERE id=? LIMIT 1", [id]);
     if(result[0]){
@@ -28,14 +44,37 @@ async function getById(id){
     }
 }
 
+/**
+ * Funzione che permette di inserire un nuovo utente
+ * @param nome 
+ * @param cognome 
+ * @param riferimentoFoto 
+ * @param dataNascita 
+ * @param email 
+ * @param password 
+ * @param ruolo 
+ * @returns id dello User appena inserito
+ */
 async function insertUser(nome, cognome, riferimentoFoto, dataNascita, email, password, ruolo){
     const [result] = await db.query(
         "INSERT INTO utente (nome, cognome, riferimentoFoto, dataNascita, email, password, ruolo) VALUES (?, ?, ?, ?, ?, ?, ?)",
         [nome, cognome, riferimentoFoto, dataNascita, email, password, ruolo]
     );
-    return result.affectedRows == 1;
+    return result.insertId;
 }
 
+/**
+ * Funzione per aggiornare i campi dello User in base all'id
+ * @param id 
+ * @param nome 
+ * @param cognome 
+ * @param riferimentoFoto 
+ * @param dataNascita 
+ * @param email 
+ * @param password 
+ * @param ruolo 
+ * @returns true se l'update è andato a buon fine, false altrimenti
+ */
 async function updateUser(id, nome, cognome, riferimentoFoto, dataNascita, email, password, ruolo){
     const [result] = await db.query(
       "UPDATE utente SET nome=?, cognome=?, riferimentoFoto=?, dataNascita=?, email=?, password=?, ruolo=? WHERE id=?",
@@ -44,6 +83,11 @@ async function updateUser(id, nome, cognome, riferimentoFoto, dataNascita, email
     return result.affectedRows == 1;
 }
 
+/**
+ * Funzione per eliminare uno User
+ * @param id 
+ * @returns true se l'eliminazione è andata a buon fine, false altrimenti
+ */
 async function deleteUser(id){
     const [result] = await db.query("DELETE FROM utente WHERE id=?", [id]);
     return result.affectedRows == 1;

@@ -59,7 +59,7 @@ CREATE TABLE `materiale` (
   `isConsumabile` tinyint DEFAULT 0,
   `isDisponibile` tinyint DEFAULT 1,
   `categoria` varchar(64) DEFAULT "generico",
-  FOREIGN KEY (categoria) REFERENCES categoria(nome) ON UPDATE CASCADE,
+  FOREIGN KEY (categoria) REFERENCES categoria(nome) ON UPDATE CASCADE ON DELETE SET NULL,
   PRIMARY KEY (`codice`)
 );
 
@@ -69,7 +69,7 @@ CREATE TABLE `materialeNoleggio` (
   `idMateriale` int DEFAULT 0,
   `quantita` int DEFAULT 1,
   FOREIGN KEY (idNoleggio) REFERENCES noleggio(id) ON DELETE CASCADE,
-  FOREIGN KEY (idMateriale) REFERENCES materiale(codice) ON UPDATE CASCADE,
+  FOREIGN KEY (idMateriale) REFERENCES materiale(codice) ON UPDATE CASCADE ON DELETE CASCADE,
   PRIMARY KEY (`idNoleggio`,`idMateriale`)
 );
 
