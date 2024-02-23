@@ -1,0 +1,52 @@
+name: Jest Automatic Testing
+
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-jest-tests:
+    name: Jest Tests
+    runs-on: ubuntu-latest
+
+    env:
+      DB_HOST: ${{secrets.DB_HOST}}
+      DB_PORT: ${{secrets.DB_PORT}}
+      DB_USER: ${{secrets.DB_USER }}
+      DB_PASS: ${{secrets.DB_PASS }}
+      DB_SCHEMA: ${{secrets.DB_SCHEMA }}
+
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.DB_PASS }}
+          MYSQL_DATABASE: ${{ secrets.DB_SCHEMA }}
+          MYSQL_USER: ${{ secrets.DB_USER }}
+          MYSQL_PASSWORD: ${{ secrets.DB_PASS }}
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20
+
+      - name: Deploy MySQL Test Schema
+        run: mysql -h $DB_HOST -P $DB_PORT -u $DB_USER -p$DB_PASS $DB_SCHEMA < ./6_Database/ScriptSQL/gestionaleMagazzinoTEST.sql
+
+      - name: Changing directory
+        run: cd ./5_Applicativo/GestionaleMagazzino
+
+      - name: Run Jest Tests
+        run: npm run test
