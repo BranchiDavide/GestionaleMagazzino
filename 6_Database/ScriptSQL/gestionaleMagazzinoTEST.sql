@@ -1,4 +1,5 @@
 -- Drop del database se esiste e creazione del nuovo database
+SET GLOBAL log_bin_trust_function_creators = 1;
 DROP DATABASE IF EXISTS gestionaleMagazzinoTEST;
 CREATE DATABASE gestionaleMagazzinoTEST;
 USE gestionaleMagazzinoTEST;
