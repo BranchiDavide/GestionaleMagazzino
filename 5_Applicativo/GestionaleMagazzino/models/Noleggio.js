@@ -16,4 +16,5 @@ class Noleggio{
         this.chiusuraForzata = chiusuraForzata;
     }
 }
+
 module.exports = Noleggio;

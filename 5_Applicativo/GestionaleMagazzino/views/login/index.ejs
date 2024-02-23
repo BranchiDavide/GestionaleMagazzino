@@ -18,6 +18,11 @@
     <div class="form-group">
       <input type="password" class="form-control" name="password" placeholder="Password" required>
     </div>
+    <% if (typeof displayError !== 'undefined' && displayError){ %>
+      <div class="alert alert-danger" role="alert">
+        <%= message %>
+      </div>
+    <% } %>
     <button type="submit" class="btn btn-custom btn-block">Login</button>
   </form>
 

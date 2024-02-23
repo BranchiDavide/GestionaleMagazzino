@@ -9,6 +9,14 @@ CREATE TABLE `ruolo` (
   PRIMARY KEY (`nome`)
 );
 
+-- Creazione della tabella delle sessioni
+CREATE TABLE `sessions` (
+  `id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `expires` int unsigned NOT NULL,
+  `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 -- Creazione della tabella categoria
 CREATE TABLE `categoria` (
   `nome` varchar(64) NOT NULL,
@@ -51,7 +59,7 @@ CREATE TABLE `materiale` (
   `isConsumabile` tinyint DEFAULT 0,
   `isDisponibile` tinyint DEFAULT 1,
   `categoria` varchar(64) DEFAULT "generico",
-  FOREIGN KEY (categoria) REFERENCES categoria(nome) ON UPDATE CASCADE,
+  FOREIGN KEY (categoria) REFERENCES categoria(nome) ON UPDATE CASCADE ON DELETE SET NULL,
   PRIMARY KEY (`codice`)
 );
 
@@ -61,7 +69,7 @@ CREATE TABLE `materialeNoleggio` (
   `idMateriale` int DEFAULT 0,
   `quantita` int DEFAULT 1,
   FOREIGN KEY (idNoleggio) REFERENCES noleggio(id) ON DELETE CASCADE,
-  FOREIGN KEY (idMateriale) REFERENCES materiale(codice) ON UPDATE CASCADE,
+  FOREIGN KEY (idMateriale) REFERENCES materiale(codice) ON UPDATE CASCADE ON DELETE CASCADE,
   PRIMARY KEY (`idNoleggio`,`idMateriale`)
 );
 
@@ -112,10 +120,10 @@ INSERT INTO categoria (nome) VALUES ('Elettronica'), ('Abbigliamento'), ('Casa')
 -- Popolare la tabella utente con dati di esempio
 INSERT INTO utente (nome, cognome, dataNascita, email, password, ruolo)
 VALUES 
-('Mario', 'Rossi', '1990-05-15', 'mario@email.com', 'password123', 'utente'),
-('Giulia', 'Bianchi', '1985-10-20', 'giulia@email.com', 'securepwd', 'gestore'),
-('Luigi', 'Verdi', '1988-07-25', 'luigi@email.com', 'test123', 'amministratore'),
-('Giovanna', 'Neri', '1995-03-12', 'giovanna@email.com', 'password456', 'utente');
+('Mario', 'Rossi', '1990-05-15', 'mario@email.com', '$2b$10$KxDnkD1nru/H6geeJaYp6uPH.lg5RfLlYtS5jf5zQxMtBsUysXUci', 'utente'), /* pass: password123 */
+('Giulia', 'Bianchi', '1985-10-20', 'giulia@email.com', '$2b$10$DboaTlg8.XlfJ0OVWG.Haug.XQoLdgxmFo/6S57sfFQ9AzpryThBa', 'gestore'), /* pass: securepwd */
+('Luigi', 'Verdi', '1988-07-25', 'luigi@email.com', '$2b$10$nHCMQwpnOdIG/4EnZMudpuDqKXrvbJvorK22rdMG8E2kYe.Mk4he.', 'amministratore'), /* pass: test123 */
+('Giovanna', 'Neri', '1995-03-12', 'giovanna@email.com', '$2b$10$Rw8zv5OGCCk7tuQNAJ4g4.jJx2CMyHWTdC0Ct.H2QcefAIrfnCTyO', 'utente'); /* pass: password456 */
 
 -- Popolare la tabella noleggio con dati di esempio
 INSERT INTO noleggio (nome, dataInizio, dataFine, autore)

@@ -1,6 +1,10 @@
 const db = require("./../../database/db");
 const Materiale = require("./../Materiale");
 
+/**
+ * Funzione che ritorna tutti i materiali
+ * @returns array di oggetti Materiale
+ */
 async function getAll(){
     const [result] = await db.query("SELECT * FROM materiale");
     let materiali = [];
@@ -10,6 +14,11 @@ async function getAll(){
     return materiali;
 }
 
+/**
+ * Funzione che ritorna un materiale in base al suo codice
+ * @param codice 
+ * @returns oggetto Materiale
+ */
 async function getByCodice(codice){ 
     const [result] = await db.query("SELECT * FROM materiale WHERE codice=? LIMIT 1", [codice]);
     if(result[0]){
@@ -19,14 +28,35 @@ async function getByCodice(codice){
     }
 }
 
+/**
+ * Funzione per inserire un nuovo materiale
+ * @param nome 
+ * @param riferimentoFoto 
+ * @param quantita 
+ * @param isConsumabile 
+ * @param isDisponibile 
+ * @param categoria 
+ * @returns id del materiale appena inserito
+ */
 async function insertMateriale(nome, riferimentoFoto, quantita, isConsumabile, isDisponibile, categoria){
     const [result] = await db.query(
         "INSERT INTO materiale (nome, riferimentoFoto, quantita, isConsumabile, isDisponibile, categoria) VALUES (?,?,?,?,?,?)",
         [nome, riferimentoFoto, quantita, isConsumabile, isDisponibile, categoria]
     );
-    return result.affectedRows == 1;
+    return result.insertId;
 }
 
+/**
+ * Funzione per aggiornare i campi di un materiale in base al codice
+ * @param codice 
+ * @param nome 
+ * @param riferimentoFoto 
+ * @param quantita 
+ * @param isConsumabile 
+ * @param isDisponibile 
+ * @param categoria 
+ * @returns true se l'aggiornamento è andato a buon fine, false altrimenti
+ */
 async function updateMateriale(codice, nome, riferimentoFoto, quantita, isConsumabile, isDisponibile, categoria){
     const [result] = await db.query(
         "UPDATE materiale SET nome=?, riferimentoFoto=?, quantita=?, isConsumabile=?, isDisponibile=?, categoria=? WHERE codice=?",
@@ -35,11 +65,25 @@ async function updateMateriale(codice, nome, riferimentoFoto, quantita, isConsum
     return result.affectedRows == 1;
 }
 
+/**
+ * Funzione per eliminare un materiale in base al codice
+ * @param codice 
+ * @returns true se l'eliminazione è andata a buon fine, false altrimenti
+ */
 async function deleteMateriale(codice){
     const [result] = await db.query("DELETE FROM materiale WHERE codice=?", [codice]);
     return result.affectedRows == 1;
 }
 
+/**
+ * Funzione per aggiormnare la quantità di un materiale.
+ * Questa funzione gestisce anche il campo della disponibilità (isDisponibile)
+ * durante l'aggiornamento della quantità.
+ * @param codice 
+ * @param incQuantita incremento o decremento della quantità: un numero negativo
+ *                    diminuirà la quantità, mentre un numero positivo la aumenterà.
+ * @returns 
+ */
 async function updateQuantita(codice, incQuantita){
     const materiale = await getByCodice(codice);
     if(materiale.quantita + incQuantita <= 0){

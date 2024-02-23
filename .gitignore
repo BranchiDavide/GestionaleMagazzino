@@ -1,3 +1,6 @@
 .env
 *.log
+<<<<<<< HEAD
 test.env
+=======
+>>>>>>> d9ed5286986f1d188a9f8cc478dad87f897b2ba0

@@ -1,17 +1,19 @@
 const express = require('express');
-const loginController = require("../controllers/loginController")
+const authenticationRouter = require('./authRoute');
+const authMiddleware = require('../middlewares/authMiddleware');
+
 const router = express.Router();
 
-router.get("/", (req, res) => {
-    // res.status(200).send("Benvenuto nel sito")
-    // res.end();
-    res.redirect("/login")
+// i routers per gestire gli url
+router.use(authenticationRouter);
+
+router.get("/", authMiddleware.isAuthenticated, (req, res) => {
+    res.redirect("/home");
 })
 
-router.get("/login", (req, res) => {
-    res.render("login/login.ejs");
+router.get("/home", authMiddleware.isAuthenticated, (req, res) => {
+    const name = req.session.user.nome;
+    res.status(200).send(`Benvenuto in home ${name}`);
 })
-
-router.post("/login", loginController.login);
 
 module.exports = router;
