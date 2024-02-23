@@ -31,7 +31,7 @@ jobs:
           MYSQL_LOG_BIN_TRUST_FUNCTION_CREATORS: "1"
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3 --log_bin_trust_function_creators
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
 
     steps:
