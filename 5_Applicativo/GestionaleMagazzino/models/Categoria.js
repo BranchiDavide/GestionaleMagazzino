@@ -4,4 +4,5 @@ class Categoria{
         this.nome = nome;
     }
 }
+
 module.exports = Categoria;

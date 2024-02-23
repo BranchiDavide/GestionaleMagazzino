@@ -16,4 +16,5 @@ class Materiale{
         this.categoria = categoria;
     }
 }
+
 module.exports = Materiale;
