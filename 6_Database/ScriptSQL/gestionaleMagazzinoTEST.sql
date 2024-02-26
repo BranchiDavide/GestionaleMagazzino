@@ -10,6 +10,14 @@ CREATE TABLE `ruolo` (
   PRIMARY KEY (`nome`)
 );
 
+-- Creazione della tabella delle sessioni
+CREATE TABLE `sessions` (
+  `id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `expires` int unsigned NOT NULL,
+  `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 -- Creazione della tabella categoria
 CREATE TABLE `categoria` (
   `nome` varchar(64) NOT NULL,

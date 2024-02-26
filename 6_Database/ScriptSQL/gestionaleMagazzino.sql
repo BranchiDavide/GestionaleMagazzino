@@ -125,6 +125,7 @@ VALUES
 ('Luigi', 'Verdi', '1988-07-25', 'luigi@email.com', '$2b$10$nHCMQwpnOdIG/4EnZMudpuDqKXrvbJvorK22rdMG8E2kYe.Mk4he.', 'amministratore'), /* pass: test123 */
 ('Giovanna', 'Neri', '1995-03-12', 'giovanna@email.com', '$2b$10$Rw8zv5OGCCk7tuQNAJ4g4.jJx2CMyHWTdC0Ct.H2QcefAIrfnCTyO', 'utente'); /* pass: password456 */
 
+/*
 -- Popolare la tabella noleggio con dati di esempio
 INSERT INTO noleggio (nome, dataInizio, dataFine, autore)
 VALUES 
@@ -147,3 +148,4 @@ VALUES
 (1, 2, 1),
 (2, 3, 3),
 (3, 4, 5);
+*/
