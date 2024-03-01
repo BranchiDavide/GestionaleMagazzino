@@ -9,7 +9,6 @@
   <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
   <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
   <style>
-
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -196,6 +195,8 @@
       padding: 20px;
       margin: 20px auto;
       box-shadow: 0 0.6em 1.2em rgba(28, 0, 80, 0.06);
+      width: calc(100% - 50px);
+      display: inline-flex;
     }
 
     .item-picture {
@@ -215,11 +216,11 @@
       padding: 10px;
     }
 
-    .user-info {
+    .item-info {
       text-align: left;
     }
 
-    .user-info p {
+    .item-info p {
       margin: 5px 0;
     }
 
@@ -262,7 +263,7 @@
       height: 40px;
     }
 
-    .functions div button:hover{
+    .functions div button:hover {
       color: #fff;
       background: #4723D9;
     }
@@ -408,10 +409,6 @@
         width: calc(100% - 350px);
       }
 
-      .item-container {
-        width: calc(100% - 50px);
-      }
-
       .item-picture {
         width: 300px;
         height: 300px;
@@ -420,13 +417,9 @@
       .responsive-button {
         width: 100%;
       }
-
-      .item-container {
-        display: inline-flex;
-      }
     }
 
-    @media screen and (max-width: 1700px){
+    @media screen and (max-width: 1700px) {
       .functions {
         display: flex;
         align-items: center;
@@ -487,36 +480,30 @@
         <div class="item-container">
           <div class="item-left">
             <div class="item-picture">
-              <img src="../img/noleggio/1.jfif" alt="item Picture">
+              <img src="../img/prodotto/1.png" alt="item Picture">
             </div>
             <div class="item-title">
-              <h2>John Brick🧱</h2>
+              <h2>Fotocamera</h2>
             </div>
-            <div class="user-info">
+            <div class="item-info">
               <p><strong>ID:</strong> 1</p>
-              <p><strong>Autore:</strong> John Doe</p>
-              <p><strong>Data ritorno:</strong> 01/01/1990</p>
+              <p><strong>Disponibili:</strong> 4</p>
+              <p><strong>Quando disponibile:</strong> adesso</p>
             </div>
             <div class="functions">
               <div class="button-align-left">
-                <button type="submit"><i class='bx bx-edit'></i></button>
-                <div class="optional">
-                  <span class="optional">Modifica il noleggio</span>
-                </div>
-              </div>
-              <div class="button-align-left">
-                <button type="submit"><i class='bx bx-printer'></i></button>
-                <span class="optional">Stampa lista materiale</span>
+                <button type="submit"><i class='bx bx-qr'></i></button>
+                <span class="optional">Stampa codice QR</span>
               </div>
               <div class="button-align-left">
                 <button type="submit"><i class='bx bx-trash'></i></button>
-                <span class="optional">Chiudi noleggio</span>
+                <span class="optional">Rimuovi oggetto</span>
               </div>
             </div>
           </div>
           <div class="item-right">
             <div class="item-title">
-              <h2>Equipaggiamento preso</h2>
+              <h2>Noleggi</h2>
             </div>
             <div class="custom-table-container">
               <table class="table custom-table">
@@ -539,12 +526,11 @@
                       </label>
                     </td style="height: 50px;">
                     <td class="optional">1</td>
-                    <td>PX50fadfdasfdsfdfd1</td>
+                    <td>PX501</td>
                     <td>3</td>
                     <td class="optional">Videocamere</td>
                     <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
                   </tr>
-                
                   <tr>
                     <td>
                       <label class="control control--checkbox">
@@ -552,35 +538,9 @@
                         <div class="control__indicator"></div>
                       </label>
                     </td style="height: 50px;">
-                    <td class="optional">2</td>
+                    <td class="optional">1</td>
                     <td>PX501</td>
-                    <td>1</td>
-                    <td class="optional">Videocamere</td>
-                    <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="control control--checkbox">
-                        <input type="checkbox" class="js-check-all" />
-                        <div class="control__indicator"></div>
-                      </label>
-                    </td style="height: 50px;">
-                    <td class="optional">2</td>
-                    <td>PX501</td>
-                    <td>1</td>
-                    <td class="optional">Videocamere</td>
-                    <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="control control--checkbox">
-                        <input type="checkbox" class="js-check-all" />
-                        <div class="control__indicator"></div>
-                      </label>
-                    </td style="height: 50px;">
-                    <td class="optional">2</td>
-                    <td>PX501</td>
-                    <td>1</td>
+                    <td>3</td>
                     <td class="optional">Videocamere</td>
                     <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
                   </tr>
@@ -590,55 +550,54 @@
           </div>
         </div>
       </div>
-    </div>
-    <!--Container Main end-->
-    <script type='text/javascript'
-      src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'></script>
-    <script type='text/javascript' src='#'></script>
-    <script type='text/javascript' src='#'></script>
-    <script type='text/javascript' src='#'></script>
-    <script type='text/javascript'>document.addEventListener("DOMContentLoaded", function (event) {
+      <!--Container Main end-->
+      <script type='text/javascript'
+        src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'></script>
+      <script type='text/javascript' src='#'></script>
+      <script type='text/javascript' src='#'></script>
+      <script type='text/javascript' src='#'></script>
+      <script type='text/javascript'>document.addEventListener("DOMContentLoaded", function (event) {
 
-        const showNavbar = (toggleId, navId, bodyId, headerId) => {
-          const toggle = document.getElementById(toggleId),
-            nav = document.getElementById(navId),
-            bodypd = document.getElementById(bodyId),
-            headerpd = document.getElementById(headerId)
+          const showNavbar = (toggleId, navId, bodyId, headerId) => {
+            const toggle = document.getElementById(toggleId),
+              nav = document.getElementById(navId),
+              bodypd = document.getElementById(bodyId),
+              headerpd = document.getElementById(headerId)
 
-          // Validate that all variables exist
-          if (toggle && nav && bodypd && headerpd) {
-            toggle.addEventListener('click', () => {
-              // show navbar
-              nav.classList.toggle('show')
-              // change icon
-              toggle.classList.toggle('bx-x')
-              // add padding to body
-              bodypd.classList.toggle('body-pd')
-              // add padding to header
-              headerpd.classList.toggle('body-pd')
-            })
+            // Validate that all variables exist
+            if (toggle && nav && bodypd && headerpd) {
+              toggle.addEventListener('click', () => {
+                // show navbar
+                nav.classList.toggle('show')
+                // change icon
+                toggle.classList.toggle('bx-x')
+                // add padding to body
+                bodypd.classList.toggle('body-pd')
+                // add padding to header
+                headerpd.classList.toggle('body-pd')
+              })
+            }
           }
-        }
 
-        showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
+          showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
 
-        /*===== LINK ACTIVE =====*/
-        const linkColor = document.querySelectorAll('.nav_link')
+          /*===== LINK ACTIVE =====*/
+          const linkColor = document.querySelectorAll('.nav_link')
 
-        function colorLink() {
-          if (linkColor) {
-            linkColor.forEach(l => l.classList.remove('active'))
-            this.classList.add('active')
+          function colorLink() {
+            if (linkColor) {
+              linkColor.forEach(l => l.classList.remove('active'))
+              this.classList.add('active')
+            }
           }
-        }
-        linkColor.forEach(l => l.addEventListener('click', colorLink))
+          linkColor.forEach(l => l.addEventListener('click', colorLink))
 
-        // Your code to run since DOM is loaded and ready
-      });</script>
-    <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
-      myLink.addEventListener('click', function (e) {
-        e.preventDefault();
-      });</script>
+          // Your code to run since DOM is loaded and ready
+        });</script>
+      <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
+        myLink.addEventListener('click', function (e) {
+          e.preventDefault();
+        });</script>
   </body>
 
 </html>

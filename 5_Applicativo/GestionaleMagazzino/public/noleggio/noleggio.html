@@ -332,6 +332,10 @@
     td {
       min-height: 48px;
     }
+
+    .item-title {
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -347,12 +351,12 @@
         <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
               class="nav_logo-name">Gestore Magazzino</span> </a>
           <div class="nav_list">
-            <a href="#" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span
+            <a href="#" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span
                 class="nav_name">Dashboard</span> </a>
             <a href="#" class="nav_link"> <i class='bx bx-box nav_icon'></i> <span
                 class="nav_name">Inventario</span></a>
             <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i><span class="nav_name">Utenti</span> </a>
-            <a href="#" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span
+            <a href="#" class="nav_link active"> <i class='bx bx-message-square-detail nav_icon'></i> <span
                 class="nav_name">Noleggi</span> </a>
             <a href="#" class="nav_link"> <i class='bx bx-cart nav_icon'></i> <span class="nav_name">Carrello</span></a>
             <a href="#" class="nav_link"> <i class='bx bx-book-bookmark nav_icon'></i> <span
@@ -366,6 +370,9 @@
     <!--Container Main start-->
     <div class="height-100 bg-light">
       <div class="main-section">
+        <div class="item-title">
+          <h2>John Brick🧱</h2>
+        </div>
         <div class="row search-container">
           <form action="#" method="POST">
             <input type="search" name="search" placeholder="Cerca">
@@ -376,38 +383,25 @@
           <table class="table custom-table">
             <thead>
               <tr>
-                <th scope="col">#</th>
                 <th class="optional" scope="col">Id</th>
                 <th scope="col">Nome</th>
-                <th scope="col">Quantità</th>
-                <th class="optional" scope="col">Categoria</th>
+                <th scope="col">Deadline</th>
+                <th class="optional" scope="col">Autore</th>
                 <th scope="col">Mostra</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>
-                  <label class="control control--checkbox">
-                    <input type="checkbox" class="js-check-all" />
-                    <div class="control__indicator"></div>
-                  </label>
-                </td style="height: 50px;">
                 <td class="optional">1</td>
-                <td>PX501</td>
-                <td>3</td>
+                <td>John Brick🧱</td>
+                <td>3 giorni</td>
                 <td class="optional">Videocamere</td>
                 <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
               </tr>
               <tr>
-                <td>
-                  <label class="control control--checkbox">
-                    <input type="checkbox" class="js-check-all" />
-                    <div class="control__indicator"></div>
-                  </label>
-                </td style="height: 50px;">
                 <td class="optional">1</td>
-                <td>PX501</td>
-                <td>3</td>
+                <td>The Faceless</td>
+                <td>3 mesi</td>
                 <td class="optional">Videocamere</td>
                 <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
               </tr>
