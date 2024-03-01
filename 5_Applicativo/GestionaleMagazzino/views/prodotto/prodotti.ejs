@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+
+<head>
+  <%- include('../_templates/header'); -%>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Gestionale Magazzino - Prodotti</title>
+  <link rel="stylesheet" href="/css/prodotto/prodotti.css">
+</head>
+
+<body className='snippet-body'>
+
+  <body id="body-pd">
+    <header class="header" id="header">
+      <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+      <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
+    </header>
+    <div class="l-navbar" id="nav-bar">
+      <nav class="nav">
+        <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
+              class="nav_logo-name">Gestore Magazzino</span> </a>
+          <div class="nav_list"> 
+            <a href="#" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a> 
+            <a href="#" class="nav_link active"> <i class='bx bx-box nav_icon'></i> <span class="nav_name">Inventario</span></a> 
+            <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i><span class="nav_name">Utenti</span> </a> 
+            <a href="#" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Noleggi</span> </a> 
+            <a href="#" class="nav_link"> <i class='bx bx-cart nav_icon'></i> <span class="nav_name">Carrello</span></a> 
+            <a href="#" class="nav_link"> <i class='bx bx-book-bookmark nav_icon'></i> <span class="nav_name">Manuale</span> </a> 
+            </div>
+        </div> 
+        <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Logout</span></a>
+      </nav>
+    </div>
+
+    <!--Container Main start-->
+    <div class="height-100 bg-light">
+      <div class="main-section">
+        <div class="item-title">
+          <h2>Cerca prodotti</h2>
+        </div>
+        <div class="container">
+          <div class="row search-container">
+            <form action="#" method="POST">
+              <input type="search" name="search" placeholder="Cerca">
+              <button type="submit"><i class="bx bx-search-alt"></i></button>
+            </form>
+          </div>
+          <div class="custom-table-container">
+            <table class="table custom-table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th class="optional" scope="col">Id</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Quantità</th>
+                  <th class="optional" scope="col">Categoria</th>
+                  <th scope="col">Mostra</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (let item of products) { %>
+                    <tr>
+                        <td>
+                          <label class="control control--checkbox">
+                            <input type="checkbox" class="js-check-all" />
+                            <div class="control__indicator"></div>
+                          </label>
+                        </td style="height: 50px;">
+                        <td class="optional"><%= item.codice%></td>
+                        <td><%= item.nome%></td>
+                        <td><%= item.quantita%></td>
+                        <td class="optional"><%= item.categoria%></td>
+                        <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
+                      </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/navbar.js"></script>
+  </body>
+</html>
