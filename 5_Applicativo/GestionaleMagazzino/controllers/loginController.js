@@ -26,7 +26,9 @@ async function login(req, res){
     }
     // se arriva fino a qua vuol dire che ha fatto il login "giusto"
     req.session.user = user;
-    return res.status(200).redirect("/home");
+    req.session.save(function() {             
+        return res.status(200).redirect("/home");
+    });
 }
 
 /**
