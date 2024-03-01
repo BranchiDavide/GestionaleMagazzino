@@ -115,7 +115,17 @@ DELIMITER ;
 INSERT INTO ruolo (nome) VALUES ('amministratore'), ('gestore'), ('utente');
 
 -- Popolare la tabella categoria con dati di esempio
-INSERT INTO categoria (nome) VALUES ('Elettronica'), ('Abbigliamento'), ('Casa'), ('Giocattoli');
+INSERT INTO categoria (nome) VALUES 
+  ('Elettronica'),
+  ('Abbigliamento'),
+  ('Casa'),
+  ('Giardino'),
+  ('Sport'),
+  ('Cucina'),
+  ('Musica'),
+  ('Libri'),
+  ('Film'),
+  ('Fai da te');
 
 -- Popolare la tabella utente con dati di esempio
 INSERT INTO utente (nome, cognome, dataNascita, email, password, ruolo)
@@ -124,6 +134,19 @@ VALUES
 ('Giulia', 'Bianchi', '1985-10-20', 'giulia@email.com', '$2b$10$DboaTlg8.XlfJ0OVWG.Haug.XQoLdgxmFo/6S57sfFQ9AzpryThBa', 'gestore'), /* pass: securepwd */
 ('Luigi', 'Verdi', '1988-07-25', 'luigi@email.com', '$2b$10$nHCMQwpnOdIG/4EnZMudpuDqKXrvbJvorK22rdMG8E2kYe.Mk4he.', 'amministratore'), /* pass: test123 */
 ('Giovanna', 'Neri', '1995-03-12', 'giovanna@email.com', '$2b$10$Rw8zv5OGCCk7tuQNAJ4g4.jJx2CMyHWTdC0Ct.H2QcefAIrfnCTyO', 'utente'); /* pass: password456 */
+
+INSERT INTO materiale (nome, riferimentoFoto, quantita, isConsumabile, isDisponibile, categoria) VALUES
+  ('Television', '/path/to/photo35.jpg', 8, 0, 1, 'Elettronica'),
+  ('Jeans', '/path/to/photo36.jpg', 30, 0, 1, 'Abbigliamento'),
+  ('Coffee maker', '/path/to/photo37.jpg', 5, 0, 1, 'Cucina'),
+  ('Garden hose', '/path/to/photo38.jpg', 12, 0, 1, 'Giardino'),
+  ('Tennis racket', '/path/to/photo39.jpg', 10, 0, 1, 'Sport'),
+  ('Bookshelf', '/path/to/photo40.jpg', 3, 0, 1, 'Casa'),
+  ('Acoustic guitar', '/path/to/photo41.jpg', 4, 0, 1, 'Musica'),
+  ('Cookbook', '/path/to/photo42.jpg', 15, 0, 1, 'Libri'),
+  ('DVD player', '/path/to/photo43.jpg', 6, 0, 1, 'Film'),
+  ('Toolbox', '/path/to/photo44.jpg', 8, 0, 1, 'Fai da te');
+
 
 /*
 -- Popolare la tabella noleggio con dati di esempio
