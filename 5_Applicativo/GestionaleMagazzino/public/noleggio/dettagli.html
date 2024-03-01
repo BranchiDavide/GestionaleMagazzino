@@ -9,6 +9,7 @@
   <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
   <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
   <style>
+
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -29,6 +30,7 @@
     }
 
     @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
     :root {
       --header-height: 3rem;
@@ -37,6 +39,7 @@
       --first-color-light: #AFA5D9;
       --white-color: #F7F6FB;
       --body-font: 'Nunito', sans-serif;
+      --text-font: "Rubik", sans-serif;
       --normal-font-size: 1rem;
       --z-fixed: 100
     }
@@ -44,7 +47,7 @@
     *,
     ::before,
     ::after {
-      box-sizing: border-box
+      box-sizing: border-box;
     }
 
     body {
@@ -209,6 +212,7 @@
 
     .item-title {
       text-align: center;
+      padding: 10px;
     }
 
     .user-info {
@@ -223,6 +227,53 @@
       align-items: left;
     }
 
+    .functions div {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 15px;
+    }
+
+    .functions div .optional {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+    }
+
+    .button-align-left {
+      align-items: left;
+      vertical-align: center;
+      display: inline-flex;
+      padding: 3px;
+      width: 100%;
+    }
+
+    .functions div button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: #4723D9;
+      border-radius: 50%;
+      border: 2px solid #4723D9;
+      background: transparent;
+      transition: all .3s ease-in-out;
+      width: 40px;
+      height: 40px;
+    }
+
+    .functions div button:hover{
+      color: #fff;
+      background: #4723D9;
+    }
+
+    .functions div span {
+      font-size: 18px;
+      font-weight: bold;
+      color: #5823D9;
+      transition: all .3s ease-in-out;
+    }
+
 
 
     .custom-table-container {
@@ -234,19 +285,6 @@
       /* Puoi regolare questo valore a tuo piacimento */
       overflow-y: auto;
       /* make the table scrollable if height is more than 200 px  */
-    }
-
-    .button-align-left {
-      align-items: left;
-      vertical-align: center;
-      display: inline-flex;
-      padding: 3px;
-      width: 100%;
-    }
-
-    .button-align-left button {
-      width: 40px;
-      height: 40px;
     }
 
     .custom-table {
@@ -387,6 +425,31 @@
         display: inline-flex;
       }
     }
+
+    @media screen and (max-width: 1700px){
+      .functions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .functions div {
+        justify-content: center;
+      }
+
+      .functions div .optional {
+        display: none;
+      }
+
+      .functions div button {
+        width: 100px;
+        height: 100px;
+      }
+
+      .functions div button {
+        font-size: 44px;
+      }
+    }
   </style>
 </head>
 
@@ -438,20 +501,16 @@
               <div class="button-align-left">
                 <button type="submit"><i class='bx bx-edit'></i></button>
                 <div class="optional">
-                  <p>Modifica il noleggio</p>
+                  <span class="optional">Modifica il noleggio</span>
                 </div>
               </div>
               <div class="button-align-left">
                 <button type="submit"><i class='bx bx-printer'></i></i></button>
-                <div class="optional">
-                  <p>Stampa lista materiale</p>
-                </div>
+                <span class="optional">Stampa lista materiale</span>
               </div>
               <div class="button-align-left">
                 <button type="submit"><i class='bx bx-trash'></i></i></button>
-                <div class="optional">
-                  <p class="center">Chiudi noleggio</p><br>
-                </div>
+                <span class="optional">Chiudi noleggio</span>
               </div>
             </div>
           </div>
