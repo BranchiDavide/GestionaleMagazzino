@@ -260,7 +260,21 @@
       height: 40px;
     }
 
-    .functions div button:hover {
+    .item-info p button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 22px;
+      color: #4723D9;
+      border-radius: 50%;
+      border: 2px solid #4723D9;
+      background: transparent;
+      transition: all .3s ease-in-out;
+      width: 30px;
+      height: 30px;
+    }
+
+    .functions div button:hover,.item-info p button:hover {
       color: #fff;
       background: #4723D9;
     }
@@ -361,6 +375,11 @@
       transform: translateY(-50%);
     }
 
+    form{
+      justify-content: center;
+
+    }
+
     @media screen and (min-width: 1068px) {
       body {
         margin: calc(var(--header-height) + 1rem) 0 0 0;
@@ -398,7 +417,7 @@
         display: block;
       }
 
-      .item-left {
+      .item-center {
         width: 350px;
       }
 
@@ -407,7 +426,7 @@
       }
 
       .item-container {
-        width: calc(100% - 50px);
+        width: 400px;
       }
 
       .item-picture {
@@ -436,7 +455,6 @@
         width: 100%;
       }
 
-
       .functions div .optional {
         display: none;
       }
@@ -447,7 +465,7 @@
       }
 
       .functions div button {
-        font-size: 44px;
+        font-size: 66px;
       }
     }
   </style>
@@ -485,71 +503,45 @@
     <div class="height-100 bg-light">
       <div class="main-section">
         <div class="item-container">
-          <div class="item-left">
-            <div class="item-picture">
-              <img src="../img/utente/1.png" alt="item Picture">
-            </div>
+          <div class="item-center">
             <div class="item-title">
-              <h2>Aziz Kawsarani</h2>
+              <h2>Crea oggetto</h2>
             </div>
+            <form>
             <div class="item-info">
-              <p><strong>ID:</strong> 1</p>
-              <p><strong>Data nascita:</strong> 21.09.2001</p>
-              <p><strong>Ruolo:</strong> Capo della gang</p>
+              <p><strong>Nome:  </strong><input></p>
+             
+              <p>
+                <strong>Categoria:  </strong>
+                <input list="item-categories" id="category-choice" name="category-choice"/>
+                <datalist id="item-categories">
+                  <option value="Videocamere"></option>
+                  <option value="Scenografia"></option>
+                  <option value="Cosmetici"></option>
+                  <option value="Vestiti"></option>
+                  <option value="Supporti"></option>
+                </datalist>      
+                  <button type="submit"><i class='bx bxs-user-check'></i></button>
+                  <button type="submit"><i class='bx bxs-user-check'></i></button>
+              </p>
+             
+              <p><strong>Quantità:  </strong><input></p>
+              <p><strong>Email:  </strong><input></p>
+              <p><strong>Password:  </strong><input type="password"></p>
+              <div class="item-title">
+                <h3>Inserisci foto opz.</h3>
+              </div>
+              <div class="item-picture">
+                <img>
+              </div>
             </div>
             <div class="functions">
               <div class="button-align-left">
-                <button type="submit"><i class='bx bx-trash'></i></i></button>
-                <span class="optional">Rimuovi utente</span>
+                <button type="submit"><i class='bx bxs-user-check'></i></button>
+                <span class="optional">Conferma</span>
               </div>
             </div>
-          </div>
-          <div class="item-right">
-            <div class="item-title">
-              <h2>Noleggi</h2>
-            </div>
-            <div class="custom-table-container">
-              <table class="table custom-table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th class="optional" scope="col">Id</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Quantità</th>
-                    <th class="optional" scope="col">Categoria</th>
-                    <th scope="col">Mostra</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <label class="control control--checkbox">
-                        <input type="checkbox" class="js-check-all" />
-                        <div class="control__indicator"></div>
-                      </label>
-                    </td style="height: 50px;">
-                    <td class="optional">1</td>
-                    <td>PX501</td>
-                    <td>3</td>
-                    <td class="optional">Videocamere</td>
-                    <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="control control--checkbox">
-                        <input type="checkbox" class="js-check-all" />
-                        <div class="control__indicator"></div>
-                      </label>
-                    </td style="height: 50px;">
-                    <td class="optional">1</td>
-                    <td>PX501</td>
-                    <td>3</td>
-                    <td class="optional">Videocamere</td>
-                    <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          </form>
           </div>
         </div>
       </div>
