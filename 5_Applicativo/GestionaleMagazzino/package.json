@@ -21,6 +21,7 @@
     "express-session": "^1.18.0",
     "jquery": "^3.7.1",
     "mysql2": "^3.9.1",
+    "sanitize-html": "^2.12.1",
     "validator": "^13.11.0"
   },
   "devDependencies": {
