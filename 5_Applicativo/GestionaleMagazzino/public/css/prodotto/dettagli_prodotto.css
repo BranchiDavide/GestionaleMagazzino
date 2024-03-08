@@ -17,8 +17,17 @@
     background: #555;
   }
 
-  @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
-  @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+  @font-face {
+    font-family: Nunito;
+    src: url('/font/Nunito/Nunito-VariableFont_wght.ttf');
+    font-weight: 400 600;
+  }
+
+  @font-face {
+    font-family: Rubik;
+    src: url('/font/Rubik/Rubik-Italic-VariableFont_wght.ttf');
+    font-weight: 300 900;
+  }
 
   :root {
     --header-height: 3rem;
@@ -27,7 +36,7 @@
     --first-color-light: #AFA5D9;
     --white-color: #F7F6FB;
     --body-font: 'Nunito', sans-serif;
-    --text-font: "Rubik", sans-serif;
+    --text-font: 'Rubik', sans-serif;
     --normal-font-size: 1rem;
     --z-fixed: 100
   }
@@ -85,83 +94,12 @@
     width: 40px
   }
 
-  .l-navbar {
-    position: fixed;
-    top: 0;
-    left: -30%;
-    width: var(--nav-width);
-    height: 100vh;
-    background-color: var(--first-color);
-    padding: .5rem 1rem 0 0;
-    transition: .5s;
-    z-index: var(--z-fixed)
-  }
-
-  .nav {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden
-  }
-
-  .nav_logo,
-  .nav_link {
-    display: grid;
-    grid-template-columns: max-content max-content;
-    align-items: center;
-    column-gap: 1rem;
-    padding: .5rem 0 .5rem 1.5rem
-  }
-
-  .nav_logo {
-    margin-bottom: 2rem
-  }
-
-  .nav_logo-icon {
-    font-size: 1.25rem;
-    color: var(--white-color)
-  }
-
-  .nav_logo-name {
-    color: var(--white-color);
-    font-weight: 700
-  }
-
-  .nav_link {
-    position: relative;
-    color: var(--first-color-light);
-    margin-bottom: 1.5rem;
-    transition: .3s
-  }
-
-  .nav_link:hover {
-    color: var(--white-color)
-  }
-
-  .nav_icon {
-    font-size: 1.25rem
-  }
-
   .show {
     left: 0
   }
 
   .body-pd {
     padding-left: calc(var(--nav-width) + 1rem)
-  }
-
-  .active {
-    color: var(--white-color)
-  }
-
-  .active::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 2px;
-    height: 32px;
-    background-color: var(--white-color)
   }
 
   .height-100 {
@@ -263,8 +201,6 @@
     color: #5823D9;
     transition: all .3s ease-in-out;
   }
-
-
 
   .custom-table-container {
     width: 100%;
