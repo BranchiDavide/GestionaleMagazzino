@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Gioele Cappellari">
+    <title>Errore Gestionale Magazzino</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-body">
+                <h1 class="card-title text-danger">Oops! Si è verificato un errore.</h1>
+                <% if (error.status === 404) { %>
+                    <p class="card-text">La pagina che stai cercando non è stata trovata.</p>
+                <% } else { %>
+                    <p class="card-text">Si è verificato un errore interno del server.</p>
+                <% } %>
+                <p class="card-text">Ricarica la pagina o prova più tardi.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

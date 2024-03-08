@@ -115,7 +115,17 @@ DELIMITER ;
 INSERT INTO ruolo (nome) VALUES ('amministratore'), ('gestore'), ('utente');
 
 -- Popolare la tabella categoria con dati di esempio
-INSERT INTO categoria (nome) VALUES ('Elettronica'), ('Abbigliamento'), ('Casa'), ('Giocattoli');
+INSERT INTO categoria (nome) VALUES 
+  ('Elettronica'),
+  ('Abbigliamento'),
+  ('Casa'),
+  ('Giardino'),
+  ('Sport'),
+  ('Cucina'),
+  ('Musica'),
+  ('Libri'),
+  ('Film'),
+  ('Fai da te');
 
 -- Popolare la tabella utente con dati di esempio
 INSERT INTO utente (nome, cognome, dataNascita, email, password, ruolo)
@@ -125,6 +135,32 @@ VALUES
 ('Luigi', 'Verdi', '1988-07-25', 'luigi@email.com', '$2b$10$nHCMQwpnOdIG/4EnZMudpuDqKXrvbJvorK22rdMG8E2kYe.Mk4he.', 'amministratore'), /* pass: test123 */
 ('Giovanna', 'Neri', '1995-03-12', 'giovanna@email.com', '$2b$10$Rw8zv5OGCCk7tuQNAJ4g4.jJx2CMyHWTdC0Ct.H2QcefAIrfnCTyO', 'utente'); /* pass: password456 */
 
+INSERT INTO materiale (nome, riferimentoFoto, quantita, isConsumabile, isDisponibile, categoria) VALUES
+  ('Television', '/path/to/photo35.jpg', 8, 0, 1, 'Elettronica'),
+  ('Jeans', '/path/to/photo36.jpg', 30, 0, 1, 'Abbigliamento'),
+  ('Coffee maker', '/path/to/photo37.jpg', 5, 0, 1, 'Cucina'),
+  ('Garden hose', '/path/to/photo38.jpg', 12, 0, 1, 'Giardino'),
+  ('Tennis racket', '/path/to/photo39.jpg', 10, 0, 1, 'Sport'),
+  ('Bookshelf', '/path/to/photo40.jpg', 3, 0, 1, 'Casa'),
+  ('Acoustic guitar', '/path/to/photo41.jpg', 4, 0, 1, 'Musica'),
+  ('Cookbook', '/path/to/photo42.jpg', 15, 0, 1, 'Libri'),
+  ('DVD player', '/path/to/photo43.jpg', 6, 0, 1, 'Film'),
+  ('Toolbox', '/path/to/photo44.jpg', 8, 0, 1, 'Fai da te');
+
+
+INSERT INTO noleggio (nome, riferimentoFoto, dataInizio, dataFine, idUtente, chiusuraForzata) VALUES
+  ('Noleggio 1', '/path/to/photo1.jpg', '2024-02-08', '2024-02-15', 1, 0),
+  ('Noleggio 2', '/path/to/photo2.jpg', '2024-01-20', '2024-01-30', 2, 0),
+  ('Noleggio 3', '/path/to/photo3.jpg', '2024-02-02', '2024-02-10', 3, 0),
+  ('Noleggio 4', '/path/to/photo4.jpg', '2024-01-15', '2024-01-25', 2, 0),
+  ('Noleggio 5', '/path/to/photo5.jpg', '2024-02-12', '2024-02-20', 3, 0),
+  ('Noleggio 6', '/path/to/photo6.jpg', '2024-01-25', '2024-02-05', 1, 0),
+  ('Noleggio 7', '/path/to/photo7.jpg', '2024-02-05', '2024-02-15', 1, 0),
+  ('Noleggio 8', '/path/to/photo8.jpg', '2024-01-10', '2024-01-20', 2, 0),
+  ('Noleggio 9', '/path/to/photo9.jpg', '2024-02-18', '2024-02-28', 2, 0),
+  ('Noleggio 10', '/path/to/photo10.jpg', '2024-01-08', '2024-01-18', 3, 0);
+
+/*
 -- Popolare la tabella noleggio con dati di esempio
 INSERT INTO noleggio (nome, dataInizio, dataFine, autore)
 VALUES 
@@ -147,3 +183,4 @@ VALUES
 (1, 2, 1),
 (2, 3, 3),
 (3, 4, 5);
+*/
