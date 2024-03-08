@@ -95,3 +95,17 @@ test("_10_updateQuantita_SetIsDisponibile", async() => {
     let resultUpdateQuantita2 = await materialeMapper.getByCodice(1);
     expect(resultUpdateQuantita2.isDisponibile).toBe(1);
 });
+
+test("_11_search_Exists", async() => {
+    let result = await materialeMapper.search("co");
+    expect(result.length).toBeGreaterThan(0);
+    for(let item of result){
+        expect(item instanceof Materiale).toBeTruthy();
+        expect(item.nome).toBeDefined();
+    }
+});
+
+test("_12_search_NotExists", async() => {
+    let result = await materialeMapper.search("DoesNotExists");
+    expect(result).toEqual([]);
+});

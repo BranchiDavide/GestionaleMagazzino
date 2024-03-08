@@ -29,7 +29,7 @@
             <a href="#" class="nav_link"> <i class='bx bx-book-bookmark nav_icon'></i> <span class="nav_name">Manuale</span> </a> 
             </div>
         </div> 
-        <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Logout</span></a>
+        <a href="/logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Logout</span></a>
       </nav>
     </div>
 
@@ -41,13 +41,13 @@
         </div>
         <div class="container">
           <div class="row search-container">
-            <form action="#" method="POST">
-              <input type="search" name="search" placeholder="Cerca">
-              <button type="submit"><i class="bx bx-search-alt"></i></button>
+            <form onsubmit="event.preventDefault()">
+              <input oninput="tableSearch(this.value, [1,2,3,4])" type="search" name="data" placeholder="Cerca">
+              <button><i class="bx bx-search-alt"></i></button>
             </form>
           </div>
           <div class="custom-table-container">
-            <table class="table custom-table">
+            <table class="table custom-table searchable-table">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -81,5 +81,6 @@
       </div>
     </div>
     <script src="/js/navbar.js"></script>
+    <script src="/js/search.js"></script>
   </body>
 </html>
