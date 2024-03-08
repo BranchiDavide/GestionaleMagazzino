@@ -3,8 +3,8 @@
 
 <head>
   <%- include('../_templates/header'); -%>
-  <title>Gestionale Magazzino - Prodotti</title>
-  <link rel="stylesheet" href="/css/prodotto/prodotti.css">
+  <title>Gestionale Magazzino - Dashboard</title>
+  <link rel="stylesheet" href="/css/dashboard/dashboard.css">
 </head>
 
 <body className='snippet-body'>
@@ -19,17 +19,35 @@
     <div class="height-100 bg-light">
       <div class="main-section">
         <div class="item-title">
-          <h2>Cerca prodotti</h2>
+          <h2>Benvenuto/a nella Dashboard <%= session.user.nome %></h2>
+        </div>
+        <div class="item-title">
+          <h2>I tuoi noleggi</h2>
         </div>
         <div class="container">
-          <div class="row search-container">
-            <form onsubmit="event.preventDefault()">
-              <input oninput="tableSearch(this.value, [1,2,3,4])" type="search" name="data" placeholder="Cerca">
-              <button><i class="bx bx-search-alt"></i></button>
-            </form>
-          </div>
           <div class="custom-table-container">
-
+            <table class="table custom-table searchable-table">
+              <thead>
+                <tr>
+                  <th class="optional" scope="col">Id</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Deadline</th>
+                  <th class="optional" scope="col">Autore</th>
+                  <th scope="col">Mostra</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (let item of noleggi) { %>
+                    <tr>
+                      <td class="optional"><%= item.id %></td>
+                      <td><%= item.nome %></td>
+                      <td><%=item.dataFine %></td>
+                      <td class="optional"><%=item.autore %></td>
+                      <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
+                      </tr>
+                <% } %>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
