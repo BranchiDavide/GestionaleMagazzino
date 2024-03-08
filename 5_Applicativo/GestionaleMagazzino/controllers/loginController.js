@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const sanitizer = require('../models/utils/sanitizer');
 const userMapper = require('../models/mappers/userMapper');
 
 /**
@@ -13,20 +14,33 @@ const userMapper = require('../models/mappers/userMapper');
  * @returns un errore di autenticazione o un messaggio che indica che l'utente è autenticato
  */
 async function login(req, res){
-    const {email, password} = req.body;
+    let {email, password} = req.body;
+
+    email = sanitizer.sanitizeInput(email);
+    password = sanitizer.sanitizeInput(password);
+
+    if (!sanitizer.validateEmail(email)){
+        let message = "Inserire un formato di email valido";
+        return res.status(401).render("login/index.ejs", { displayError: true, message: message });
+    }
+
     // prende l'utente dal db
     const user = await userMapper.getByEmail(email);
-    // se l'utente non esiste
     if (!user){
-        return res.status(404).render("login/index.ejs", { displayError: true, message: "Errore di accesso" });
+        return res.status(401).render("login/index.ejs", { displayError: true, message: "Inserire delle credenziali valide" });
     }
+    
+    // controlli password
     const passwordEqual = await bcrypt.compare(password, user.password);
     if (!passwordEqual){
-        return res.status(401).render("login/index.ejs", { displayError: true, message: "Errore di accesso" });
+        return res.status(401).render("login/index.ejs", { displayError: true, message: "Inserire delle credenziali valide" });
     }
+
     // se arriva fino a qua vuol dire che ha fatto il login "giusto"
     req.session.user = user;
-    return res.status(200).redirect("/home");
+    req.session.save(function() {             
+        return res.status(200).redirect("/home");
+    });
 }
 
 /**

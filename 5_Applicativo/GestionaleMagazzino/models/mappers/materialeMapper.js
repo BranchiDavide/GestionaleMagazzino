@@ -97,4 +97,13 @@ async function updateQuantita(codice, incQuantita){
     }
 }
 
-module.exports = {getAll, getByCodice, insertMateriale, updateMateriale, deleteMateriale, updateQuantita}
+async function search(searchString){
+    const [result] = await db.query("SELECT * FROM materiale WHERE nome LIKE CONCAT('%', ?, '%') OR categoria LIKE CONCAT('%', ?, '%')", [searchString, searchString]);
+    let materiali = [];
+    for(let item of result){
+        materiali.push(new Materiale(item.codice, item.nome, item.riferimentoFoto, item.quantita, item.isConsumabile, item.isDisponibile, item.categoria));
+    }
+    return materiali;
+}
+
+module.exports = {getAll, getByCodice, insertMateriale, updateMateriale, deleteMateriale, updateQuantita, search}
