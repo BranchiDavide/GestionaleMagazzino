@@ -148,6 +148,18 @@ INSERT INTO materiale (nome, riferimentoFoto, quantita, isConsumabile, isDisponi
   ('Toolbox', '/path/to/photo44.jpg', 8, 0, 1, 'Fai da te');
 
 
+INSERT INTO noleggio (nome, riferimentoFoto, dataInizio, dataFine, idUtente, chiusuraForzata) VALUES
+  ('Noleggio 1', '/path/to/photo1.jpg', '2024-02-08', '2024-02-15', 1, 0),
+  ('Noleggio 2', '/path/to/photo2.jpg', '2024-01-20', '2024-01-30', 2, 0),
+  ('Noleggio 3', '/path/to/photo3.jpg', '2024-02-02', '2024-02-10', 3, 0),
+  ('Noleggio 4', '/path/to/photo4.jpg', '2024-01-15', '2024-01-25', 2, 0),
+  ('Noleggio 5', '/path/to/photo5.jpg', '2024-02-12', '2024-02-20', 3, 0),
+  ('Noleggio 6', '/path/to/photo6.jpg', '2024-01-25', '2024-02-05', 1, 0),
+  ('Noleggio 7', '/path/to/photo7.jpg', '2024-02-05', '2024-02-15', 1, 0),
+  ('Noleggio 8', '/path/to/photo8.jpg', '2024-01-10', '2024-01-20', 2, 0),
+  ('Noleggio 9', '/path/to/photo9.jpg', '2024-02-18', '2024-02-28', 2, 0),
+  ('Noleggio 10', '/path/to/photo10.jpg', '2024-01-08', '2024-01-18', 3, 0);
+
 /*
 -- Popolare la tabella noleggio con dati di esempio
 INSERT INTO noleggio (nome, dataInizio, dataFine, autore)
