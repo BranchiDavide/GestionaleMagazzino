@@ -15,4 +15,36 @@ function isAuthenticated (req, res, next) {
     }
 }
 
-module.exports = {isAuthenticated};
+/**
+ * Funzione per controllare se l'utente loggato è gestore magazzino.
+ * @param {Request} req la richiesta
+ * @param {Response} res la risposta
+ * @param {NextFunction} next funzione middleware di express
+ */
+function isGestore(req, res, next) {
+    if (req.session.user.ruolo === "gestore" || req.session.user.ruolo === "amministratore"){
+        next();
+    }else{
+        res.status(403).render("_templates/error.ejs", { error: { status: 403 } });
+    }
+}
+
+/**
+ * Funzione per controllare se l'utente loggato è amministratore.
+ * @param {Request} req la richiesta
+ * @param {Response} res la risposta
+ * @param {NextFunction} next funzione middleware di express
+ */
+function isAmministratore(req, res, next) {
+    if (req.session.user.ruolo === "amministratore"){
+        next();
+    }else{
+        res.status(403).render("_templates/error.ejs", { error: { status: 403 } });
+    }
+}
+
+module.exports = {
+    isAuthenticated,
+    isGestore,
+    isAmministratore
+};
