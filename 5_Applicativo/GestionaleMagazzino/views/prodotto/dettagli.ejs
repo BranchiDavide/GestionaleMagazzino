@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Gestionale Magazzino - Prodotti</title>
+  <%- include('../_templates/header'); -%>
+    <link rel="stylesheet" href="/css/prodotto/dettagli.css">
+</head>
+
+<body className='snippet-body'>
+
+  <body id="body-pd">
+    <%- include('../_templates/navbar.ejs', {active: "prodotti" }); -%>
+      <!--Container Main start-->
+      <div class="height-100 bg-light">
+        <div class="main-section">
+          <div class="item-container">
+            <div class="item-left">
+              <div class="item-title">
+                <h2>Fotocamera</h2>
+              </div>
+              <div class="item-picture">
+                <img src="/img/prodotto/1.png" alt="item Picture">
+              </div>
+              <div class="item-info">
+                <p><strong>ID:</strong> 1</p>
+                <p><strong>Disponibili:</strong> 4</p>
+                <p><strong>Quando disponibile:</strong> adesso</p>
+              </div>
+              <div class="functions">
+                <div class="button-align-left">
+                  <button type="submit"><i class='bx bx-qr'></i></button>
+                  <span class="optional">Stampa codice QR</span>
+                </div>
+                <div class="button-align-left">
+                  <button type="submit"><i class='bx bx-trash'></i></button>
+                  <span class="optional">Rimuovi oggetto</span>
+                </div>
+              </div>
+            </div>
+            <div class="item-right">
+              <div class="item-title">
+                <h2>Noleggi</h2>
+              </div>
+              <div class="custom-table-container">
+                <table class="table custom-table">
+                  <thead>
+                    <tr>
+                      <th class="optional" scope="col">Id</th>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Quantità</th>
+                      <th class="optional" scope="col">Categoria</th>
+                      <th scope="col">Mostra</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for (let item of noleggi) { %>
+                      <tr>
+                        <td class="optional"><%= item.id %></td>
+                        <td><%= item.nome %></td>
+                        <td><%=item.dataFine %></td>
+                        <td class="optional"><%=item.idUtente %></td>
+                        <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
+                      </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Container Main end-->
+        <script type="text/javascript" src="/js/navbar.js"></script>
+  </body>
+
+</html>
