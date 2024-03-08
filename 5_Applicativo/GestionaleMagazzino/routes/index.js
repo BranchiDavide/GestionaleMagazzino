@@ -1,7 +1,7 @@
 const express = require('express');
 const authenticationRouter = require('./authRoute');
 const prodottiRoutes = require("./prodottiRoutes");
-
+const homeController = require("./../controllers/homeController");
 const authMiddleware = require('../middlewares/authMiddleware');
 
 const router = express.Router();
@@ -15,9 +15,6 @@ router.get("/", authMiddleware.isAuthenticated, (req, res) => {
     res.redirect("/home");
 })
 
-router.get("/home", authMiddleware.isAuthenticated, (req, res) => {
-    const name = req.session.user.nome;
-    res.status(200).send(`Benvenuto in home ${name}`);
-})
+router.get("/home", authMiddleware.isAuthenticated, homeController.showDashboard);
 
 module.exports = router;
