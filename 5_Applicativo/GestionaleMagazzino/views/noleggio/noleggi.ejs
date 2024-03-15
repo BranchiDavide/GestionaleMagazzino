@@ -337,10 +337,8 @@
 </head>
 
 <body className='snippet-body'>
-
   <body id="body-pd">
     <%- include('../_templates/navbar.ejs', {active: "noleggi"}); -%>
-
     <!--Container Main start-->
     <div class="height-100 bg-light">
       <div class="main-section">
@@ -367,11 +365,15 @@
                   <tr>
                     <td class="optional"><%= item.id %></td>
                     <td><%= item.nome %></td>
-                    <td><%=item.dataFine %></td>
+                    <% 
+                      let dataFine = new Date(item.dataFine);
+                      let dataFineFormatted = dataFine.toLocaleDateString("en-CH");
+                     %>
+                    <td <% if(new Date() > dataFine){%>style="color: red;"<%}%>><%=dataFineFormatted %></td>
                     <td class="optional"><%=item.idUtente %></td>
-                    <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
+                    <td><a href="/noleggi/<%= item.id %>"><button type="submit"><i class="bx bx-show-alt"></i></button></a></td>
                     </tr>
-              <% } %>
+                <% } %>
               </tbody>
             </table>
           </div>

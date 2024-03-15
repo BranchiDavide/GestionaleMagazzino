@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
 <head>
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -449,12 +448,9 @@
     }
   </style>
 </head>
-
 <body className='snippet-body'>
-
   <body id="body-pd">
     <%- include('../_templates/navbar.ejs', {active: "noleggi"}); -%>
-
     <!--Container Main start-->
     <div class="height-100 bg-light">
       <div class="main-section">
@@ -504,7 +500,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% for (let item of products) { %>
+                  <% for (let item of prodotti) { %>
                     <tr>
                         <td class="optional"><%= item.codice%></td>
                         <td><%= item.nome%></td>
