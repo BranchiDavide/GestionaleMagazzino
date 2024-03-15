@@ -2,6 +2,7 @@ const db = require("./../../database/db");
 const Noleggio = require("./../Noleggio");
 const Materiale = require("./../Materiale");
 const materialeMapper = require("./../mappers/materialeMapper");
+const userMapper = require("./userMapper");
 
 /**
  * Funzione che ritorna tutti i noleggi in corso
@@ -90,4 +91,28 @@ async function closeNoleggio(idNoleggio, chiusuraForzata){
     return result.affectedRows == 1 && resultNoleggioDelete.affectedRows == 1;
 }
 
-module.exports = {getAll, getById, insertNoleggio, closeNoleggio, getMaterialeOfNoleggio};
+/**
+ * Funzione che cambia l'id dell'utente autore del noleggio
+ * con una stringa composta dal suo nome e dal suo cognome
+ * @param noleggi array di noleggi di cui si vuole cambiare
+ * idUtente con la stringa
+ * @returns array di noleggi modificato (il campo con la stringa rimane comunque idUtente)
+ */
+async function changeIdUtenteToNome(noleggi){
+    for(let item of noleggi){
+        let user = await userMapper.getById(item.idUtente);
+        item.idUtente = user.nome + " " + user.cognome;
+    }
+    return noleggi;
+}
+
+async function getNoleggiOfUtente(idUtente){
+    const [result] = await db.query("SELECT * FROM noleggio WHERE idUtente=?", [idUtente]);
+    let noleggi = [];
+    for(let item of result){
+        noleggi.push(new Noleggio(item.id, item.nome, item.riferimentoFoto, item.dataInizio, item.dataFine, item.idUtente, item.chiusuraForzata));
+    }
+    return noleggi;
+}
+
+module.exports = {getAll, getById, insertNoleggio, closeNoleggio, getMaterialeOfNoleggio, changeIdUtenteToNome, getNoleggiOfUtente};

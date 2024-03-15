@@ -7,6 +7,8 @@ const db = require('./database/db');
 const routes = require("./routes/index");
 const https = require('https');
 const fs = require('fs');
+const logMiddleware = require("./middlewares/logMiddleware");
+const morganMiddleware = require('./middlewares/logMiddleware');
 
 const app = express();
 const PORT = process.env.PORT;
@@ -24,6 +26,7 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(logMiddleware);
 
 // percorsi cartella public
 app.use("/bootstrap", express.static(__dirname + "/node_modules/bootstrap/dist"));
@@ -32,6 +35,7 @@ app.use("/font", express.static(__dirname + "/public/font"));
 app.use("/css", express.static(__dirname + "/public/css"));
 app.use("/js", express.static(__dirname + "/public/js"));
 app.use("/img", express.static(__dirname + "/public/img"));
+app.use("/datastore", express.static(__dirname + "/public/datastore"));
 
 // configurazione per sessioni
 const sessionStore = new MySQLStore({
@@ -63,6 +67,14 @@ app.use(session({
 // routes per l'indirizzamento delle pagine
 app.use("/", routes);
 
+<<<<<<< HEAD
 server.listen(PORT, () => {
 	console.log(`Listening on port ${PORT}`);
+=======
+app.listen(PORT, () => {
+	let date = new Date();
+	date = date.toLocaleString("it-CH");
+	date = date.replace(/,/, '');
+	console.log(`[${date}] Listening on port ${PORT}`);
+>>>>>>> b2984203594608b82bfc978ef91fa043fd20f1fc
 });
