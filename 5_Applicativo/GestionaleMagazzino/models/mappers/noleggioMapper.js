@@ -44,7 +44,7 @@ async function getMaterialeOfNoleggio(idNoleggio){
     //es: [[materiale, quantita], [materiale, quantita] ecc...]
     let materiali = [];
     for(let item of result){
-        let m = await materialeMapper.getByCodice(item.idMateriale);
+        let m = await getMaterialeByCodice(item.idMateriale);
         materiali.push([m, item.quantita]);
     }
     return materiali;
@@ -115,6 +115,15 @@ async function getNoleggiOfUtente(idUtente){
     return noleggi;
 }
 
+async function getMaterialeByCodice(codice){ 
+    const [result] = await db.query("SELECT * FROM materiale WHERE codice=? LIMIT 1", [codice]);
+    if(result[0]){
+        return new Materiale(result[0].codice, result[0].nome, result[0].riferimentoFoto, result[0].quantita, result[0].isConsumabile, result[0].isDisponibile, result[0].categoria);
+    }else{
+        return null;
+    }
+}
+
 module.exports = {
     getAll,
     getById,
@@ -122,5 +131,6 @@ module.exports = {
     closeNoleggio,
     getMaterialeOfNoleggio,
     changeIdUtenteToNome,
-    getNoleggiOfUtente
+    getNoleggiOfUtente,
+    getMaterialeByCodice
 };
