@@ -5,9 +5,19 @@ const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const db = require('./database/db');
 const routes = require("./routes/index");
+const https = require('https');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT;
+
+//HTTPS
+const options = {
+	key: fs.readFileSync('certs/key.pem'),
+	cert: fs.readFileSync('certs/cert.pem')
+};
+
+const server = https.createServer(options, app);
 
 // configurazione server
 app.set("view engine", "ejs");
@@ -53,6 +63,6 @@ app.use(session({
 // routes per l'indirizzamento delle pagine
 app.use("/", routes);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
 	console.log(`Listening on port ${PORT}`);
 });
