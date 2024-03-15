@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './test.env' });
 const db = require("./../database/db");
 const Materiale = require("../models/Materiale");
+const Noleggio = require("../models/Noleggio");
 const materialeMapper = require("../models/mappers/materialeMapper");
 
 afterAll(done => {
@@ -10,7 +11,7 @@ afterAll(done => {
 });
 
 beforeEach(async () => {
-   await db.query("START TRANSACTION");
+    await db.query("START TRANSACTION");
 });
 
 afterEach(async () => {
@@ -108,4 +109,26 @@ test("_11_search_Exists", async() => {
 test("_12_search_NotExists", async() => {
     let result = await materialeMapper.search("DoesNotExists");
     expect(result).toEqual([]);
+});
+
+test("_13_getNoleggiAndQuantitaByMaterialeCodice", async() => {
+    const actual = await materialeMapper.getNoleggiAndQuantitaByMaterialeCodice(9);
+    const expected = 2;
+
+    expect(actual[0].quantitaMateriale).toBe(expected);
+    expect(actual[0].data instanceof Noleggio).toBeTruthy();
+});
+
+test("_14_getNoleggiAndQuantitaByMaterialeCodice_notExists", async() => {
+    const actual = await materialeMapper.getNoleggiAndQuantitaByMaterialeCodice(0);
+    expect(actual).toEqual([]);
+});
+
+test("_15_getDataDisponibilitaByNoleggi", async() => {
+    const noleggiDettaglio = await materialeMapper.getNoleggiAndQuantitaByMaterialeCodice(1);
+    const actual = materialeMapper.getDataDisponibilitaByNoleggi(noleggiDettaglio);
+
+    const expected = new Date("2024-01-20").toLocaleDateString("en-CH");
+
+    expect(actual).toEqual(expected);
 });

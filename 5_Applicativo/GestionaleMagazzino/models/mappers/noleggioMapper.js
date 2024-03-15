@@ -115,4 +115,12 @@ async function getNoleggiOfUtente(idUtente){
     return noleggi;
 }
 
-module.exports = {getAll, getById, insertNoleggio, closeNoleggio, getMaterialeOfNoleggio, changeIdUtenteToNome, getNoleggiOfUtente};
+module.exports = {
+    getAll,
+    getById,
+    insertNoleggio,
+    closeNoleggio,
+    getMaterialeOfNoleggio,
+    changeIdUtenteToNome,
+    getNoleggiOfUtente
+};

@@ -12,7 +12,7 @@ afterAll(done => {
 });
 
 beforeEach(async () => {
-   await db.query("START TRANSACTION");
+    await db.query("START TRANSACTION");
 });
 
 afterEach(async () => {

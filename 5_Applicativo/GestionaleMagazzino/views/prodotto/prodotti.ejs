@@ -49,7 +49,7 @@
                         <td><%= item.nome%></td>
                         <td><%= item.quantita%></td>
                         <td class="optional"><%= item.categoria%></td>
-                        <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
+                        <td><a href="/prodotti/<%= item.codice %>"><button type="submit"><i class="bx bx-show-alt"></i></button></a></td>
                       </tr>
                 <% } %>
               </tbody>

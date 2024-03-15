@@ -68,4 +68,3 @@ INSERT INTO materialeNoleggio (idNoleggio, idMateriale, quantita) VALUES
   (9, 4, 1),
   (10, 5, 1),
   (10, 6, 2);
-

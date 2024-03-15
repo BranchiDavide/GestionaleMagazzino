@@ -14,8 +14,7 @@ router.use(noleggiRoutes);
 
 router.get("/", authMiddleware.isAuthenticated, (req, res) => {
     res.redirect("/home");
-})
-
+});
 router.get("/home", authMiddleware.isAuthenticated, homeController.showDashboard);
 
 // funzione in caso che la route non sia stata trovata, quindi 404
