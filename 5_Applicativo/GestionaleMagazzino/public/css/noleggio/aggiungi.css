@@ -17,8 +17,17 @@
     background: #555;
   }
 
-  @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
-  @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+  @font-face {
+    font-family: Nunito;
+    src: url('/font/Nunito/Nunito-VariableFont_wght.ttf');
+    font-weight: 400 600;
+  }
+  
+  @font-face {
+    font-family: Rubik;
+    src: url('/font/Rubik/Rubik-Italic-VariableFont_wght.ttf');
+    font-weight: 300 900;
+  }
 
   :root {
     --header-height: 3rem;
