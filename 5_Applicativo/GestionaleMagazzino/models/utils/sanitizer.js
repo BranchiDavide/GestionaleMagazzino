@@ -30,7 +30,30 @@ function validateEmail(email){
     return validator.isEmail(email);
 }
 
+/**
+ * Funzione che controlla se una data in formato stringa è valida
+ * @param date data da validare
+ * @returns true se la data è valida, false altrimenti
+ */
+function validateDate(date){
+    return validator.isDate(date);
+}
+
+/**
+ * Funzione che utilizza sanitizeInput con l'aggiunta
+ * di troncare l'input a 255 caratteri
+ * @param value input da sanitizzare e eventualmente troncare
+ * @returns input sanitizzato e troncato a 255 caratteri
+ */
+function sanitizeInputTruncate(value){
+    value = sanitizeInput(value);
+    value = value.substring(0, 255);
+    return value;
+}
+
 module.exports = {
     sanitizeInput,
-    validateEmail
+    validateEmail,
+    validateDate,
+    sanitizeInputTruncate
 }

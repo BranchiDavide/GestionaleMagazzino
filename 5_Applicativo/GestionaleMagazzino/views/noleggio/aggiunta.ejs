@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <%- include('../_templates/header'); -%>
+    <link rel="stylesheet" href="/css/noleggio/aggiungi.css">
+    <title>GestionaleMagazzino - Nuovo noleggio</title>
+</head>
+
+<body className='snippet-body'>
+
+  <body id="body-pd">
+    <header class="header" id="header">
+      <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+      <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
+    </header>
+    <%- include('../_templates/navbar.ejs', {active: "noleggi" }); -%>
+      <!--Container Main start-->
+      <div class="height-100 bg-light">
+        <div class="main-section">
+          <div class="item-container">
+            <div class="item-center">
+              <div class="item-title">
+                <h2>Crea Noleggio</h2>
+              </div>
+              <% if(typeof displayError !== "undefined" && displayError){ %>
+                <div class="alert alert-danger" role="alert">
+                  <%= message %>
+                </div>
+              <% } %>
+              <br>
+              <form action="/noleggi/nuovo" method="POST" enctype="multipart/form-data">
+                <div class="item-info">
+                  <div class="form-row">
+                    <label>Nome Noleggio</label>
+                    <input class="form-control" type="text" name="nome" required>
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <label>Data Inizio</label>
+                    <input class="form-control" type="date" name="dataInizio" disabled>
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <label>Data Fine</label>
+                    <input class="form-control" type="date" name="dataFine" required>
+                  </div>
+                  <br>
+                  <div class="item-title">
+                    <h3>Inserisci foto opz.</h3>
+                  </div>
+                  <div class="form-row">
+                    <input class="form-control" type="file" name="foto" id="formFile" accept="image/*" capture="camera">
+                  </div>
+                  <br>
+                  <div class="item-picture">
+                    <img id="previewImage" width="400" height="300">
+                  </div>
+                </div>
+                <br>
+                <div class="functions">
+                  <div class="button-align-left">
+                    <button type="submit"><i class='bx bxs-check-circle'></i></button>
+                    <span class="optional">Conferma</span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+  </body>
+</body>
+<script>
+  function getCurrentDate() {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    let month = currentDate.getMonth() + 1;
+    let day = currentDate.getDate();
+    if (month < 10) {
+      month = '0' + month;
+    }
+    if (day < 10) {
+      day = '0' + day;
+    }
+    const formattedDate = `${year}-${month}-${day}`;
+    return formattedDate;
+  }
+
+  window.onload = () => {
+    document.getElementsByName("dataInizio")[0].value = getCurrentDate();
+    document.getElementsByName("dataFine")[0].setAttribute("min", getCurrentDate());
+  }
+
+  document.getElementById("formFile").addEventListener("change", (e) => {
+    let file = e.target.files[0];
+    if(file){
+      const reader = new FileReader();
+        reader.onload = function(e) {
+            const previewImage = document.getElementById("previewImage");
+            previewImage.src = e.target.result;
+            document.getElementsByClassName("item-picture")[0].style.display = "block";
+        };
+        reader.readAsDataURL(file);
+    }
+  });
+
+</script>
+<script src="/js/navbar.js"></script>
+
+</html>
