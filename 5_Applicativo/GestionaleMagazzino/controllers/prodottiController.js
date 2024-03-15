@@ -7,11 +7,22 @@ async function showAll(req, res){
 }
 
 async function showProductDetails(req, res){
-    const codice = req.params['codice'];
+    const codice = sanitizer.sanitizeInput(req.params['codice']);
     const product = await materialeMapper.getByCodice(codice);
+    // se il prodotto non esiste allora carico la pagina di errore
+    if (product === null){
+        return res.status(404).render("_templates/error.ejs", { error: { status: 404 } });
+    }
     const noleggi = await materialeMapper.getNoleggiAndQuantitaByMaterialeCodice(codice);
-    
-    return res.status(200).render("prodotto/dettaglio.ejs", {product: product, noleggi: noleggi, session: req.session})
+
+    const jsonData = {
+        product: product,
+        noleggi: noleggi,
+        prossimaDisponibilita: product.isDisponibile ? "adesso" : materialeMapper.getDataDisponibilitaByNoleggi(noleggi),
+        session: req.session
+    }
+
+    return res.status(200).render("prodotto/dettagli.ejs", jsonData);
 }
 
 module.exports = {

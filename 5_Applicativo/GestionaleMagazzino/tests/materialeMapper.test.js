@@ -123,3 +123,12 @@ test("_14_getNoleggiAndQuantitaByMaterialeCodice_notExists", async() => {
     const actual = await materialeMapper.getNoleggiAndQuantitaByMaterialeCodice(0);
     expect(actual).toEqual([]);
 });
+
+test("_15_getDataDisponibilitaByNoleggi", async() => {
+    const noleggiDettaglio = await materialeMapper.getNoleggiAndQuantitaByMaterialeCodice(1);
+    const actual = materialeMapper.getDataDisponibilitaByNoleggi(noleggiDettaglio);
+
+    const expected = new Date("2024-01-20").toLocaleDateString("en-CH");
+
+    expect(actual).toEqual(expected);
+});

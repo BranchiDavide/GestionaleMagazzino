@@ -125,6 +125,39 @@ async function getNoleggiAndQuantitaByMaterialeCodice(codiceMateriale){
     return noleggi;
 }
 
+/**
+ * La funzione ritorna la data della prima disponibilità di un noleggio.
+ * Riceve 
+ * Il formato dell'array ricevuto deve essere come il seguente esempio:
+ * [
+ *  {
+ *      data: Noleggio{...}
+ *  },
+ *  {
+ *      data: Noleggio{...}
+ *  }
+ * ]
+ * @param {JSON[]} noleggi l'array di noleggi
+ * @returns la data più piccola dell'array di noleggi già formattata
+ */
+function getDataDisponibilitaByNoleggi(noleggi){
+    let result = noleggi[0].data.dataFine;
+
+    for (let i = 1; i < noleggi.length; i++){
+        let dataDisponibilitaNoleggio = new Date(noleggi[i].data.dataFine);
+        if (dataDisponibilitaNoleggio < result){
+            result = dataDisponibilitaNoleggio;
+        }
+    }
+
+    return result.toLocaleDateString("en-CH");
+}
+
+/**
+ * Funzione per cercare un prodotto all'interno del database tramite filtro.
+ * @param {*} searchString il filtro da applicare alla ricerca
+ * @returns i materiali che hanno trovato corrispondenza
+ */
 async function search(searchString){
     const [result] = await db.query("SELECT * FROM materiale WHERE nome LIKE CONCAT('%', ?, '%') OR categoria LIKE CONCAT('%', ?, '%')", [searchString, searchString]);
     let materiali = [];
@@ -142,5 +175,6 @@ module.exports = {
     deleteMateriale,
     updateQuantita,
     search,
-    getNoleggiAndQuantitaByMaterialeCodice
+    getNoleggiAndQuantitaByMaterialeCodice,
+    getDataDisponibilitaByNoleggi
 }

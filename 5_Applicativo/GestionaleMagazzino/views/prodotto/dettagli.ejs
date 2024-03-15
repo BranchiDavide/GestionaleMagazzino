@@ -4,16 +4,12 @@
 <head>
   <title>Gestionale Magazzino - Prodotti</title>
   <%- include('../_templates/header'); -%>
-  <link rel="stylesheet" href="/css/prodotto/dettagli_prodotto.css">
+  <link rel="stylesheet" href="/css/prodotto/dettagli.css">
 </head>
 
 <body className='snippet-body'>
 
   <body id="body-pd">
-    <header class="header" id="header">
-      <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-      <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
-    </header>
     <%- include('../_templates/navbar.ejs', {active: "prodotti"}); -%>
     <!--Container Main start-->
     <div class="height-100 bg-light">
@@ -31,13 +27,7 @@
               <p><strong>Categoria:</strong> <%= product.categoria%></p>
               <p><strong>Disponibili:</strong> <%= product.quantita%></p>
               <p>
-                <strong>Quando disponibile:</strong>
-                <% if (product.isDisponibile){ %>
-                  <a>adesso</a>
-                <% }else{ %>
-                  <!-- da mettere a posto -->
-                  <a>Data fine più piccola</a>
-                <% } %>
+                <strong>Quando disponibile:</strong> <%= prossimaDisponibilita %>
               </p>
             </div>
             <div class="functions">
@@ -73,8 +63,12 @@
                       <td class="optional"><%= noleggio.data.id %></td>
                       <td><%= noleggio.data.nome %></td>
                       <td><%= noleggio.quantitaMateriale %></td>
-                      <td class="optional"><%= noleggio.data.dataInizio %></td>
-                      <td><%= noleggio.data.dataFine %></td>
+                      <% 
+                        let dataInizioFormatted = new Date(noleggio.data.dataInizio).toLocaleDateString("en-CH");
+                        let dataFineFormatted = new Date(noleggio.data.dataFine).toLocaleDateString("en-CH");
+                      %>
+                      <td class="optional"><%= dataInizioFormatted%></td>
+                      <td><%= dataFineFormatted %></td>
                       <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
                     </tr>
                   <% } %>
