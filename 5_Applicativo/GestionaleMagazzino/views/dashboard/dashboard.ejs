@@ -21,6 +21,7 @@
         <div class="item-title">
           <h2>Benvenuto/a nella Dashboard <%= session.user.nome %></h2>
         </div>
+        <br>
         <div class="item-title">
           <h2>I tuoi noleggi</h2>
         </div>
@@ -31,7 +32,7 @@
                 <tr>
                   <th class="optional" scope="col">Id</th>
                   <th scope="col">Nome</th>
-                  <th scope="col">Deadline</th>
+                  <th scope="col">Scadenza</th>
                   <th class="optional" scope="col">Autore</th>
                   <th scope="col">Mostra</th>
                 </tr>
@@ -41,7 +42,11 @@
                     <tr>
                       <td class="optional"><%= item.id %></td>
                       <td><%= item.nome %></td>
-                      <td><%=item.dataFine %></td>
+                      <% 
+                        let dataFine = new Date(item.dataFine);
+                        let dataFineFormatted = dataFine.toLocaleDateString("en-CH");
+                       %>
+                      <td <% if(new Date() > dataFine){%>style="color: red;"<%}%>><%=dataFineFormatted %></td>
                       <td class="optional"><%=item.idUtente %></td>
                       <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
                       </tr>
@@ -53,6 +58,5 @@
       </div>
     </div>
     <script src="/js/navbar.js"></script>
-    <script src="/js/search.js"></script>
   </body>
 </html>

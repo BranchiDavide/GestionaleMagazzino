@@ -458,3 +458,8 @@
       font-size: 66px;
     }
   }
+
+
+  .item-picture{
+    display: none;
+  }

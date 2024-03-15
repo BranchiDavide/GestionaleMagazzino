@@ -87,3 +87,22 @@ test("_06_closeNoleggio", async() =>{
     expect(mat1).toEqual(mat1Expected);
     expect(mat2).toEqual(mat2Expected);
 });
+
+test("_07_changeIdUtenteToNome", async() =>{
+    let noleggi = await noleggioMapper.getAll();
+    noleggi = await noleggioMapper.changeIdUtenteToNome(noleggi);
+    for(let item of noleggi){
+        expect(typeof item.idUtente).toBe("string")
+    }
+});
+
+test("_08_getNoleggiOfUtente", async() =>{
+    let result = await noleggioMapper.getNoleggiOfUtente(1);
+    expect(result.length).toBeGreaterThan(0);
+    for(let item of result){
+        expect(item instanceof Noleggio).toBeTruthy();
+        expect(item.nome).toBeDefined();
+        expect(item.idUtente).toBeDefined();
+        expect(item.idUtente).toBe(1);
+    }
+});
