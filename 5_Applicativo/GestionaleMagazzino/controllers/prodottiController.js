@@ -13,16 +13,21 @@ async function showProductDetails(req, res){
     if (product === null){
         return res.status(404).render("_templates/error.ejs", { error: { status: 404 } });
     }
-    const noleggi = await materialeMapper.getNoleggiAndQuantitaByMaterialeCodice(codice);
 
-    const jsonData = {
-        product: product,
-        noleggi: noleggi,
-        prossimaDisponibilita: product.isDisponibile ? "adesso" : materialeMapper.getDataDisponibilitaByNoleggi(noleggi),
-        session: req.session
+    if(req.query.json){
+        return res.status(200).json(product);
+    }else{
+        const noleggi = await materialeMapper.getNoleggiAndQuantitaByMaterialeCodice(codice);
+
+        const jsonData = {
+            product: product,
+            noleggi: noleggi,
+            prossimaDisponibilita: product.isDisponibile ? "adesso" : materialeMapper.getDataDisponibilitaByNoleggi(noleggi),
+            session: req.session
+        }
+    
+        return res.status(200).render("prodotto/dettagli.ejs", jsonData);
     }
-
-    return res.status(200).render("prodotto/dettagli.ejs", jsonData);
 }
 
 module.exports = {

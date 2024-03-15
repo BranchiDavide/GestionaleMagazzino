@@ -459,7 +459,9 @@
     }
   }
 
-
   .item-picture{
+    display: none;
+  }
+  .prodottiNoleggio{
     display: none;
   }
