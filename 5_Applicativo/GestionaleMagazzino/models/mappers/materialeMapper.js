@@ -1,5 +1,6 @@
 const db = require("./../../database/db");
 const Materiale = require("./../Materiale");
+const noleggioMapper = require("./noleggioMapper");
 
 /**
  * Funzione che ritorna tutti i materiali
@@ -97,6 +98,33 @@ async function updateQuantita(codice, incQuantita){
     }
 }
 
+/**
+ * Funzione che ritorna tutti i noleggi dove è coinvolto un certo tipo di materiale.
+ * Serve per l'interfaccia grafica del dettaglio prodotto.
+ * @param {Number} codiceMateriale il codice del materiale
+ * @returns un array contenenti dei json che al loro interno contengono un oggetto 
+ *          di tipo Noleggio e la quantità di materiale coinvolto in quel noleggio
+ */
+async function getNoleggiAndQuantitaByMaterialeCodice(codiceMateriale){
+    // controllare gli id dei noleggiMateriali per poi andare a prendere i noleggi da noleggi
+    const [result] = await db.query("SELECT idNoleggio FROM materialeNoleggio WHERE idMateriale = ?", [codiceMateriale]);
+    // Array contenenti tutti i noleggi sotto forma di oggetti
+    const noleggi = [];
+    for (let row of result){
+        const [quantitaMateriale] = await db.query("SELECT quantita FROM materialeNoleggio WHERE idMateriale = ? AND idNoleggio = ?", 
+                                            [codiceMateriale, row.idNoleggio]);
+
+        const noleggioDettaglioProdotto = {
+            data: await noleggioMapper.getById(row.idNoleggio),
+            quantitaMateriale: quantitaMateriale[0].quantita
+        }
+
+        noleggi.push(noleggioDettaglioProdotto);
+    }
+
+    return noleggi;
+}
+
 async function search(searchString){
     const [result] = await db.query("SELECT * FROM materiale WHERE nome LIKE CONCAT('%', ?, '%') OR categoria LIKE CONCAT('%', ?, '%')", [searchString, searchString]);
     let materiali = [];
@@ -106,4 +134,13 @@ async function search(searchString){
     return materiali;
 }
 
-module.exports = {getAll, getByCodice, insertMateriale, updateMateriale, deleteMateriale, updateQuantita, search}
+module.exports = {
+    getAll,
+    getByCodice,
+    insertMateriale,
+    updateMateriale,
+    deleteMateriale,
+    updateQuantita,
+    search,
+    getNoleggiAndQuantitaByMaterialeCodice
+}

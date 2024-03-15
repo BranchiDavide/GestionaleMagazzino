@@ -14,42 +14,31 @@
       <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
       <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
     </header>
-    <div class="l-navbar" id="nav-bar">
-      <nav class="nav">
-        <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
-              class="nav_logo-name">Gestore Magazzino</span> </a>
-          <div class="nav_list">
-            <a href="#" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span
-                class="nav_name">Dashboard</span> </a>
-            <a href="#" class="nav_link"> <i class='bx bx-box nav_icon'></i> <span
-                class="nav_name active">Inventario</span></a>
-            <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i><span class="nav_name">Utenti</span> </a>
-            <a href="#" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span
-                class="nav_name">Noleggi</span> </a>
-            <a href="#" class="nav_link"> <i class='bx bx-cart nav_icon'></i> <span class="nav_name">Carrello</span></a>
-            <a href="#" class="nav_link"> <i class='bx bx-book-bookmark nav_icon'></i> <span
-                class="nav_name">Manuale</span> </a>
-          </div>
-        </div>
-        <a href="/logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Logout</span></a>
-      </nav>
-    </div>
-
+    <%- include('../_templates/navbar.ejs', {active: "prodotti"}); -%>
     <!--Container Main start-->
     <div class="height-100 bg-light">
       <div class="main-section">
         <div class="item-container">
           <div class="item-left">
             <div class="item-title">
-              <h2>Fotocamera</h2>
+              <h2><%= product.nome%></h2>
             </div>
             <div class="item-picture">
               <img src="/img/prodotto/1.png" alt="item Picture">
             </div>
             <div class="item-info">
-              <p><strong>ID:</strong> 1</p>
-              <p><strong>Disponibili:</strong> 4</p>
-              <p><strong>Quando disponibile:</strong> adesso</p>
+              <p><strong>Codice:</strong> <%= product.codice%></p>
+              <p><strong>Categoria:</strong> <%= product.categoria%></p>
+              <p><strong>Disponibili:</strong> <%= product.quantita%></p>
+              <p>
+                <strong>Quando disponibile:</strong>
+                <% if (product.isDisponibile){ %>
+                  <a>adesso</a>
+                <% }else{ %>
+                  <!-- da mettere a posto -->
+                  <a>Data fine più piccola</a>
+                <% } %>
+              </p>
             </div>
             <div class="functions">
               <div class="button-align-left">
@@ -73,25 +62,22 @@
                     <th class="optional" scope="col">Id</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Quantità</th>
-                    <th class="optional" scope="col">Categoria</th>
+                    <th class="optional" scope="col">Data prestito</th>
+                    <th scope="col">Data ritorno</th>
                     <th scope="col">Mostra</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="optional">1</td>
-                    <td>PX501</td>
-                    <td>3</td>
-                    <td class="optional">Videocamere</td>
-                    <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td class="optional">1</td>
-                    <td>PX501</td>
-                    <td>3</td>
-                    <td class="optional">Videocamere</td>
-                    <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
-                  </tr>
+                  <% for (let noleggio of noleggi){ %>
+                    <tr>
+                      <td class="optional"><%= noleggio.data.id %></td>
+                      <td><%= noleggio.data.nome %></td>
+                      <td><%= noleggio.quantitaMateriale %></td>
+                      <td class="optional"><%= noleggio.data.dataInizio %></td>
+                      <td><%= noleggio.data.dataFine %></td>
+                      <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
+                    </tr>
+                  <% } %>
                 </tbody>
               </table>
             </div>

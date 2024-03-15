@@ -1,7 +1,7 @@
-const db = require("./../../database/db");
-const Noleggio = require("./../Noleggio");
-const Materiale = require("./../Materiale");
-const materialeMapper = require("./../mappers/materialeMapper");
+const db = require("../../database/db");
+const Noleggio = require("../Noleggio");
+const Materiale = require("../Materiale");
+const materialeMapper = require("./materialeMapper");
 
 /**
  * Funzione che ritorna tutti i noleggi in corso
@@ -90,4 +90,10 @@ async function closeNoleggio(idNoleggio, chiusuraForzata){
     return result.affectedRows == 1 && resultNoleggioDelete.affectedRows == 1;
 }
 
-module.exports = {getAll, getById, insertNoleggio, closeNoleggio, getMaterialeOfNoleggio};
+module.exports = {
+    getAll, 
+    getById, 
+    insertNoleggio, 
+    closeNoleggio, 
+    getMaterialeOfNoleggio
+};
