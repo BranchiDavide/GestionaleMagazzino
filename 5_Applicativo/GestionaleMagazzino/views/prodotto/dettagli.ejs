@@ -4,81 +4,99 @@
 <head>
   <title>Gestionale Magazzino - Prodotti</title>
   <%- include('../_templates/header'); -%>
-  <link rel="stylesheet" href="/css/prodotto/dettagli.css">
+    <link rel="stylesheet" href="/css/prodotto/dettagli.css">
 </head>
 
 <body className='snippet-body'>
 
   <body id="body-pd">
-    <%- include('../_templates/navbar.ejs', {active: "prodotti"}); -%>
-    <!--Container Main start-->
-    <div class="height-100 bg-light">
-      <div class="main-section">
-        <div class="item-container">
-          <div class="item-left">
-            <div class="item-title">
-              <h2><%= product.nome%></h2>
-            </div>
-            <div class="item-picture">
-              <img src="/img/prodotto/1.png" alt="item Picture">
-            </div>
-            <div class="item-info">
-              <p><strong>Codice:</strong> <%= product.codice%></p>
-              <p><strong>Categoria:</strong> <%= product.categoria%></p>
-              <p><strong>Disponibili:</strong> <%= product.quantita%></p>
-              <p>
-                <strong>Quando disponibile:</strong> <%= prossimaDisponibilita %>
-              </p>
-            </div>
-            <div class="functions">
-              <div class="button-align-left">
-                <button type="submit"><i class='bx bx-qr'></i></button>
-                <span class="optional">Stampa codice QR</span>
+    <%- include('../_templates/navbar.ejs', {active: "prodotti" }); -%>
+      <!--Container Main start-->
+      <div class="height-100 bg-light">
+        <div class="main-section">
+          <div class="item-container">
+            <div class="item-left">
+              <div class="item-title">
+                <h2>
+                  <%= product.nome%>
+                </h2>
               </div>
-              <div class="button-align-left">
-                <button type="submit"><i class='bx bx-trash'></i></button>
-                <span class="optional">Rimuovi oggetto</span>
+              <div class="item-picture">
+                <img src="/img/prodotto/1.png" alt="item Picture">
+              </div>
+              <div class="item-info">
+                <p><strong>Codice:</strong>
+                  <%= product.codice%>
+                </p>
+                <p><strong>Categoria:</strong>
+                  <%= product.categoria%>
+                </p>
+                <p><strong>Disponibili:</strong>
+                  <%= product.quantita%>
+                </p>
+                <p>
+                  <strong>Quando disponibile:</strong>
+                  <%= prossimaDisponibilita %>
+                </p>
+              </div>
+              <div class="functions">
+                <div class="button-align-left">
+                  <button type="submit"><i class='bx bx-qr'></i></button>
+                  <span class="optional">Stampa codice QR</span>
+                </div>
+                <div class="button-align-left">
+                  <button type="submit"><i class='bx bx-trash'></i></button>
+                  <span class="optional">Rimuovi oggetto</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="item-right">
-            <div class="item-title">
-              <h2>Noleggi</h2>
-            </div>
-            <div class="custom-table-container">
-              <table class="table custom-table">
-                <thead>
-                  <tr>
-                    <th class="optional" scope="col">Id</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Quantità</th>
-                    <th class="optional" scope="col">Data prestito</th>
-                    <th scope="col">Data ritorno</th>
-                    <th scope="col">Mostra</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% for (let noleggio of noleggi){ %>
+            <div class="item-right">
+              <div class="item-title">
+                <h2>Noleggi</h2>
+              </div>
+              <div class="custom-table-container">
+                <table class="table custom-table">
+                  <thead>
                     <tr>
-                      <td class="optional"><%= noleggio.data.id %></td>
-                      <td><%= noleggio.data.nome %></td>
-                      <td><%= noleggio.quantitaMateriale %></td>
-                      <% 
-                        let dataInizioFormatted = new Date(noleggio.data.dataInizio).toLocaleDateString("en-CH");
-                        let dataFineFormatted = new Date(noleggio.data.dataFine).toLocaleDateString("en-CH");
-                      %>
-                      <td class="optional"><%= dataInizioFormatted%></td>
-                      <td><%= dataFineFormatted %></td>
-                      <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
+                      <th class="optional" scope="col">Id</th>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Quantità</th>
+                      <th class="optional" scope="col">Data prestito</th>
+                      <th scope="col">Data ritorno</th>
+                      <th scope="col">Mostra</th>
                     </tr>
-                  <% } %>
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    <% for (let noleggio of noleggi){ %>
+                      <tr>
+                        <td class="optional">
+                          <%= noleggio.data.id %>
+                        </td>
+                        <td>
+                          <%= noleggio.data.nome %>
+                        </td>
+                        <td>
+                          <%= noleggio.quantitaMateriale %>
+                        </td>
+                        <% let dataInizioFormatted=new Date(noleggio.data.dataInizio).toLocaleDateString("en-CH"); let
+                          dataFineFormatted=new Date(noleggio.data.dataFine).toLocaleDateString("en-CH"); %>
+                          <td class="optional">
+                            <%= dataInizioFormatted%>
+                          </td>
+                          <td>
+                            <%= dataFineFormatted %>
+                          </td>
+                          <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
+                      </tr>
+                      <% } %>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <!--Container Main end-->
-      <script type="text/javascript" src="/js/navbar.js"></script>
+        <!--Container Main end-->
+        <script type="text/javascript" src="/js/navbar.js"></script>
   </body>
+
 </html>

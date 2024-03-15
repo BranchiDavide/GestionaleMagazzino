@@ -1,8 +1,9 @@
 const sanitizer = require("./../models/utils/sanitizer");
 const noleggioMapper = require("./../models/mappers/noleggioMapper");
 const dfns = require("date-fns");
-function showAll(req, res){
-    //GET di tutti i noleggi
+async function showAll(req, res){
+    const noleggi = await noleggioMapper.getAll();
+    return res.status(200).render("noleggio/noleggi.ejs", {noleggi: noleggi, session: req.session});
 }
 
 function showAddNew(req, res){
@@ -37,4 +38,11 @@ async function addNew(req, res){
     res.status(200).send("success --> " + insertedId);
 }
 
-module.exports = {showAll, showAddNew, addNew};
+async function showNoleggioDetails(req, res){
+    const codice = req.params['codice'];
+    const noleggio = await noleggioMapper.getById(codice);
+    const prodotti = await noleggioMapper.getMaterialeOfNoleggio(parseInt(codice));
+    return res.status(200).render("noleggio/dettagli.ejs", {prodotti: prodotti, noleggio: noleggio, session: req.session})
+}
+
+module.exports = {showAll, showAddNew, addNew, showNoleggioDetails};
