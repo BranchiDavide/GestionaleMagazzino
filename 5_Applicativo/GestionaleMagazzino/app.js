@@ -67,14 +67,9 @@ app.use(session({
 // routes per l'indirizzamento delle pagine
 app.use("/", routes);
 
-<<<<<<< HEAD
 server.listen(PORT, () => {
-	console.log(`Listening on port ${PORT}`);
-=======
-app.listen(PORT, () => {
 	let date = new Date();
 	date = date.toLocaleString("it-CH");
 	date = date.replace(/,/, '');
 	console.log(`[${date}] Listening on port ${PORT}`);
->>>>>>> b2984203594608b82bfc978ef91fa043fd20f1fc
 });
