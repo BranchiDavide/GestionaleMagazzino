@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <%- include('../_templates/header'); -%>
+    <link rel="stylesheet" href="/css/noleggio/aggiungi.css">
+    <title>GestionaleMagazzino - Nuovo noleggio</title>
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/html5qrcode/html5-qrcode.min.js"></script>
+</head>
+
+<body className='snippet-body'>
+
+  <body id="body-pd">
+    <%- include('../_templates/navbar.ejs', {active: "noleggi/nuovo" }); -%>
+      <!--Container Main start-->
+      <div class="height-100 bg-light">
+        <div class="main-section">
+          <div class="item-container">
+            <div class="item-center">
+              <div class="item-title">
+                <h2>Crea Noleggio</h2>
+              </div>
+              <% if(typeof displayError !=="undefined" && displayError){ %>
+                <div class="alert alert-danger" role="alert">
+                  <%= message %>
+                </div>
+                <% } %>
+                  <br>
+                  <!-- Modal con QR scanner-->
+                  <div class="modal fade" id="exampleModal" tabindex="-1"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Aggiungi un prodotto</h5>
+                          <button type="button" id="btnCloseModal" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="reader">
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <form action="/noleggi/nuovo" method="POST" enctype="multipart/form-data" id="aggiuntaForm">
+                    <div class="item-info">
+                      <div class="form-row">
+                        <label>Nome Noleggio</label>
+                        <input class="form-control" type="text" name="nome" required>
+                      </div>
+                      <br>
+                      <div class="form-row">
+                        <label>Data Inizio</label>
+                        <input class="form-control" type="date" name="dataInizio" disabled>
+                      </div>
+                      <br>
+                      <div class="form-row">
+                        <label>Data Fine</label>
+                        <input class="form-control" type="date" name="dataFine" required>
+                      </div>
+                      <br>
+                      <div class="item-title">
+                        <h3>Inserisci foto opz.</h3>
+                      </div>
+                      <div class="form-row">
+                        <input class="form-control" type="file" name="foto" id="formFile" accept="image/*"
+                          capture="camera">
+                      </div>
+                      <br>
+                      <div class="item-picture">
+                        <img id="previewImage" width="400" height="300">
+                      </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                      <table class="table prodottiNoleggio table-striped">
+                        <thead class="thead-light">
+                          <tr>
+                            <th>Codice</th>
+                            <th>Nome</th>
+                            <th>Qta</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                      <button type="button" class="btn btn-primary col-12" id="addProduct-btn" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        <i class='bx bx-qr-scan'></i>
+                        Aggiungi prodotto
+                      </button>
+                    </div>
+                    <br>
+
+                    <input type="hidden" id="postProdottiInput" name="prodottiNoleggio">
+                    <div class="functions">
+                      <div class="button-align-left">
+                        <button type="submit"><i class='bx bxs-check-circle'></i></button>
+                        <span class="optional">Conferma</span>
+                      </div>
+                    </div>
+                  </form>
+            </div>
+          </div>
+        </div>
+  </body>
+</body>
+<script src="/js/navbar.js"></script>
+<script src="/js/aggiungiNoleggio.js"></script>
+
+</html>

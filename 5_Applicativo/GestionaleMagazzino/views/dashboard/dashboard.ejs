@@ -10,10 +10,6 @@
 <body className='snippet-body'>
 
   <body id="body-pd">
-    <header class="header" id="header">
-      <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-      <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
-    </header>
     <%- include('../_templates/navbar.ejs', {active: "dashboard"}); -%>
     <!--Container Main start-->
     <div class="height-100 bg-light">
@@ -21,9 +17,16 @@
         <div class="item-title">
           <h2>Benvenuto/a nella Dashboard <%= session.user.nome %></h2>
         </div>
+        <br>
         <div class="item-title">
           <h2>I tuoi noleggi</h2>
         </div>
+        <% if(session.displaySuccessMsg){ %>
+          <div class="alert alert-success" role="alert">
+            <%= session.displaySuccessMsg %>
+            <% session.displaySuccessMsg = null %>
+          </div>
+        <% } %>
         <div class="container">
           <div class="custom-table-container">
             <table class="table custom-table searchable-table">
@@ -31,7 +34,7 @@
                 <tr>
                   <th class="optional" scope="col">Id</th>
                   <th scope="col">Nome</th>
-                  <th scope="col">Deadline</th>
+                  <th scope="col">Scadenza</th>
                   <th class="optional" scope="col">Autore</th>
                   <th scope="col">Mostra</th>
                 </tr>
@@ -41,9 +44,13 @@
                     <tr>
                       <td class="optional"><%= item.id %></td>
                       <td><%= item.nome %></td>
-                      <td><%=item.dataFine %></td>
+                      <% 
+                        let dataFine = new Date(item.dataFine);
+                        let dataFineFormatted = dataFine.toLocaleDateString("en-CH");
+                       %>
+                      <td <% if(new Date() > dataFine){%>style="color: red;"<%}%>><%=dataFineFormatted %></td>
                       <td class="optional"><%=item.idUtente %></td>
-                      <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
+                      <td><a href="/noleggi/<%= item.id %>"><button type="submit"><i class="bx bx-show-alt"></i></button></a></td>
                       </tr>
                 <% } %>
               </tbody>
@@ -53,6 +60,5 @@
       </div>
     </div>
     <script src="/js/navbar.js"></script>
-    <script src="/js/search.js"></script>
   </body>
 </html>

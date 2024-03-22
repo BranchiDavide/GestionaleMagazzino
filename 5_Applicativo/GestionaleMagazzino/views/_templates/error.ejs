@@ -14,6 +14,8 @@
                 <h1 class="card-title text-danger">Oops! Si è verificato un errore.</h1>
                 <% if (error.status === 404) { %>
                     <p class="card-text">La pagina che stai cercando non è stata trovata.</p>
+                <% } else if (error.status === 403) { %>
+                    <p class="card-text">Non sei autorizzato ad accedere a questa pagina.</p>
                 <% } else { %>
                     <p class="card-text">Si è verificato un errore interno del server.</p>
                 <% } %>

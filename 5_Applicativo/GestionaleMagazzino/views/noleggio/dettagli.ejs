@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Gestionale Magazzino - Noleggio</title>
+  <%- include('../_templates/header'); -%>
+    <link rel="stylesheet" href="/css/prodotto/dettagli.css">
+</head>
+
+<body className='snippet-body'>
+
+  <body id="body-pd">
+    <%- include('../_templates/navbar.ejs', {active: "noleggi" }); -%>
+      <!--Container Main start-->
+      <div class="height-100 bg-light">
+        <div class="main-section">
+          <div class="item-container">
+            <div class="item-left">
+              <div class="item-title">
+                <h2>
+                  <%= noleggio.nome%>
+                </h2>
+              </div>
+              <div class="item-picture">
+                <img src="/img/prodotto/1.png" alt="item Picture">
+              </div>
+              <div class="item-info">
+                <p><strong>ID:</strong>
+                  <%= noleggio.id %>
+                </p>
+                <p><strong>Autore:</strong>
+                  <%= noleggio.idUtente %>
+                </p>
+                <% 
+                let dataFine=new Date(noleggio.dataFine); 
+                let dataFineFormatted=dataFine.toLocaleDateString("en-CH"); 
+                %>
+                  <p <% if(new Date()> dataFine){%>style="color: red;"<%}%>>
+                      <strong>Data ritorno:</strong>
+                      <%=dataFineFormatted %>
+                  </p>
+              </div>
+              <div class="functions">
+                <div class="button-align-left">
+                  <button type="submit"><i class='bx bx-edit'></i></button>
+                  <div class="optional">
+                    <span class="optional">Modifica il noleggio</span>
+                  </div>
+                </div>
+                <div class="button-align-left">
+                  <button type="submit"><i class='bx bx-printer'></i></button>
+                  <span class="optional">Stampa lista materiale</span>
+                </div>
+                <div class="button-align-left">
+                  <button type="submit"><i class='bx bx-trash'></i></button>
+                  <span class="optional">Chiudi noleggio</span>
+                </div>
+              </div>
+            </div>
+            <div class="item-right">
+              <div class="item-title">
+                <h2>Materiale</h2>
+              </div>
+              <div class="custom-table-container">
+                <table class="table custom-table">
+                  <thead>
+                    <tr>
+                      <th class="optional" scope="col">Id</th>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Quantità</th>
+                      <th class="optional" scope="col">Categoria</th>
+                      <th scope="col">Mostra</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for (let item of prodotti) { %>
+                      <tr>
+                        <td class="optional">
+                          <%= item[0].codice %>
+                        </td>
+                        <td>
+                          <%= item[0].nome %>
+                        </td>
+                        <td>
+                          <%= item[1] %>
+                        </td>
+                        <td class="optional">
+                          <%= item[0].categoria %>
+                        </td>
+                        <td><a href="/prodotti/<%= item[0].codice %>"><button type="submit"><i
+                                class="bx bx-show-alt"></i></button></a></td>
+                      </tr>
+                      <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Container Main end-->
+        <script type="text/javascript" src="/js/navbar.js"></script>
+  </body>
+
+</html>
