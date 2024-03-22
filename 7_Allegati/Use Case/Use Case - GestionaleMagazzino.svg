@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generato da Microsoft Visio, esportazione SVG Use Case - GestionaleMagazzino.svg Page-1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+		xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="11.6929in" height="8.26772in"
+		viewBox="0 0 841.89 595.276" xml:space="preserve" color-interpolation-filters="sRGB" class="st16">
+	<v:documentProperties v:langID="1040" v:metric="true" v:viewMarkup="false">
+		<v:userDefs>
+			<v:ud v:nameU="msvNoAutoConnect" v:prompt="" v:val="VT0(0):26"/>
+		</v:userDefs>
+	</v:documentProperties>
+
+	<style type="text/css">
+	<![CDATA[
+		.st1 {fill:#ffffff;stroke:#73ae42;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st2 {fill:#73ae42;font-family:Calibri;font-size:0.916672em;font-stretch:semi-expanded}
+		.st3 {fill:#73ae42;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st4 {fill:#73ae42;font-family:Calibri;font-size:1.16666em}
+		.st5 {fill:#5b9bd5;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st6 {fill:#ffffff;font-family:Calibri;font-size:1.16666em}
+		.st7 {font-size:1em}
+		.st8 {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st9 {fill:#5b9bd5;font-family:Calibri;font-size:1.08334em}
+		.st10 {stroke:#5592c9;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st11 {marker-end:url(#mrkr14-53);stroke:#5592c9;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st12 {fill:#5592c9;fill-opacity:1;stroke:#5592c9;stroke-opacity:1;stroke-width:0.16556291390728}
+		.st13 {marker-end:url(#mrkr1-87);stroke:#5592c9;stroke-dasharray:3.5,2.5;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st14 {fill:#ffffff;stroke:none;stroke-linecap:butt;stroke-width:7.2}
+		.st15 {fill:#41719d;font-family:Calibri;font-size:0.833336em}
+		.st16 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<defs id="Patterns_And_Gradients">
+		<linearGradient id="grad0-11" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(90 0.5 0.5)">
+			<stop offset="0.01" stop-color="#ffffff" stop-opacity="1"/>
+			<stop offset="0.5" stop-color="#fefefe" stop-opacity="1"/>
+			<stop offset="1" stop-color="#ffffff" stop-opacity="1"/>
+		</linearGradient>
+		<linearGradient id="grad0-15" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(270 0.5 0.5)">
+			<stop offset="0" stop-color="#fefefe" stop-opacity="1"/>
+			<stop offset="1" stop-color="#ffffff" stop-opacity="1"/>
+		</linearGradient>
+	</defs>
+	<defs id="Markers">
+		<g id="lend14">
+			<path d="M 3 -1 L 0 0 L 3 1 L 3 -1 " style="stroke-linecap:round;stroke-linejoin:round;fill:none"/>
+		</g>
+		<marker id="mrkr14-53" class="st12" v:arrowType="14" v:arrowSize="2" v:setback="18.12" refX="-18.12" orient="auto"
+				markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend14" transform="scale(-6.04,-6.04) "/>
+		</marker>
+		<g id="lend1">
+			<path d="M 1 -1 L 0 0 L 1 1 " style="stroke-linecap:round;stroke-linejoin:round;fill:none"/>
+		</g>
+		<marker id="mrkr1-87" class="st12" v:arrowType="1" v:arrowSize="2" orient="auto" markerUnits="strokeWidth"
+				overflow="visible">
+			<use xlink:href="#lend1" transform="scale(-6.04,-6.04) "/>
+		</marker>
+	</defs>
+	<g v:mID="0" v:index="1" v:groupContext="foregroundPage">
+		<v:userDefs>
+			<v:ud v:nameU="msvThemeOrder" v:val="VT0(0):26"/>
+			<v:ud v:nameU="visNavType" v:val="VT0(1):26"/>
+		</v:userDefs>
+		<title>Pagina 1</title>
+		<v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="8.50394"
+				v:shadowOffsetY="-8.50394"/>
+		<v:layer v:name="Connettore" v:index="0"/>
+		<v:layer v:name="Contenitore" v:index="1"/>
+		<g id="group11-1" transform="translate(212.598,-90.7087)" v:mID="11" v:groupContext="group" v:layerMember="1">
+			<v:userDefs>
+				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(Container)"/>
+				<v:ud v:nameU="msvSDContainerMargin" v:prompt="" v:val="VT0(0.11811023622047):24"/>
+				<v:ud v:nameU="msvSDContainerResize" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="msvSDContainerLocked" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="msvSDContainerNoHighlight" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="msvSDContainerNoRibbon" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="msvSDContainerStyle" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="msvSDContainerStyleCount" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="msvSDContainerRequiredCategories" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="msvSDContainerExcludedCategories" v:prompt="" v:val="VT4(DoNotContain)"/>
+				<v:ud v:nameU="msvSDHeadingStyle" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="msvSDHeadingStyleCount" v:prompt="" v:val="VT0(4):26"/>
+				<v:ud v:nameU="HeadingSide" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="HeadingSpan" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="HeadingAlign" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="RTL" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="FnForceContrast" v:prompt="" v:val="VT5(#ffffff)"/>
+				<v:ud v:nameU="BaseColor" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="HColor1" v:prompt="" v:val="VT5(#ffffff)"/>
+				<v:ud v:nameU="HColor2" v:prompt="" v:val="VT5(#fefefe)"/>
+				<v:ud v:nameU="HColor3" v:prompt="" v:val="VT5(#e9e9e9)"/>
+				<v:ud v:nameU="HColor4" v:prompt="" v:val="VT5(#efefef)"/>
+				<v:ud v:nameU="BColor1" v:prompt="" v:val="VT5(#ffffff)"/>
+				<v:ud v:nameU="BColor2" v:prompt="" v:val="VT5(#ffffff)"/>
+				<v:ud v:nameU="LineColor" v:prompt="" v:val="VT5(#d5d5d5)"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="BaseColor" v:prompt="" v:val="VT5(#ffffff)"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(4666):26"/>
+			</v:userDefs>
+			<title>Sottosistema</title>
+			<g id="group12-2" v:mID="12" v:groupContext="group" v:layerMember="1">
+				<v:userDefs>
+					<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="CStyle" v:prompt="" v:val="VT0(1):26"/>
+					<v:ud v:nameU="HSide" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="HSpan" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="HAlign" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="HorzAlign" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="SquareCorners" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Corner6" v:prompt="" v:val="VT0(0.19685039370079):24"/>
+					<v:ud v:nameU="FillForegndIn" v:prompt="" v:val="VT0(1):26"/>
+					<v:ud v:nameU="FillBkgndIn" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="FillPatternIn" v:prompt="" v:val="VT0(1):26"/>
+					<v:ud v:nameU="BaseColor" v:prompt="" v:val="VT0(1):26"/>
+					<v:ud v:nameU="HorzAlign" v:prompt="" v:val="VT0(1):26"/>
+					<v:ud v:nameU="FillForegndIn" v:prompt="" v:val="VT5(#ffffff)"/>
+					<v:ud v:nameU="FillBkgndIn" v:prompt="" v:val="VT5(#d3d3d3)"/>
+					<v:ud v:nameU="BaseColor" v:prompt="" v:val="VT5(#ffffff)"/>
+				</v:userDefs>
+				<title>Foglio.12</title>
+				<g id="shape13-3" v:mID="13" v:groupContext="shape" v:layerMember="1" transform="translate(2.83465,2.83465)">
+					<title>Foglio.13</title>
+					<v:userDefs>
+						<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT0(0):26"/>
+						<v:ud v:nameU="msvThemeColors" v:prompt="" v:val="VT0(0):26"/>
+						<v:ud v:nameU="msvThemeEffects" v:prompt="" v:val="VT0(0):26"/>
+						<v:ud v:nameU="CStyle" v:prompt="" v:val="VT0(1):26"/>
+						<v:ud v:nameU="HSide" v:prompt="" v:val="VT0(0):26"/>
+						<v:ud v:nameU="HSpan" v:prompt="" v:val="VT0(0):26"/>
+						<v:ud v:nameU="HAlign" v:prompt="" v:val="VT0(0):26"/>
+						<v:ud v:nameU="HorzAlign" v:prompt="" v:val="VT0(0):26"/>
+						<v:ud v:nameU="SquareCorners" v:prompt="" v:val="VT0(0):26"/>
+						<v:ud v:nameU="OffsetX10" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+						<v:ud v:nameU="OffsetY10" v:prompt="" v:val="VT0(-0.039370078740157):24"/>
+						<v:ud v:nameU="HorzAlign" v:prompt="" v:val="VT0(1):26"/>
+					</v:userDefs>
+				</g>
+				<g id="shape12-5" v:mID="12" v:groupContext="groupContent" v:layerMember="1">
+					<path d="M0 595.28 L279.42 595.28 L558.84 595.28 L558.84 114.85 L279.42 114.85 L0 114.85 L0 595.28 Z"
+							class="st1"/>
+				</g>
+			</g>
+			<g id="group14-7" transform="translate(0,-459.164)" v:mID="14" v:groupContext="group" v:layerMember="1">
+				<v:userDefs>
+					<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(Heading)"/>
+					<v:ud v:nameU="CStyle" v:prompt="" v:val="VT0(1):26"/>
+					<v:ud v:nameU="HSide" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="HSpan" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="HAlign" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Hidden" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="HorzAlign" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Rounding" v:prompt="" v:val="VT0(0):1"/>
+					<v:ud v:nameU="SquareCorners" v:prompt="" v:val="VT0(3):26"/>
+					<v:ud v:nameU="Inset" v:prompt="" v:val="VT0(0):24"/>
+					<v:ud v:nameU="InsideRadius" v:prompt="" v:val="VT0(0):24"/>
+					<v:ud v:nameU="InsetXInt" v:prompt="" v:val="VT0(0):24"/>
+					<v:ud v:nameU="HTxtMargin" v:prompt="" v:val="VT0(0.059055118110236):24"/>
+					<v:ud v:nameU="HTxtWidth" v:prompt="" v:val="VT0(1.9685039370079):24"/>
+					<v:ud v:nameU="HLeft" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="HRight" v:prompt="" v:val="VT0(1.9685039370079):24"/>
+					<v:ud v:nameU="SquareCorners7" v:prompt="" v:val="VT0(3):26"/>
+					<v:ud v:nameU="Offset" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Rounding8" v:prompt="" v:val="VT0(0.11811023622047):24"/>
+					<v:ud v:nameU="InsetX9" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="InsetY9" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="OffsetY11" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="OffsetY12" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Width12" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="msvSDContainerHeadingEdge" v:prompt="" v:val="VT4(Bottom)"/>
+					<v:ud v:nameU="HLineVisible" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="HFillVisible" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="FillForegndIn" v:prompt="" v:val="VT5(#ffffff)"/>
+					<v:ud v:nameU="FillBkgndIn" v:prompt="" v:val="VT0(1):26"/>
+					<v:ud v:nameU="BaseColor" v:prompt="" v:val="VT0(1):26"/>
+					<v:ud v:nameU="FillPatternIn" v:prompt="" v:val="VT0(30):26"/>
+					<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(#96afcf)"/>
+					<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT5(#1f477d)"/>
+					<v:ud v:nameU="BackCharColor" v:prompt="" v:val="VT5(#000000)"/>
+					<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT5(#000000)"/>
+					<v:ud v:nameU="HorzAlign" v:prompt="" v:val="VT0(1):26"/>
+					<v:ud v:nameU="HTxtWidth" v:prompt="" v:val="VT0(7.7616239104256):1"/>
+					<v:ud v:nameU="HRight" v:prompt="" v:val="VT0(7.7616239104256):1"/>
+					<v:ud v:nameU="FillForegndIn" v:prompt="" v:val="VT5(#d3d3d3)"/>
+					<v:ud v:nameU="FillBkgndIn" v:prompt="" v:val="VT5(#ffffff)"/>
+					<v:ud v:nameU="BaseColor" v:prompt="" v:val="VT5(#ffffff)"/>
+					<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(#73ae42)"/>
+					<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT5(#ffffff)"/>
+					<v:ud v:nameU="BackCharColor" v:prompt="" v:val="VT5(#73ae42)"/>
+					<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT5(#73ae42)"/>
+				</v:userDefs>
+				<title>Foglio.14</title>
+				<desc>Gestionale Magazzino</desc>
+				<g id="shape15-8" v:mID="15" v:groupContext="shape" v:layerMember="1">
+					<title>Foglio.15</title>
+					<v:userDefs>
+						<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT0(0):26"/>
+						<v:ud v:nameU="msvThemeColors" v:prompt="" v:val="VT0(0):26"/>
+						<v:ud v:nameU="msvThemeEffects" v:prompt="" v:val="VT0(0):26"/>
+						<v:ud v:nameU="CStyle" v:prompt="" v:val="VT0(1):26"/>
+						<v:ud v:nameU="Rounding" v:prompt="" v:val="VT0(0):1"/>
+						<v:ud v:nameU="SquareCorners" v:prompt="" v:val="VT0(3):26"/>
+						<v:ud v:nameU="HLeft" v:prompt="" v:val="VT0(0):26"/>
+						<v:ud v:nameU="HRight" v:prompt="" v:val="VT0(1.9685039370079):24"/>
+						<v:ud v:nameU="Hidden" v:prompt="" v:val="VT0(0):5"/>
+						<v:ud v:nameU="BowHeight7" v:prompt="" v:val="VT0(0.11811023622047):24"/>
+						<v:ud v:nameU="Offset7" v:prompt="" v:val="VT0(0.0052083333333333):3"/>
+						<v:ud v:nameU="AnchorPt7" v:prompt="" v:val="VT0(0.55581528871391):24"/>
+						<v:ud v:nameU="HSide" v:prompt="" v:val="VT0(0):26"/>
+						<v:ud v:nameU="HAlign" v:prompt="" v:val="VT0(0):26"/>
+						<v:ud v:nameU="HRight" v:prompt="" v:val="VT0(7.7616239104256):1"/>
+						<v:ud v:nameU="Offset7" v:prompt="" v:val="VT0(0.0034722222222222):29"/>
+						<v:ud v:nameU="AnchorPt7" v:prompt="" v:val="VT0(0.55755139982502):24"/>
+					</v:userDefs>
+				</g>
+				<g id="shape14-12" v:mID="14" v:groupContext="groupContent" v:layerMember="1">
+					<v:textBlock v:margins="rect(4,6,4,6)" v:tabSpace="42.5197"/>
+					<v:textRect cx="279.418" cy="584.646" width="558.84" height="21.2598"/>
+					<text x="225.42" y="587.95" class="st2" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Gestionale Magazzino</text>				</g>
+			</g>
+		</g>
+		<g id="shape1-17" v:mID="1" v:groupContext="shape" transform="translate(93.5433,-460.63)">
+			<title>Actor</title>
+			<desc>Utente</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(333):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="17.0079" cy="607.677" width="50.82" height="24.8035"/>
+			<path d="M6.8 595.28 L6.8 559.84 L6.8 574.02 L0 574.02 L0 545.67 L3.4 542.13 L30.61 542.13 L34.02 545.67 L34.02 574.02
+						 L27.21 574.02 L27.21 559.84 L27.21 595.28 L17.01 595.28 L17.01 566.93 L17.01 595.28 L6.8 595.28 ZM24.09
+						 531.5 A7.08661 7.08661 -180 1 0 9.92 531.5 A7.08661 7.08661 -180 1 0 24.09 531.5 Z" class="st3"/>
+			<text x="-2.82" y="611.88" class="st4" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Utente</text>		</g>
+		<g id="shape2-20" v:mID="2" v:groupContext="shape" transform="translate(93.5433,-338.032)">
+			<title>Actor.2</title>
+			<desc>Utente gestore magazzino</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="17.0079" cy="607.677" width="160.3" height="24.8035"/>
+			<path d="M6.8 595.28 L6.8 559.84 L6.8 574.02 L0 574.02 L0 545.67 L3.4 542.13 L30.61 542.13 L34.02 545.67 L34.02 574.02
+						 L27.21 574.02 L27.21 559.84 L27.21 595.28 L17.01 595.28 L17.01 566.93 L17.01 595.28 L6.8 595.28 ZM24.09
+						 531.5 A7.08661 7.08661 -180 1 0 9.92 531.5 A7.08661 7.08661 -180 1 0 24.09 531.5 Z" class="st3"/>
+			<text x="-57.55" y="611.88" class="st4" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Utente gestore magazzino</text>		</g>
+		<g id="shape3-23" v:mID="3" v:groupContext="shape" transform="translate(93.5433,-215.433)">
+			<title>Attore.3</title>
+			<desc>Amministratore</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(1666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="17.0079" cy="607.677" width="101.09" height="24.8035"/>
+			<path d="M6.8 595.28 L6.8 559.84 L6.8 574.02 L0 574.02 L0 545.67 L3.4 542.13 L30.61 542.13 L34.02 545.67 L34.02 574.02
+						 L27.21 574.02 L27.21 559.84 L27.21 595.28 L17.01 595.28 L17.01 566.93 L17.01 595.28 L6.8 595.28 ZM24.09
+						 531.5 A7.08661 7.08661 -180 1 0 9.92 531.5 A7.08661 7.08661 -180 1 0 24.09 531.5 Z" class="st3"/>
+			<text x="-27.95" y="611.88" class="st4" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Amministratore</text>		</g>
+		<g id="shape4-26" v:mID="4" v:groupContext="shape" transform="translate(93.5433,-113.386)">
+			<title>Attore.4</title>
+			<desc>Applicativo</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(2666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="17.0079" cy="607.677" width="74.65" height="24.8035"/>
+			<path d="M6.8 595.28 L6.8 559.84 L6.8 574.02 L0 574.02 L0 545.67 L3.4 542.13 L30.61 542.13 L34.02 545.67 L34.02 574.02
+						 L27.21 574.02 L27.21 559.84 L27.21 595.28 L17.01 595.28 L17.01 566.93 L17.01 595.28 L6.8 595.28 ZM24.09
+						 531.5 A7.08661 7.08661 -180 1 0 9.92 531.5 A7.08661 7.08661 -180 1 0 24.09 531.5 Z" class="st3"/>
+			<text x="-14.73" y="611.88" class="st4" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Applicativo</text>		</g>
+		<g id="shape16-29" v:mID="16" v:groupContext="shape" transform="translate(457.669,-271.129)">
+			<title>Use Case</title>
+			<desc>Gestione prodotto</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(5666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="58.1662" cy="578.268" width="116.34" height="34.0157"/>
+			<ellipse cx="58.1662" cy="578.268" rx="58.1662" ry="17.0079" class="st5"/>
+			<text x="5.58" y="582.47" class="st6" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Gestione prodotto</text>		</g>
+		<g id="shape17-32" v:mID="17" v:groupContext="shape" transform="translate(240.854,-380.263)">
+			<title>Use Case.17</title>
+			<desc>Gestione categoria</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(6666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="59.9358" cy="577.578" width="119.88" height="35.3947"/>
+			<ellipse cx="59.9358" cy="577.578" rx="59.9358" ry="17.6973" class="st5"/>
+			<text x="6.39" y="581.78" class="st6" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Gestione categoria</text>		</g>
+		<g id="shape18-35" v:mID="18" v:groupContext="shape" transform="translate(291.448,-454.776)">
+			<title>Use Case.18</title>
+			<desc>Creazione nuovo noleggio</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(7666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="70.4916" cy="574.474" width="140.99" height="41.6033"/>
+			<ellipse cx="70.4916" cy="574.474" rx="70.4916" ry="20.8017" class="st5"/>
+			<text x="22.78" y="570.27" class="st6" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Creazione nuovo <tspan
+						x="46.15" dy="1.2em" class="st7">noleggio</tspan></text>		</g>
+		<g id="shape19-39" v:mID="19" v:groupContext="shape" transform="translate(221.102,-39.685)">
+			<title>Foglio.19</title>
+			<desc>NOTE: - Tutti gli utenti devono passare dal login per utilizz...</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(8666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="282.525" cy="585.276" width="565.06" height="20"/>
+			<rect x="0" y="575.276" width="565.051" height="20" class="st8"/>
+			<text x="4" y="565.78" class="st9" v:langID="2064"><v:paragraph/><v:tabList/>NOTE:<v:newlineChar/><tspan x="4"
+						dy="1.2em" class="st7">-</tspan> Tutti gli utenti devono passare dal login per utilizzare l’applicativo<v:newlineChar/><tspan
+						x="4" dy="1.2em" class="st7">-</tspan> Il termine «gestione» indica la possibilità di visualizzazione, inserimento, modifica e eliminazione<v:newlineChar/><tspan
+						x="4" dy="1.2em" class="st7">-</tspan> Tutti i casi d’uso dell’applicativo includono la presenza di un database per gestire i dati</text>		</g>
+		<g id="shape20-45" v:mID="20" v:groupContext="shape" v:layerMember="0" transform="translate(127.559,-494.983)">
+			<title>Associazione</title>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(9666):26"/>
+			</v:userDefs>
+			<path d="M0 595.58 L166.43 609.14" class="st10"/>
+		</g>
+		<g id="shape23-48" v:mID="23" v:groupContext="shape" v:layerMember="0" transform="translate(103.465,-460.63)">
+			<title>Generalizzazione</title>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(10666):26"/>
+			</v:userDefs>
+			<path d="M7.09 595.28 L7.09 637.95" class="st11"/>
+		</g>
+		<g id="shape24-54" v:mID="24" v:groupContext="shape" v:layerMember="0" transform="translate(103.465,-338.032)">
+			<title>Generalizzazione.24</title>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(11666):26"/>
+			</v:userDefs>
+			<path d="M7.09 595.28 L7.09 637.95" class="st11"/>
+		</g>
+		<g id="shape25-59" v:mID="25" v:groupContext="shape" transform="translate(262.326,-103.885)">
+			<title>Use Case.25</title>
+			<desc>Invio email di notifica</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(12666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76.8756" cy="575.624" width="153.76" height="39.3034"/>
+			<ellipse cx="76.8756" cy="575.624" rx="76.8756" ry="19.6517" class="st5"/>
+			<text x="15.93" y="579.82" class="st6" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Invio email di notifica</text>		</g>
+		<g id="shape26-62" v:mID="26" v:groupContext="shape" v:layerMember="0" transform="translate(127.559,-146.938)">
+			<title>Associazione.26</title>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(13666):26"/>
+			</v:userDefs>
+			<path d="M0 595.28 L141.09 610.88" class="st10"/>
+		</g>
+		<g id="shape27-65" v:mID="27" v:groupContext="shape" v:layerMember="0" transform="translate(127.559,-376.533)">
+			<title>Associazione.27</title>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(14666):26"/>
+			</v:userDefs>
+			<path d="M0 598.95 L190.34 605.77" class="st10"/>
+		</g>
+		<g id="shape28-68" v:mID="28" v:groupContext="shape" v:layerMember="0" transform="translate(127.559,-375.655)">
+			<title>Associazione.28</title>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(15666):26"/>
+			</v:userDefs>
+			<path d="M0 595.28 L118.29 580.04" class="st10"/>
+		</g>
+		<g id="shape29-71" v:mID="29" v:groupContext="shape" transform="translate(317.41,-342.295)">
+			<title>Use Case.29</title>
+			<desc>Inventario del magazzino</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(16666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="70.4916" cy="574.04" width="140.99" height="42.4708"/>
+			<ellipse cx="70.4916" cy="574.04" rx="70.4916" ry="21.2354" class="st5"/>
+			<text x="30.94" y="569.84" class="st6" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Inventario del <tspan
+						x="40.39" dy="1.2em" class="st7">magazzino</tspan></text>		</g>
+		<g id="shape30-75" v:mID="30" v:groupContext="shape" v:layerMember="0" transform="translate(127.559,-376.533)">
+			<title>Associazione.30</title>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(17666):26"/>
+			</v:userDefs>
+			<path d="M0 598.95 L190.34 605.77" class="st10"/>
+		</g>
+		<g id="shape31-78" v:mID="31" v:groupContext="shape" transform="translate(592.038,-445.918)">
+			<title>Use Case.31</title>
+			<desc>Generazione QR prodotto</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(18666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="70.4916" cy="574.04" width="140.99" height="42.4708"/>
+			<ellipse cx="70.4916" cy="574.04" rx="70.4916" ry="21.2354" class="st5"/>
+			<text x="24.32" y="569.84" class="st6" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Generazione QR <tspan
+						x="44.93" dy="1.2em" class="st7">prodotto</tspan></text>		</g>
+		<g id="shape32-82" v:mID="32" v:groupContext="shape" v:layerMember="0" transform="translate(529.389,-304.677)">
+			<title>Includi</title>
+			<desc>&#60;&#60;includi&#62;&#62;</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(19666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="58.1236" cy="524.345" width="57.07" height="20.0036"/>
+			<path d="M0 595.28 L116.25 453.42" class="st13"/>
+			<rect v:rectContext="textBkgnd" x="34.7251" y="518.346" width="46.7971" height="12.0001" class="st14"/>
+			<text x="34.73" y="527.35" class="st15" v:langID="1040"><v:paragraph v:horizAlign="1"/><v:tabList/>&#60;&#60;includi&#62;&#62;</text>		</g>
+		<g id="shape33-90" v:mID="33" v:groupContext="shape" transform="translate(271.259,-160.578)">
+			<title>Use Case.33</title>
+			<desc>Gestione utenti</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(20666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="56.6929" cy="578.268" width="113.39" height="34.0157"/>
+			<ellipse cx="56.6929" cy="578.268" rx="56.6929" ry="17.0079" class="st5"/>
+			<text x="12.54" y="582.47" class="st6" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Gestione utenti</text>		</g>
+		<g id="shape34-93" v:mID="34" v:groupContext="shape" v:layerMember="0" transform="translate(127.559,-245.133)">
+			<title>Associazione.34</title>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(21666):26"/>
+			</v:userDefs>
+			<path d="M0 595.28 L162.7 650.12" class="st10"/>
+		</g>
+		<g id="shape35-96" v:mID="35" v:groupContext="shape" transform="translate(244.231,-500.735)">
+			<title>Use Case.35</title>
+			<desc>Visualizzazione catalogo prodotti</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(22666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="90.4827" cy="574.959" width="180.97" height="40.6331"/>
+			<ellipse cx="90.4827" cy="574.959" rx="90.4827" ry="20.3166" class="st5"/>
+			<text x="21.94" y="570.76" class="st6" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Visualizzazione catalogo <tspan
+						x="67.01" dy="1.2em" class="st7">prodotti</tspan></text>		</g>
+		<g id="shape36-100" v:mID="36" v:groupContext="shape" v:layerMember="0" transform="translate(127.559,-497.902)">
+			<title>Associazione.36</title>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(23666):26"/>
+			</v:userDefs>
+			<path d="M0 595.22 L126.11 581.16" class="st10"/>
+		</g>
+		<g id="shape37-103" v:mID="37" v:groupContext="shape" transform="translate(430.276,-404.357)">
+			<title>Use Case.37</title>
+			<desc>Scansione QR del prodotto</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(24666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="89.5514" cy="574.959" width="179.11" height="40.6331"/>
+			<ellipse cx="89.5514" cy="574.959" rx="89.5514" ry="20.3166" class="st5"/>
+			<text x="13.56" y="579.16" class="st6" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Scansione QR del prodotto</text>		</g>
+		<g id="shape38-106" v:mID="38" v:groupContext="shape" v:layerMember="0" transform="translate(510.696,-305.144)">
+			<title>Includi.38</title>
+			<desc>&#60;&#60;includi&#62;&#62;</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(25666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="7.08661" cy="545.669" width="57.07" height="20.0036"/>
+			<path d="M5.64 595.28 L8.54 496.06" class="st13"/>
+			<rect v:rectContext="textBkgnd" x="-16.3118" y="539.669" width="46.7971" height="12.0001" class="st14"/>
+			<text x="-16.31" y="548.67" class="st15" v:langID="1040"><v:paragraph v:horizAlign="1"/><v:tabList/>&#60;&#60;includi&#62;&#62;</text>		</g>
+		<g id="shape39-113" v:mID="39" v:groupContext="shape" v:layerMember="0" transform="translate(426.318,-381.335)">
+			<title>Includi.39</title>
+			<desc>&#60;&#60;includi&#62;&#62;</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(26666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="27.0689" cy="582.73" width="57.07" height="20.0036"/>
+			<path d="M0 595.28 L54.14 570.18" class="st13"/>
+			<rect v:rectContext="textBkgnd" x="3.67047" y="576.73" width="46.7971" height="12.0001" class="st14"/>
+			<text x="3.67" y="585.73" class="st15" v:langID="1040"><v:paragraph v:horizAlign="1"/><v:tabList/>&#60;&#60;includi&#62;&#62;</text>		</g>
+		<g id="shape40-120" v:mID="40" v:groupContext="shape" transform="translate(643.06,-380.164)">
+			<title>Use Case.40</title>
+			<desc>Stampa codice QR</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(27666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="59.9358" cy="574.675" width="119.88" height="41.2014"/>
+			<ellipse cx="59.9358" cy="574.675" rx="59.9358" ry="20.6007" class="st5"/>
+			<text x="8.35" y="578.87" class="st6" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Stampa codice QR</text>		</g>
+		<g id="shape42-123" v:mID="42" v:groupContext="shape" transform="translate(240.854,-422.783)">
+			<title>Use Case.42</title>
+			<desc>Chiusura noleggio</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(29666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="59.9358" cy="578.268" width="119.88" height="34.0157"/>
+			<ellipse cx="59.9358" cy="578.268" rx="59.9358" ry="17.0079" class="st5"/>
+			<text x="9.1" y="582.47" class="st6" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Chiusura noleggio</text>		</g>
+		<g id="shape43-126" v:mID="43" v:groupContext="shape" v:layerMember="0" transform="translate(127.559,-491.032)">
+			<title>Associazione.43</title>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(30666):26"/>
+			</v:userDefs>
+			<path d="M0 595.28 L131.74 634.24" class="st10"/>
+		</g>
+		<g id="shape44-129" v:mID="44" v:groupContext="shape" transform="translate(245.747,-204.094)">
+			<title>Use Case.44</title>
+			<desc>Visualizzazione di tutti i noleggi</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(31666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="82.6903" cy="568.371" width="165.39" height="53.8094"/>
+			<ellipse cx="82.6903" cy="568.371" rx="82.6903" ry="26.9047" class="st5"/>
+			<text x="16.07" y="564.17" class="st6" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Visualizzazione di tutti i <tspan
+						x="62.04" dy="1.2em" class="st7">noleggi</tspan></text>		</g>
+		<g id="shape45-133" v:mID="45" v:groupContext="shape" v:layerMember="0" transform="translate(127.559,-362.344)">
+			<title>Associazione.45</title>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(32666):26"/>
+			</v:userDefs>
+			<path d="M0 595.28 L164.04 702.53" class="st10"/>
+		</g>
+		<g id="shape46-136" v:mID="46" v:groupContext="shape" transform="translate(287.461,-265.841)">
+			<title>Use Case.46</title>
+			<desc>Cancellazione noleggio</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(33666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="70.4916" cy="575.624" width="140.99" height="39.3034"/>
+			<ellipse cx="70.4916" cy="575.624" rx="70.4916" ry="19.6517" class="st5"/>
+			<text x="5.57" y="579.82" class="st6" v:langID="2064"><v:paragraph v:horizAlign="1"/><v:tabList/>Cancellazione noleggio</text>		</g>
+		<g id="shape49-139" v:mID="49" v:groupContext="shape" v:layerMember="0" transform="translate(127.559,-367.417)">
+			<title>Associazione.49</title>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(35666):26"/>
+			</v:userDefs>
+			<path d="M0 595.28 L186.9 661.73" class="st10"/>
+		</g>
+		<g id="shape51-142" v:mID="51" v:groupContext="shape" v:layerMember="0" transform="translate(673.269,-382.876)">
+			<title>Estendi</title>
+			<desc>&#60;&#60;estendi&#62;&#62;</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(36666):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="-66.0065" cy="634.996" width="60.21" height="20.0036"/>
+			<path d="M0 595.28 L-132.01 674.72" class="st13"/>
+			<rect v:rectContext="textBkgnd" x="-90.9747" y="628.997" width="49.9367" height="12.0001" class="st14"/>
+			<text x="-90.97" y="638" class="st15" v:langID="1040"><v:paragraph v:horizAlign="1"/><v:tabList/>&#60;&#60;estendi&#62;&#62;</text>		</g>
+		<g id="shape53-149" v:mID="53" v:groupContext="shape" v:layerMember="0" transform="translate(127.559,-369.884)">
+			<title>Associazione.53</title>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visNavOrder" v:val="VT0(38666):26"/>
+			</v:userDefs>
+			<path d="M0 595.28 L341.07 667.08" class="st10"/>
+		</g>
+	</g>
+</svg>
