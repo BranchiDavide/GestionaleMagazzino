@@ -2,7 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './test.env' });
 const db = require("./../database/db");
 const Materiale = require("../models/Materiale");
-const Noleggio = require("../models/Noleggio");
+const noleggioMapper = require("../models/mappers/noleggioMapper");
 const materialeMapper = require("../models/mappers/materialeMapper");
 
 afterAll(done => {
@@ -111,24 +111,26 @@ test("_12_search_NotExists", async() => {
     expect(result).toEqual([]);
 });
 
-test("_13_getNoleggiAndQuantitaByMaterialeCodice", async() => {
-    const actual = await materialeMapper.getNoleggiAndQuantitaByMaterialeCodice(9);
-    const expected = 2;
-
-    expect(actual[0].quantitaMateriale).toBe(expected);
-    expect(actual[0].data instanceof Noleggio).toBeTruthy();
+test("_13_getNoleggiIdByMaterialeCodice", async() => {
+    const result = await materialeMapper.getNoleggiIdByMaterialeCodice(4);
+    expect(result.length).toBeGreaterThan(0);
 });
 
-test("_14_getNoleggiAndQuantitaByMaterialeCodice_notExists", async() => {
-    const actual = await materialeMapper.getNoleggiAndQuantitaByMaterialeCodice(0);
-    expect(actual).toEqual([]);
+test("_14_getNoleggiIdByMaterialeCodice_notExists", async() => {
+    const result = await materialeMapper.getNoleggiIdByMaterialeCodice(1555);
+    expect(result).toEqual([]);
 });
 
-test("_15_getDataDisponibilitaByNoleggi", async() => {
-    const noleggiDettaglio = await materialeMapper.getNoleggiAndQuantitaByMaterialeCodice(1);
-    const actual = materialeMapper.getDataDisponibilitaByNoleggi(noleggiDettaglio);
+test("_15_getQuantitaMaterialeNoleggio", async () => {
+    const result = await materialeMapper.getQuantitaMaterialeNoleggio(1, 1);
+    expect(result).toBe(2);
+});
 
-    const expected = new Date("2024-01-20").toLocaleDateString("en-CH");
-
-    expect(actual).toEqual(expected);
+test("_16_getDataDisponibilitaByNoleggi", async () => {
+    const noleggiId = await materialeMapper.getNoleggiIdByMaterialeCodice(4);
+    const noleggi = await noleggioMapper.getNoleggiByNoleggiId(noleggiId);
+    const result = materialeMapper.getDataDisponibilitaByNoleggi(noleggi);
+    
+    expect(result).toBeDefined();
+    expect(result).toEqual("25.01.2024");
 });

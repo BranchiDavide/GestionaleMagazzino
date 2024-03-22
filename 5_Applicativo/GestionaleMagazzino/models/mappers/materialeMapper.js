@@ -1,3 +1,4 @@
+const Noleggio = require("../Noleggio");
 const db = require("./../../database/db");
 const Materiale = require("./../Materiale");
 const noleggioMapper = require("./noleggioMapper");
@@ -99,52 +100,43 @@ async function updateQuantita(codice, incQuantita){
 }
 
 /**
- * Funzione che ritorna tutti i noleggi dove è coinvolto un certo tipo di materiale.
- * Serve per l'interfaccia grafica del dettaglio prodotto.
+ * Funzione che ritorna tutti gli id dei noleggi dove è coinvolto un certo tipo di materiale.
  * @param {Number} codiceMateriale il codice del materiale
- * @returns un array contenenti dei json che al loro interno contengono un oggetto 
- *          di tipo Noleggio e la quantità di materiale coinvolto in quel noleggio
+ * @returns un array contenenti gli id dei noleggi
  */
-async function getNoleggiAndQuantitaByMaterialeCodice(codiceMateriale){
-    // controllare gli id dei noleggiMateriali per poi andare a prendere i noleggi da noleggi
+async function getNoleggiIdByMaterialeCodice(codiceMateriale){
     const [result] = await db.query("SELECT idNoleggio FROM materialeNoleggio WHERE idMateriale = ?", [codiceMateriale]);
-    // Array contenenti tutti i noleggi sotto forma di oggetti
-    const noleggi = [];
-    for (let row of result){
-        const [quantitaMateriale] = await db.query("SELECT quantita FROM materialeNoleggio WHERE idMateriale = ? AND idNoleggio = ?", 
-                                            [codiceMateriale, row.idNoleggio]);
 
-        const noleggioDettaglioProdotto = {
-            data: await noleggioMapper.getById(row.idNoleggio),
-            quantitaMateriale: quantitaMateriale[0].quantita
-        }
-
-        noleggi.push(noleggioDettaglioProdotto);
+    const noleggiId = [];
+    for (let item of result){
+        noleggiId.push(item.idNoleggio);
     }
 
-    return noleggi;
+    return noleggiId;
+}
+
+/**
+ * La funzione ritorna la quantità di materiale che è presente nel noleggio.
+ * @param {Number} codiceMateriale il codice del materiale
+ * @param {Number} idNoleggio l'id del noleggio
+ * @returns la quantita del materiale nel noleggio
+ */
+async function getQuantitaMaterialeNoleggio(codiceMateriale, idNoleggio){
+    const [result] = await db.query("SELECT quantita FROM materialeNoleggio WHERE idMateriale = ? AND idNoleggio = ?", 
+                                        [codiceMateriale, idNoleggio]);
+    return result[0].quantita;
 }
 
 /**
  * La funzione ritorna la data della prima disponibilità di un noleggio.
- * Riceve 
- * Il formato dell'array ricevuto deve essere come il seguente esempio:
- * [
- *  {
- *      data: Noleggio{...}
- *  },
- *  {
- *      data: Noleggio{...}
- *  }
- * ]
- * @param {JSON[]} noleggi l'array di noleggi
+ * @param {Noleggio[]} noleggi l'array di noleggi
  * @returns la data più piccola dell'array di noleggi già formattata
  */
 function getDataDisponibilitaByNoleggi(noleggi){
-    let result = noleggi[0].data.dataFine;
+    let result = new Date(noleggi[0].dataFine);
 
     for (let i = 1; i < noleggi.length; i++){
-        let dataDisponibilitaNoleggio = new Date(noleggi[i].data.dataFine);
+        let dataDisponibilitaNoleggio = new Date(noleggi[i].dataFine);
         if (dataDisponibilitaNoleggio < result){
             result = dataDisponibilitaNoleggio;
         }
@@ -175,6 +167,7 @@ module.exports = {
     deleteMateriale,
     updateQuantita,
     search,
-    getNoleggiAndQuantitaByMaterialeCodice,
+    getNoleggiIdByMaterialeCodice,
+    getQuantitaMaterialeNoleggio,
     getDataDisponibilitaByNoleggi
 }

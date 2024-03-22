@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const noleggiController = require("./../controllers/noleggiController");
+const noleggiController = require("../controllers/noleggiController");
 const authMiddleware = require('../middlewares/authMiddleware');
 const uploadMiddleware = require("../middlewares/uploadMiddleware");
 

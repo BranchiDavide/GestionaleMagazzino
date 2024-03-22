@@ -115,6 +115,21 @@ async function getNoleggiOfUtente(idUtente){
     return noleggi;
 }
 
+/**
+ * La funzione per prendere tutti i noleggi che sono presenti nell'array
+ * di id passata come parametro.
+ * @param {Number[]} idNoleggi array contenente gli id interessati
+ * @returns un array di noleggi
+ */
+async function getNoleggiByNoleggiId(idNoleggi){
+    const noleggi = [];
+    for (let id of idNoleggi){
+        const noleggio = await getById(id);
+        noleggi.push(noleggio);
+    }
+    return noleggi;
+}
+
 module.exports = {
     getAll,
     getById,
@@ -122,5 +137,6 @@ module.exports = {
     closeNoleggio,
     getMaterialeOfNoleggio,
     changeIdUtenteToNome,
-    getNoleggiOfUtente
+    getNoleggiOfUtente,
+    getNoleggiByNoleggiId
 };

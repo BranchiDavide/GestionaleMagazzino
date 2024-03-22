@@ -106,3 +106,9 @@ test("_08_getNoleggiOfUtente", async() =>{
         expect(item.idUtente).toBe(1);
     }
 });
+
+test("_09_getNoleggiByNoleggiId", async () => {
+    let id = [1,2,3,4,5,5];
+    let result = await noleggioMapper.getNoleggiByNoleggiId(id);
+    expect(result.length).toBeGreaterThan(0);
+});
