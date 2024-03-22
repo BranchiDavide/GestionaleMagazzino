@@ -3,7 +3,8 @@ const noleggioMapper = require("./../models/mappers/noleggioMapper");
 const materialeMapper = require("./../models/mappers/materialeMapper");
 const dfns = require("date-fns");
 async function showAll(req, res){
-    const noleggi = await noleggioMapper.getAll();
+    let noleggi = await noleggioMapper.getAll();
+    noleggi = await noleggioMapper.changeIdUtenteToNome(noleggi);
     return res.status(200).render("noleggio/noleggi.ejs", {noleggi: noleggi, session: req.session});
 }
 
@@ -63,7 +64,8 @@ async function addNew(req, res){
 
 async function showNoleggioDetails(req, res){
     const codice = req.params['codice'];
-    const noleggio = await noleggioMapper.getById(codice);
+    let noleggio = await noleggioMapper.getById(codice);
+    noleggio = await noleggioMapper.changeIdUtenteToNome(noleggio);
     const prodotti = await noleggioMapper.getMaterialeOfNoleggio(parseInt(codice));
     console.log(prodotti); 
     return res.status(200).render("noleggio/dettagli.ejs", {prodotti: prodotti, noleggio: noleggio, session: req.session})

@@ -50,7 +50,7 @@
                        %>
                       <td <% if(new Date() > dataFine){%>style="color: red;"<%}%>><%=dataFineFormatted %></td>
                       <td class="optional"><%=item.idUtente %></td>
-                      <td><button type="submit"><i class="bx bx-show-alt"></i></button></td>
+                      <td><a href="/noleggi/<%= item.id %>"><button type="submit"><i class="bx bx-show-alt"></i></button></a></td>
                       </tr>
                 <% } %>
               </tbody>
