@@ -11,35 +11,36 @@
 
   <body id="body-pd">
     <%- include('../_templates/navbar.ejs', {active: "noleggi" }); -%>
-      <!--Container Main start-->
       <div class="height-100 bg-light">
         <div class="main-section">
           <div class="item-container">
             <div class="item-center">
               <div class="item-title">
-                <h2>Crea Noleggio</h2>
+                <h2>Nuovo prodotto</h2>
               </div>
-              <% if(typeof displayError !== "undefined" && displayError){ %>
-                <div class="alert alert-danger" role="alert">
-                  <%= message %>
-                </div>
-              <% } %>
               <br>
               <form action="/prodotti/nuovo" method="POST" enctype="multipart/form-data">
                 <div class="item-info">
                   <div class="form-row">
-                    <label>Nome Prodotto</label>
+                    <label>Nome prodotto:</label>
                     <input class="form-control" type="text" name="nome" required>
                   </div>
                   <br>
                   <div class="form-row">
-                    <label>Quantità</label>
-                    <input class="form-control" type="number" name="dataInizio" min="0" value="1" required>
+                    <label>Quantità prodotto:</label>
+                    <input class="form-control" type="number" name="quantita" min="1" value="1" required>
                   </div>
                   <br>
                   <div class="form-row">
-                    <label>Categoria</label>
-                    <input class="form-control" type="" name="dataFine" required>
+                    <label>Categoria:</label>
+                    <input class="form-control" type="text" name="categoria" required>
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="true" id="isConsumabile" name="isConsumabile">
+                      <label class="form-check-label" for="isConsumabile"> È consumabile</label>
+                    </div>
                   </div>
                   <br>
                   <div class="item-title">
@@ -53,7 +54,11 @@
                     <img id="previewImage" width="400" height="300">
                   </div>
                 </div>
-                <br>
+                <% if(typeof displayError !== "undefined" && displayError){ %>
+                  <div class="alert alert-danger" role="alert">
+                    <%= message %>
+                  </div>
+                <% } %>
                 <div class="functions">
                   <div class="button-align-left">
                     <button type="submit"><i class='bx bxs-check-circle'></i></button>

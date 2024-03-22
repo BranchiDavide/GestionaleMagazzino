@@ -10,7 +10,7 @@
 <body className='snippet-body'>
 
   <body id="body-pd">
-    <%- include('../_templates/navbar.ejs', {active: "noleggi"}); -%>
+    <%- include('../_templates/navbar.ejs', {active: "noleggi" }); -%>
       <!--Container Main start-->
       <div class="height-100 bg-light">
         <div class="main-section">
@@ -31,16 +31,14 @@
                 <p><strong>Autore:</strong>
                   <%= noleggio.idUtente %>
                 </p>
-                <p><strong>Data ritorno:</strong>
-                    <% 
-                      let dataFine = new Date(noleggio.dataFine);
-                      let dataFineFormatted = dataFine.toLocaleDateString("en-CH");
-                    %>
-                    <p <% if(new Date() > dataFine){%>style="color: red;"<%}%>>
+                <% 
+                let dataFine=new Date(noleggio.dataFine); 
+                let dataFineFormatted=dataFine.toLocaleDateString("en-CH"); 
+                %>
+                  <p <% if(new Date()> dataFine){%>style="color: red;"<%}%>>
                       <strong>Data ritorno:</strong>
                       <%=dataFineFormatted %>
-                    </p>
-                </p>
+                  </p>
               </div>
               <div class="functions">
                 <div class="button-align-left">
@@ -78,18 +76,18 @@
                     <% for (let item of prodotti) { %>
                       <tr>
                         <td class="optional">
-                          <%= item.codice%>
+                          <%= item[0].codice %>
                         </td>
                         <td>
-                          <%= item.nome%>
+                          <%= item[0].nome %>
                         </td>
                         <td>
-                          <%= item.quantita%>
+                          <%= item[1] %>
                         </td>
                         <td class="optional">
-                          <%= item.categoria%>
+                          <%= item[0].categoria %>
                         </td>
-                        <td><a href="/prodotti/<%= item.codice %>"><button type="submit"><i
+                        <td><a href="/prodotti/<%= item[0].codice %>"><button type="submit"><i
                                 class="bx bx-show-alt"></i></button></a></td>
                       </tr>
                       <% } %>
@@ -102,4 +100,5 @@
         <!--Container Main end-->
         <script type="text/javascript" src="/js/navbar.js"></script>
   </body>
+
 </html>

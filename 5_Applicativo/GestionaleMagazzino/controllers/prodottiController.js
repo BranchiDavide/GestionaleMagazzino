@@ -59,11 +59,19 @@ async function showProductDetails(req, res){
  * @returns la pagina per aggiungere un prodotto
  */
 function loadViewAddProduct(req, res){
-    return res.status(200).render("prodotto/aggiunta.ejs");
+    return res.status(200).render("prodotto/aggiunta.ejs", { session: req.session });
+}
+
+async function addProduct(req, res){
+    // non funzionante
+    let {nome, quantita, categoria, foto} = req.body;
+    console.log(nome);
+    return res.status(200).render("prodotto/aggiunta.ejs", { session: req.session, displayError: true, message: "Errore" })
 }
 
 module.exports = {
     showAll,
     showProductDetails,
-    loadViewAddProduct
+    loadViewAddProduct,
+    addProduct
 };
