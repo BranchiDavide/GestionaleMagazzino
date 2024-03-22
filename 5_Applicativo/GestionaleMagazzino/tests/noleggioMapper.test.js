@@ -112,3 +112,15 @@ test("_09_getNoleggiByNoleggiId", async () => {
     let result = await noleggioMapper.getNoleggiByNoleggiId(id);
     expect(result.length).toBeGreaterThan(0);
 });
+
+test("_10_changeIdUtenteToNome_Singolo", async() =>{
+    let noleggi = await noleggioMapper.getById(1);
+    noleggi = await noleggioMapper.changeIdUtenteToNome(noleggi);
+    expect(typeof noleggi.idUtente).toBe("string");
+});
+
+test("_09_changeIdUtenteToNome_Singolo", async() =>{
+    let noleggi = await noleggioMapper.getById(1);
+    noleggi = await noleggioMapper.changeIdUtenteToNome(noleggi);
+    expect(typeof noleggi.idUtente).toBe("string");
+});

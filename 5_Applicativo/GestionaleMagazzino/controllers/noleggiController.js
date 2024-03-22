@@ -1,5 +1,6 @@
 const sanitizer = require("./../models/utils/sanitizer");
 const noleggioMapper = require("./../models/mappers/noleggioMapper");
+const materialeMapper = require("./../models/mappers/materialeMapper");
 const dfns = require("date-fns");
 async function showAll(req, res){
     const noleggi = await noleggioMapper.getAll();
@@ -34,14 +35,37 @@ async function addNew(req, res){
             riferimentoFoto = req.file.path.replace("public", "");
         }
     }
-    let insertedId = await noleggioMapper.insertNoleggio(nome, riferimentoFoto, dataInizio, dataFine, req.session.user.id, 0, []);
-    res.status(200).send("success --> " + insertedId);
+    let prodottiNoleggio = sanitizer.sanitizeInput(req.body.prodottiNoleggio);
+    if(!prodottiNoleggio){
+        return res.status(400).render("noleggio/aggiunta.ejs", {session: req.session, displayError: true, message: "Errore inserimento noleggio: prodotti non trovati!"});
+    }
+    try{
+        prodottiNoleggio = JSON.parse(prodottiNoleggio);
+    }catch{
+        return res.status(400).render("noleggio/aggiunta.ejs", {session: req.session, displayError: true, message: "Errore inserimento noleggio: prodotti non trovati!"});
+    }
+    let prodottiNoleggioDb = [];
+    for(let arr of prodottiNoleggio){
+        let codice = sanitizer.sanitizeInput(arr[0]);
+        let qta = sanitizer.sanitizeInput(arr[2]);
+        let prodotto = await materialeMapper.getByCodice(codice);
+        if(!prodotto){
+            return res.status(400).render("noleggio/aggiunta.ejs", {session: req.session, displayError: true, message: "Errore inserimento noleggio: prodotti non trovati!"});
+        }
+        prodottiNoleggioDb.push([prodotto, qta]);
+    }
+    await noleggioMapper.insertNoleggio(nome, riferimentoFoto, dataInizio, dataFine, req.session.user.id, 0, prodottiNoleggioDb);
+    req.session.displaySuccessMsg = "Noleggio aggiunto con successo!";
+    req.session.save(function() {             
+        return res.status(200).redirect("/home");
+    });
 }
 
 async function showNoleggioDetails(req, res){
     const codice = req.params['codice'];
     const noleggio = await noleggioMapper.getById(codice);
     const prodotti = await noleggioMapper.getMaterialeOfNoleggio(parseInt(codice));
+    console.log(prodotti); 
     return res.status(200).render("noleggio/dettagli.ejs", {prodotti: prodotti, noleggio: noleggio, session: req.session})
 }
 

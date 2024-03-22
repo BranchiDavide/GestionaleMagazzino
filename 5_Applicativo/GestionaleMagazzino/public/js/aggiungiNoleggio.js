@@ -3,9 +3,10 @@ const addProductBtn = document.getElementById("addProduct-btn");
 const prodottiNoleggioTable = document.getElementsByClassName("prodottiNoleggio")[0];
 const hiddenInput = document.getElementById("postProdottiInput");
 const form = document.getElementById("aggiuntaForm");
-
+const loadingGif = `<center><img width="100" height="100" src="/img/noleggio/loading.gif"></center>`
 let prodottiNoleggio = [];
 addProductBtn.addEventListener("click", async () => {
+    document.getElementById("reader").innerHTML = loadingGif;
     const isMobile = navigator.userAgentData.mobile;
     let scanOptions = {
         fps: 10,
@@ -35,6 +36,7 @@ addProductBtn.addEventListener("click", async () => {
                     }else{
                         alert("Prodotto non trovato!");
                     }
+                    $("#exampleModal").modal("hide");
                 })
                 .catch(err => {
                     alert("Impossibile scannerizzare i prodotti, controllare permesso fotocamera!");
@@ -45,8 +47,20 @@ addProductBtn.addEventListener("click", async () => {
     });
 });
 
-form.addEventListener("submit", () => {
-    hiddenInput.value = JSON.stringify(prodottiNoleggio);
+$('#exampleModal').on('click', function (e) {
+    if (e.target === this) {
+        html5QrCode.stop();
+        $('#exampleModal').modal('hide');
+    }
+});
+
+form.addEventListener("submit", (e) => {
+    if(prodottiNoleggio.length != 0){
+        hiddenInput.value = JSON.stringify(prodottiNoleggio);
+    }else{
+        e.preventDefault();
+        alert("È necessario aggiungere almeno un prodotto per creare il noleggio!");
+    }
 });
 
 async function fetchProdotto(id){
@@ -59,23 +73,66 @@ async function fetchProdotto(id){
 }
 
 function addProdotto(obj){
-    prodottiNoleggioTable.style.display = "block";
+    if(prodottiNoleggio.length == 0){ //Primo prodotto aggiunto
+        prodottiNoleggio.push([obj.codice, obj.nome, 1]);
+    }else{
+        let newProduct = true;
+        for(let arr of prodottiNoleggio){
+            if(arr[0] == obj.codice){ //Prodotto già presente
+                arr[2] += 1; //Incremento quantità
+                newProduct = false;
+            }
+        }
+        if(newProduct){
+            prodottiNoleggio.push([obj.codice, obj.nome, 1]);
+        }
+    }
+    printTable();
+}
+
+function printTable(){
+    prodottiNoleggioTable.style.display = "table";
     let tbody = prodottiNoleggioTable.getElementsByTagName("tbody")[0];
-    let tr = document.createElement("tr");
-    let codiceTd = document.createElement("td");
-    let nomeTd = document.createElement("td");
-    let quantitaTd = document.createElement("td");
-    let quantitaInput = document.createElement("input");
-    quantitaInput.setAttribute("type", "number");
-    quantitaInput.setAttribute("min", "1");
-    quantitaInput.setAttribute("max", obj.quantita);
-    quantitaTd.appendChild(quantitaInput);
-    codiceTd.textContent = obj.codice;
-    nomeTd.textContent = obj.nome;
-    tr.appendChild(codiceTd);
-    tr.appendChild(nomeTd);
-    tr.appendChild(quantitaTd);
-    tbody.appendChild(tr);
+    tbody.innerHTML = "";
+    for(let arr of prodottiNoleggio){
+        let tr = document.createElement("tr");
+        for(let item of arr){
+            let td = document.createElement("td");
+            td.textContent = item;
+            tr.appendChild(td);
+        }
+        let tdIcon = document.createElement("td");
+        tdIcon.innerHTML = `<i class='bx bx-trash deleteProduct' ></i>`;
+        tr.appendChild(tdIcon);
+        tbody.appendChild(tr);
+        setDeleteProductListeners();
+    }
+}
+
+function setDeleteProductListeners(){
+    let icons = document.getElementsByClassName("deleteProduct");
+    for(let icon of icons){
+        if(!icon.getAttribute("isListening")){
+            icon.addEventListener("click", () => {
+                let id = icon.parentNode.previousSibling.previousSibling.previousSibling.textContent;
+                let qta = icon.parentNode.previousSibling.textContent;
+                let index = 0;
+                for(let arr of prodottiNoleggio){
+                    if(arr[0] == id){
+                        if(qta > 1){ //Diminuire quantità
+                            arr[2] -= 1;
+                        }else{ //Eliminare prodotto
+                            prodottiNoleggio.splice(index, 1);
+                        }
+                        break;
+                    }
+                    index++;
+                }
+                printTable();
+            });
+            icon.setAttribute("isListening", "true");
+        }
+    }
 }
 
 function getCurrentDate() {
@@ -109,4 +166,8 @@ document.getElementById("formFile").addEventListener("change", (e) => {
         };
         reader.readAsDataURL(file);
     }
+});
+
+document.getElementById("btnCloseModal").addEventListener("click", () => {
+    html5QrCode.stop();
 });

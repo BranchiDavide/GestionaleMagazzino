@@ -21,6 +21,12 @@
         <div class="item-title">
           <h2>I tuoi noleggi</h2>
         </div>
+        <% if(session.displaySuccessMsg){ %>
+          <div class="alert alert-success" role="alert">
+            <%= session.displaySuccessMsg %>
+            <% session.displaySuccessMsg = null %>
+          </div>
+        <% } %>
         <div class="container">
           <div class="custom-table-container">
             <table class="table custom-table searchable-table">

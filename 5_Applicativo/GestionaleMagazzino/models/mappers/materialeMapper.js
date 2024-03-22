@@ -1,7 +1,6 @@
 const Noleggio = require("../Noleggio");
 const db = require("./../../database/db");
 const Materiale = require("./../Materiale");
-const noleggioMapper = require("./noleggioMapper");
 
 /**
  * Funzione che ritorna tutti i materiali
