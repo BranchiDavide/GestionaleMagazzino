@@ -1,5 +1,7 @@
+certs/
 .env
 *.log
+certs/
 <<<<<<< HEAD
 test.env
 =======

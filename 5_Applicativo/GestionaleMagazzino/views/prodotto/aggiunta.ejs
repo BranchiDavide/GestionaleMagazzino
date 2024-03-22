@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <%- include('../_templates/header'); -%>
+    <link rel="stylesheet" href="/css/noleggio/aggiungi.css">
+    <title>GestionaleMagazzino - Nuovo prodotto</title>
+</head>
+
+<body className='snippet-body'>
+
+  <body id="body-pd">
+    <%- include('../_templates/navbar.ejs', {active: "noleggi" }); -%>
+      <div class="height-100 bg-light">
+        <div class="main-section">
+          <div class="item-container">
+            <div class="item-center">
+              <div class="item-title">
+                <h2>Nuovo prodotto</h2>
+              </div>
+              <br>
+              <form action="/prodotti/nuovo" method="POST" enctype="multipart/form-data">
+                <div class="item-info">
+                  <div class="form-row">
+                    <label>Nome prodotto:</label>
+                    <input class="form-control" type="text" name="nome" required>
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <label>Quantità prodotto:</label>
+                    <input class="form-control" type="number" name="quantita" min="1" value="1" required>
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <label>Categoria:</label>
+                    <input class="form-control" type="text" name="categoria" required>
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="true" id="isConsumabile" name="isConsumabile">
+                      <label class="form-check-label" for="isConsumabile"> È consumabile</label>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="item-title">
+                    <h3>Inserisci foto opz.</h3>
+                  </div>
+                  <div class="form-row">
+                    <input class="form-control" type="file" name="foto" id="formFile" accept="image/*">
+                  </div>
+                  <br>
+                  <div class="item-picture">
+                    <img id="previewImage" width="400" height="300">
+                  </div>
+                </div>
+                <% if(typeof displayError !== "undefined" && displayError){ %>
+                  <div class="alert alert-danger" role="alert">
+                    <%= message %>
+                  </div>
+                <% } %>
+                <div class="functions">
+                  <div class="button-align-left">
+                    <button type="submit"><i class='bx bxs-check-circle'></i></button>
+                    <span class="optional">Conferma</span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+  </body>
+</body>
+<script src="/js/navbar.js"></script>
+
+</html>

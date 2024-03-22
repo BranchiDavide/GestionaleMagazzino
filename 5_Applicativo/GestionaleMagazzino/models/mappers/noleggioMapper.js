@@ -1,7 +1,5 @@
 const db = require("./../../database/db");
 const Noleggio = require("./../Noleggio");
-const Materiale = require("./../Materiale");
-const materialeMapper = require("./../mappers/materialeMapper");
 
 /**
  * Funzione che ritorna tutti i noleggi in corso
@@ -9,6 +7,20 @@ const materialeMapper = require("./../mappers/materialeMapper");
  */
 async function getAll(){
     const [result] = await db.query("SELECT * FROM noleggio");
+    let noleggi = [];
+    for(let item of result){
+        noleggi.push(new Noleggio(item.id, item.nome, item.riferimentoFoto, item.dataInizio, item.dataFine, item.idUtente, item.chiusuraForzata));
+    }
+    return noleggi;
+} 
+
+/**
+ * Funzione che ritorna tutti i noleggi in corso ordinati per
+ * data di scadenza in maniera ascendente (dal più vecchio al più nuovo)
+ * @returns array di oggetti Noleggio
+ */
+async function getAllByDate(){
+    const [result] = await db.query("SELECT * FROM noleggio ORDER BY dataFine ASC");
     let noleggi = [];
     for(let item of result){
         noleggi.push(new Noleggio(item.id, item.nome, item.riferimentoFoto, item.dataInizio, item.dataFine, item.idUtente, item.chiusuraForzata));
@@ -38,6 +50,7 @@ async function getById(id){
             es: [[materiale, quantita], [materiale, quantita] ecc...]
  */
 async function getMaterialeOfNoleggio(idNoleggio){
+    const materialeMapper = require("./materialeMapper");
     const [result] = await db.query("SELECT * FROM materialeNoleggio WHERE idNoleggio=?", [idNoleggio]);
     //Array bidimensionale con i materiali e le loro relative quantità
     //es: [[materiale, quantita], [materiale, quantita] ecc...]
@@ -62,6 +75,7 @@ async function getMaterialeOfNoleggio(idNoleggio){
     @returns id del noleggio inserito.
  */
 async function insertNoleggio(nome, riferimentoFoto, dataInizio, dataFine, idUtente, chiusuraForzata, materiali){
+    const materialeMapper = require("./materialeMapper");
     const [result] = await db.query(
         "INSERT INTO noleggio (nome, riferimentoFoto, dataInizio, dataFine, idUtente, chiusuraForzata) VALUES (?,?,?,?,?,?)",
         [nome, riferimentoFoto, dataInizio, dataFine, idUtente, chiusuraForzata]
@@ -81,6 +95,7 @@ async function insertNoleggio(nome, riferimentoFoto, dataInizio, dataFine, idUte
  * @returns true se la chiusura è andata a buon fine, false altrimenti
  */
 async function closeNoleggio(idNoleggio, chiusuraForzata){
+    const materialeMapper = require("./materialeMapper");
     const [result] = await db.query("UPDATE noleggio SET chiusuraForzata=? WHERE id=?", [chiusuraForzata, idNoleggio]);
     let materiali = await getMaterialeOfNoleggio(idNoleggio);
     for(let item of materiali){
@@ -90,4 +105,59 @@ async function closeNoleggio(idNoleggio, chiusuraForzata){
     return result.affectedRows == 1 && resultNoleggioDelete.affectedRows == 1;
 }
 
-module.exports = {getAll, getById, insertNoleggio, closeNoleggio, getMaterialeOfNoleggio};
+/**
+ * Funzione che cambia l'id dell'utente autore del noleggio
+ * con una stringa composta dal suo nome e dal suo cognome
+ * @param noleggi array di noleggi di cui si vuole cambiare
+ * idUtente con la stringa
+ * @returns array di noleggi modificato (il campo con la stringa rimane comunque idUtente)
+ */
+async function changeIdUtenteToNome(noleggi){
+    const userMapper = require("./userMapper");
+    if(!Array.isArray(noleggi)){
+        let user = await userMapper.getById(noleggi.idUtente);
+        noleggi.idUtente = user.nome + " " + user.cognome;
+    }else{
+        for(let item of noleggi){
+            let user = await userMapper.getById(item.idUtente);
+            item.idUtente = user.nome + " " + user.cognome;
+        }
+    }
+    return noleggi;
+}
+
+async function getNoleggiOfUtente(idUtente){
+    const [result] = await db.query("SELECT * FROM noleggio WHERE idUtente=?", [idUtente]);
+    let noleggi = [];
+    for(let item of result){
+        noleggi.push(new Noleggio(item.id, item.nome, item.riferimentoFoto, item.dataInizio, item.dataFine, item.idUtente, item.chiusuraForzata));
+    }
+    return noleggi;
+}
+
+/**
+ * La funzione per prendere tutti i noleggi che sono presenti nell'array
+ * di id passata come parametro.
+ * @param {Number[]} idNoleggi array contenente gli id interessati
+ * @returns un array di noleggi
+ */
+async function getNoleggiByNoleggiId(idNoleggi){
+    const noleggi = [];
+    for (let id of idNoleggi){
+        const noleggio = await getById(id);
+        noleggi.push(noleggio);
+    }
+    return noleggi;
+}
+
+module.exports = {
+    getAll,
+    getById,
+    insertNoleggio,
+    closeNoleggio,
+    getMaterialeOfNoleggio,
+    changeIdUtenteToNome,
+    getNoleggiOfUtente,
+    getNoleggiByNoleggiId,
+    getAllByDate
+};

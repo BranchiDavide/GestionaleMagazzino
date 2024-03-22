@@ -12,7 +12,7 @@ afterAll(done => {
 });
 
 beforeEach(async () => {
-   await db.query("START TRANSACTION");
+    await db.query("START TRANSACTION");
 });
 
 afterEach(async () => {
@@ -86,4 +86,52 @@ test("_06_closeNoleggio", async() =>{
     let mat2 = await materialeMapper.getByCodice(4);
     expect(mat1).toEqual(mat1Expected);
     expect(mat2).toEqual(mat2Expected);
+});
+
+test("_07_changeIdUtenteToNome", async() =>{
+    let noleggi = await noleggioMapper.getAll();
+    noleggi = await noleggioMapper.changeIdUtenteToNome(noleggi);
+    for(let item of noleggi){
+        expect(typeof item.idUtente).toBe("string")
+    }
+});
+
+test("_08_getNoleggiOfUtente", async() =>{
+    let result = await noleggioMapper.getNoleggiOfUtente(1);
+    expect(result.length).toBeGreaterThan(0);
+    for(let item of result){
+        expect(item instanceof Noleggio).toBeTruthy();
+        expect(item.nome).toBeDefined();
+        expect(item.idUtente).toBeDefined();
+        expect(item.idUtente).toBe(1);
+    }
+});
+
+test("_09_getNoleggiByNoleggiId", async () => {
+    let id = [1,2,3,4,5,5];
+    let result = await noleggioMapper.getNoleggiByNoleggiId(id);
+    expect(result.length).toBeGreaterThan(0);
+});
+
+test("_10_changeIdUtenteToNome_Singolo", async() =>{
+    let noleggi = await noleggioMapper.getById(1);
+    noleggi = await noleggioMapper.changeIdUtenteToNome(noleggi);
+    expect(typeof noleggi.idUtente).toBe("string");
+});
+
+test("_11_changeIdUtenteToNome_Singolo", async() =>{
+    let noleggi = await noleggioMapper.getById(1);
+    noleggi = await noleggioMapper.changeIdUtenteToNome(noleggi);
+    expect(typeof noleggi.idUtente).toBe("string");
+});
+
+test("_12_getAllByDate", async() =>{
+    let noleggi = await noleggioMapper.getAllByDate();
+    let lastChecked = null;
+    for(let item of noleggi){
+        if(lastChecked){
+            expect(new Date(item.dataFine).getTime()).toBeGreaterThanOrEqual(new Date(lastChecked).getTime());
+        }
+        lastChecked = item.dataFine;
+    }
 });

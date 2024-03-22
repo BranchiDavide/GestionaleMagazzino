@@ -1,3 +1,4 @@
+const Noleggio = require("../Noleggio");
 const db = require("./../../database/db");
 const Materiale = require("./../Materiale");
 
@@ -97,6 +98,57 @@ async function updateQuantita(codice, incQuantita){
     }
 }
 
+/**
+ * Funzione che ritorna tutti gli id dei noleggi dove è coinvolto un certo tipo di materiale.
+ * @param {Number} codiceMateriale il codice del materiale
+ * @returns un array contenenti gli id dei noleggi
+ */
+async function getNoleggiIdByMaterialeCodice(codiceMateriale){
+    const [result] = await db.query("SELECT idNoleggio FROM materialeNoleggio WHERE idMateriale = ?", [codiceMateriale]);
+
+    const noleggiId = [];
+    for (let item of result){
+        noleggiId.push(item.idNoleggio);
+    }
+
+    return noleggiId;
+}
+
+/**
+ * La funzione ritorna la quantità di materiale che è presente nel noleggio.
+ * @param {Number} codiceMateriale il codice del materiale
+ * @param {Number} idNoleggio l'id del noleggio
+ * @returns la quantita del materiale nel noleggio
+ */
+async function getQuantitaMaterialeNoleggio(codiceMateriale, idNoleggio){
+    const [result] = await db.query("SELECT quantita FROM materialeNoleggio WHERE idMateriale = ? AND idNoleggio = ?", 
+                                        [codiceMateriale, idNoleggio]);
+    return result[0].quantita;
+}
+
+/**
+ * La funzione ritorna la data della prima disponibilità di un noleggio.
+ * @param {Noleggio[]} noleggi l'array di noleggi
+ * @returns la data più piccola dell'array di noleggi già formattata
+ */
+function getDataDisponibilitaByNoleggi(noleggi){
+    let result = new Date(noleggi[0].dataFine);
+
+    for (let i = 1; i < noleggi.length; i++){
+        let dataDisponibilitaNoleggio = new Date(noleggi[i].dataFine);
+        if (dataDisponibilitaNoleggio < result){
+            result = dataDisponibilitaNoleggio;
+        }
+    }
+
+    return result.toLocaleDateString("en-CH");
+}
+
+/**
+ * Funzione per cercare un prodotto all'interno del database tramite filtro.
+ * @param {*} searchString il filtro da applicare alla ricerca
+ * @returns i materiali che hanno trovato corrispondenza
+ */
 async function search(searchString){
     const [result] = await db.query("SELECT * FROM materiale WHERE nome LIKE CONCAT('%', ?, '%') OR categoria LIKE CONCAT('%', ?, '%')", [searchString, searchString]);
     let materiali = [];
@@ -106,4 +158,15 @@ async function search(searchString){
     return materiali;
 }
 
-module.exports = {getAll, getByCodice, insertMateriale, updateMateriale, deleteMateriale, updateQuantita, search}
+module.exports = {
+    getAll,
+    getByCodice,
+    insertMateriale,
+    updateMateriale,
+    deleteMateriale,
+    updateQuantita,
+    search,
+    getNoleggiIdByMaterialeCodice,
+    getQuantitaMaterialeNoleggio,
+    getDataDisponibilitaByNoleggi
+}
