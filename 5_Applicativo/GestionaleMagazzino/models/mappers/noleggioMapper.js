@@ -1,8 +1,5 @@
 const db = require("./../../database/db");
 const Noleggio = require("./../Noleggio");
-const Materiale = require("./../Materiale");
-const materialeMapper = require("./../mappers/materialeMapper");
-const userMapper = require("./userMapper");
 
 /**
  * Funzione che ritorna tutti i noleggi in corso
@@ -124,13 +121,19 @@ async function getNoleggiOfUtente(idUtente){
     return noleggi;
 }
 
-async function getMaterialeByCodice(codice){ 
-    const [result] = await db.query("SELECT * FROM materiale WHERE codice=? LIMIT 1", [codice]);
-    if(result[0]){
-        return new Materiale(result[0].codice, result[0].nome, result[0].riferimentoFoto, result[0].quantita, result[0].isConsumabile, result[0].isDisponibile, result[0].categoria);
-    }else{
-        return null;
+/**
+ * La funzione per prendere tutti i noleggi che sono presenti nell'array
+ * di id passata come parametro.
+ * @param {Number[]} idNoleggi array contenente gli id interessati
+ * @returns un array di noleggi
+ */
+async function getNoleggiByNoleggiId(idNoleggi){
+    const noleggi = [];
+    for (let id of idNoleggi){
+        const noleggio = await getById(id);
+        noleggi.push(noleggio);
     }
+    return noleggi;
 }
 
 module.exports = {
@@ -141,5 +144,5 @@ module.exports = {
     getMaterialeOfNoleggio,
     changeIdUtenteToNome,
     getNoleggiOfUtente,
-    getMaterialeByCodice
+    getNoleggiByNoleggiId
 };
