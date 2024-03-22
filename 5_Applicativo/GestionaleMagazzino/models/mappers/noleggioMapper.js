@@ -1,8 +1,6 @@
 const db = require("./../../database/db");
 const Noleggio = require("./../Noleggio");
 const Materiale = require("./../Materiale");
-const materialeMapper = require("./../mappers/materialeMapper");
-const userMapper = require("./userMapper");
 
 /**
  * Funzione che ritorna tutti i noleggi in corso
@@ -39,12 +37,13 @@ async function getById(id){
             es: [[materiale, quantita], [materiale, quantita] ecc...]
  */
 async function getMaterialeOfNoleggio(idNoleggio){
+    const materialeMapper = require("./materialeMapper");
     const [result] = await db.query("SELECT * FROM materialeNoleggio WHERE idNoleggio=?", [idNoleggio]);
     //Array bidimensionale con i materiali e le loro relative quantità
     //es: [[materiale, quantita], [materiale, quantita] ecc...]
     let materiali = [];
     for(let item of result){
-        let m = await getMaterialeByCodice(item.idMateriale);
+        let m = await materialeMapper.getByCodice(item.idMateriale);
         materiali.push([m, item.quantita]);
     }
     return materiali;
@@ -63,6 +62,7 @@ async function getMaterialeOfNoleggio(idNoleggio){
     @returns id del noleggio inserito.
  */
 async function insertNoleggio(nome, riferimentoFoto, dataInizio, dataFine, idUtente, chiusuraForzata, materiali){
+    const materialeMapper = require("./materialeMapper");
     const [result] = await db.query(
         "INSERT INTO noleggio (nome, riferimentoFoto, dataInizio, dataFine, idUtente, chiusuraForzata) VALUES (?,?,?,?,?,?)",
         [nome, riferimentoFoto, dataInizio, dataFine, idUtente, chiusuraForzata]
@@ -82,6 +82,7 @@ async function insertNoleggio(nome, riferimentoFoto, dataInizio, dataFine, idUte
  * @returns true se la chiusura è andata a buon fine, false altrimenti
  */
 async function closeNoleggio(idNoleggio, chiusuraForzata){
+    const materialeMapper = require("./materialeMapper");
     const [result] = await db.query("UPDATE noleggio SET chiusuraForzata=? WHERE id=?", [chiusuraForzata, idNoleggio]);
     let materiali = await getMaterialeOfNoleggio(idNoleggio);
     for(let item of materiali){
@@ -99,6 +100,7 @@ async function closeNoleggio(idNoleggio, chiusuraForzata){
  * @returns array di noleggi modificato (il campo con la stringa rimane comunque idUtente)
  */
 async function changeIdUtenteToNome(noleggi){
+    const userMapper = require("./userMapper");
     for(let item of noleggi){
         let user = await userMapper.getById(item.idUtente);
         item.idUtente = user.nome + " " + user.cognome;
@@ -115,15 +117,6 @@ async function getNoleggiOfUtente(idUtente){
     return noleggi;
 }
 
-async function getMaterialeByCodice(codice){ 
-    const [result] = await db.query("SELECT * FROM materiale WHERE codice=? LIMIT 1", [codice]);
-    if(result[0]){
-        return new Materiale(result[0].codice, result[0].nome, result[0].riferimentoFoto, result[0].quantita, result[0].isConsumabile, result[0].isDisponibile, result[0].categoria);
-    }else{
-        return null;
-    }
-}
-
 module.exports = {
     getAll,
     getById,
@@ -131,6 +124,5 @@ module.exports = {
     closeNoleggio,
     getMaterialeOfNoleggio,
     changeIdUtenteToNome,
-    getNoleggiOfUtente,
-    getMaterialeByCodice
+    getNoleggiOfUtente
 };
