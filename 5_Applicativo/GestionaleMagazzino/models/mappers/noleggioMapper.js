@@ -12,6 +12,20 @@ async function getAll(){
         noleggi.push(new Noleggio(item.id, item.nome, item.riferimentoFoto, item.dataInizio, item.dataFine, item.idUtente, item.chiusuraForzata));
     }
     return noleggi;
+} 
+
+/**
+ * Funzione che ritorna tutti i noleggi in corso ordinati per
+ * data di scadenza in maniera ascendente (dal più vecchio al più nuovo)
+ * @returns array di oggetti Noleggio
+ */
+async function getAllByDate(){
+    const [result] = await db.query("SELECT * FROM noleggio ORDER BY dataFine ASC");
+    let noleggi = [];
+    for(let item of result){
+        noleggi.push(new Noleggio(item.id, item.nome, item.riferimentoFoto, item.dataInizio, item.dataFine, item.idUtente, item.chiusuraForzata));
+    }
+    return noleggi;
 }
 
 /**
@@ -144,5 +158,6 @@ module.exports = {
     getMaterialeOfNoleggio,
     changeIdUtenteToNome,
     getNoleggiOfUtente,
-    getNoleggiByNoleggiId
+    getNoleggiByNoleggiId,
+    getAllByDate
 };

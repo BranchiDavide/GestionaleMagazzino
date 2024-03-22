@@ -12,21 +12,24 @@
     <!--Container Main start-->
     <div class="height-100 bg-light">
       <div class="main-section">
+        <div class="item-title">
+          <h2>Cerca noleggi</h2>
+        </div>
         <div class="container">
           <div class="row search-container">
-            <form action="#" method="POST">
-              <input type="search" name="search" placeholder="Cerca">
-              <button type="submit"><i class="bx bx-search-alt"></i></button>
+            <form onsubmit="event.preventDefault()">
+              <input oninput="tableSearch(this.value, [1,3])" type="search" name="data" placeholder="Cerca">
+              <button><i class="bx bx-search-alt"></i></button>
             </form>
           </div>
           <div class="custom-table-container">
-            <table class="table custom-table">
+            <table class="table custom-table searchable-table">
               <thead>
                 <tr>
                 <th class="optional" scope="col">Id</th>
                 <th scope="col">Nome</th>
-                <th class="optional" scope="col">Data fine</th>
-                <th scope="col">Autore</th>
+                <th scope="col">Data fine</th>
+                <th scope="col" class="optional">Autore</th>
                 <th scope="col">Mostra</th>
               </tr>
               </thead>
@@ -50,49 +53,7 @@
         </div>
       </div>
     </div>
-    <!--Container Main end-->
-    <script type='text/javascript'>document.addEventListener("DOMContentLoaded", function (event) {
-
-        const showNavbar = (toggleId, navId, bodyId, headerId) => {
-          const toggle = document.getElementById(toggleId),
-            nav = document.getElementById(navId),
-            bodypd = document.getElementById(bodyId),
-            headerpd = document.getElementById(headerId)
-
-          // Validate that all variables exist
-          if (toggle && nav && bodypd && headerpd) {
-            toggle.addEventListener('click', () => {
-              // show navbar
-              nav.classList.toggle('show')
-              // change icon
-              toggle.classList.toggle('bx-x')
-              // add padding to body
-              bodypd.classList.toggle('body-pd')
-              // add padding to header
-              headerpd.classList.toggle('body-pd')
-            })
-          }
-        }
-
-        showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
-
-        /*===== LINK ACTIVE =====*/
-        const linkColor = document.querySelectorAll('.nav_link')
-
-        function colorLink() {
-          if (linkColor) {
-            linkColor.forEach(l => l.classList.remove('active'))
-            this.classList.add('active')
-          }
-        }
-        linkColor.forEach(l => l.addEventListener('click', colorLink))
-
-        // Your code to run since DOM is loaded and ready
-      });</script>
-    <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
-      myLink.addEventListener('click', function (e) {
-        e.preventDefault();
-      });</script>
+    <script src="/js/search.js"></script>
+    <script src="/js/navbar.js"></script>
   </body>
-
 </html>

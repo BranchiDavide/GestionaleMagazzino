@@ -124,3 +124,14 @@ test("_11_changeIdUtenteToNome_Singolo", async() =>{
     noleggi = await noleggioMapper.changeIdUtenteToNome(noleggi);
     expect(typeof noleggi.idUtente).toBe("string");
 });
+
+test("_12_getAllByDate", async() =>{
+    let noleggi = await noleggioMapper.getAllByDate();
+    let lastChecked = null;
+    for(let item of noleggi){
+        if(lastChecked){
+            expect(new Date(item.dataFine).getTime()).toBeGreaterThanOrEqual(new Date(lastChecked).getTime());
+        }
+        lastChecked = item.dataFine;
+    }
+});
