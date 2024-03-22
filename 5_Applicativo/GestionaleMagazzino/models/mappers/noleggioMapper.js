@@ -1,7 +1,7 @@
 const db = require("./../../database/db");
 const Noleggio = require("./../Noleggio");
 const Materiale = require("./../Materiale");
-const materialeMapper = require("./../mappers/materialeMapper");
+const materialeMapper = require("../mappers/materialeMapper");
 const userMapper = require("./userMapper");
 
 /**
@@ -44,7 +44,7 @@ async function getMaterialeOfNoleggio(idNoleggio){
     //es: [[materiale, quantita], [materiale, quantita] ecc...]
     let materiali = [];
     for(let item of result){
-        let m = await getMaterialeByCodice(item.idMateriale);
+        let m = await materialeMapper.getByCodice(item.idMateriale);
         materiali.push([m, item.quantita]);
     }
     return materiali;

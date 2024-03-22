@@ -1,4 +1,5 @@
 const materialeMapper = require("../models/mappers/materialeMapper");
+const noleggioMapper = require('../models/mappers/noleggioMapper');
 const sanitizer = require('../models/utils/sanitizer');
 
 /**
@@ -19,8 +20,6 @@ async function showAll(req, res){
  * @returns la pagina con i dettagli del prodotto
  */
 async function showProductDetails(req, res){
-    const noleggioMapper = require('../models/mappers/noleggioMapper');
-
     const codice = sanitizer.sanitizeInput(req.params['codice']);
     const product = await materialeMapper.getByCodice(codice);
     // se il prodotto non esiste, carico la pagina di errore
