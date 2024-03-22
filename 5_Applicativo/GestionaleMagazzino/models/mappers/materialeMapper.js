@@ -1,6 +1,5 @@
 const db = require("./../../database/db");
 const Materiale = require("./../Materiale");
-const noleggioMapper = require("./noleggioMapper");
 
 /**
  * Funzione che ritorna tutti i materiali
@@ -106,6 +105,7 @@ async function updateQuantita(codice, incQuantita){
  *          di tipo Noleggio e la quantità di materiale coinvolto in quel noleggio
  */
 async function getNoleggiAndQuantitaByMaterialeCodice(codiceMateriale){
+    const noleggioMapper = require("./noleggioMapper");
     // controllare gli id dei noleggiMateriali per poi andare a prendere i noleggi da noleggi
     const [result] = await db.query("SELECT idNoleggio FROM materialeNoleggio WHERE idMateriale = ?", [codiceMateriale]);
     // Array contenenti tutti i noleggi sotto forma di oggetti

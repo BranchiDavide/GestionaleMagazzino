@@ -152,12 +152,12 @@ a {
   font-size: 1.25rem
 }
 
-.show {
+.showNB {
   left: 0
 }
 
 .body-pd {
-  padding-left: calc(var(--nav-width) + 1rem)
+  padding-left: calc(var(--nav-width) + 1rem)show
 }
 
 .active {
@@ -265,7 +265,6 @@ a {
 }
 
 .functions div span {
-  border:
   font-size: 18px;
   font-weight: bold;
   color: #5823D9;
@@ -386,7 +385,7 @@ td {
     padding: 1rem 1rem 0 0
   }
 
-  .show {
+  .showNB {
     width: calc(var(--nav-width) + 156px)
   }
 
