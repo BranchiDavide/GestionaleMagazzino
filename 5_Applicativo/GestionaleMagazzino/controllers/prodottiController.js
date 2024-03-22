@@ -1,4 +1,4 @@
-const materialeMapper = require("./../models/mappers/materialeMapper");
+const materialeMapper = require("../models/mappers/materialeMapper");
 const sanitizer = require('../models/utils/sanitizer');
 
 /**
@@ -27,25 +27,30 @@ async function showProductDetails(req, res){
     if (product === null){
         return res.status(404).render("_templates/error.ejs", { error: { status: 404 } });
     }
-    const noleggiId = await materialeMapper.getNoleggiIdByMaterialeCodice(codice);
-    const noleggi = await noleggioMapper.getNoleggiByNoleggiId(noleggiId);
+
+    if(req.query.json){
+        return res.status(200).json(product);
+    }else{
+        const noleggiId = await materialeMapper.getNoleggiIdByMaterialeCodice(codice);
+        const noleggi = await noleggioMapper.getNoleggiByNoleggiId(noleggiId);
+        
+        const noleggiJson = [];
+        for (let noleggio of noleggi){
+            noleggiJson.push({
+                data: noleggio,
+                quantitaMateriale: await materialeMapper.getQuantitaMaterialeNoleggio(codice, noleggio.id)
+            });
+        }
+
+        const jsonData = {
+            product: product,
+            noleggi: noleggiJson,
+            prossimaDisponibilita: product.isDisponibile ? "adesso" : materialeMapper.getDataDisponibilitaByNoleggi(noleggi),
+            session: req.session
+        }
     
-    const noleggiJson = [];
-    for (let noleggio of noleggi){
-        noleggiJson.push({
-            data: noleggio,
-            quantitaMateriale: await materialeMapper.getQuantitaMaterialeNoleggio(codice, noleggio.id)
-        });
+        return res.status(200).render("prodotto/dettagli.ejs", jsonData);
     }
-
-    const jsonData = {
-        product: product,
-        noleggi: noleggiJson,
-        prossimaDisponibilita: product.isDisponibile ? "adesso" : materialeMapper.getDataDisponibilitaByNoleggi(noleggi),
-        session: req.session
-    }
-
-    return res.status(200).render("prodotto/dettagli.ejs", jsonData);
 }
 
 /**

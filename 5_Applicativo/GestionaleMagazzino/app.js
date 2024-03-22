@@ -31,6 +31,7 @@ app.use(logMiddleware);
 // percorsi cartella public
 app.use("/bootstrap", express.static(__dirname + "/node_modules/bootstrap/dist"));
 app.use("/boxicons", express.static(__dirname + "/node_modules/boxicons"));
+app.use("/html5qrcode", express.static(__dirname + "/node_modules/html5-qrcode"));
 app.use("/font", express.static(__dirname + "/public/font"));
 app.use("/css", express.static(__dirname + "/public/css"));
 app.use("/js", express.static(__dirname + "/public/js"));

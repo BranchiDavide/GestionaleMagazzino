@@ -44,7 +44,7 @@ async function getMaterialeOfNoleggio(idNoleggio){
     //es: [[materiale, quantita], [materiale, quantita] ecc...]
     let materiali = [];
     for(let item of result){
-        let m = await materialeMapper.getByCodice(item.idMateriale);
+        let m = await getMaterialeByCodice(item.idMateriale);
         materiali.push([m, item.quantita]);
     }
     return materiali;
