@@ -106,3 +106,9 @@ test("_08_getNoleggiOfUtente", async() =>{
         expect(item.idUtente).toBe(1);
     }
 });
+
+test("_09_changeIdUtenteToNome_Singolo", async() =>{
+    let noleggi = await noleggioMapper.getById(1);
+    noleggi = await noleggioMapper.changeIdUtenteToNome(noleggi);
+    expect(typeof noleggi.idUtente).toBe("string");
+});
