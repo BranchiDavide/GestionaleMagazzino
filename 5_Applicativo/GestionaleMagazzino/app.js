@@ -8,7 +8,6 @@ const routes = require("./routes/index");
 const https = require('https');
 const fs = require('fs');
 const logMiddleware = require("./middlewares/logMiddleware");
-const morganMiddleware = require('./middlewares/logMiddleware');
 
 const app = express();
 const PORT = process.env.PORT;
