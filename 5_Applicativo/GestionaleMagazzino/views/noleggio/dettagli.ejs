@@ -1,138 +1,105 @@
 <!doctype html>
 <html>
+
 <head>
-  <meta charset='utf-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <link href='/css/noleggio/dettagli.css' rel='stylesheet'>
-  <title>Gestionale Magazzino</title>
+  <title>Gestionale Magazzino - Noleggio</title>
+  <%- include('../_templates/header'); -%>
+    <link rel="stylesheet" href="/css/prodotto/dettagli.css">
 </head>
+
 <body className='snippet-body'>
+
   <body id="body-pd">
     <%- include('../_templates/navbar.ejs', {active: "noleggi"}); -%>
-    <!--Container Main start-->
-    <div class="height-100 bg-light">
-      <div class="main-section">
-        <div class="item-container">
-          <div class="item-left">
-            <div class="item-title">
-              <h2>
-                <%= noleggio.nome %>
-              </h2>
-            </div>
-            <div class="item-picture">
-              <img src="<%= noleggio.riferimentoFoto %>" alt="item Picture">
-            </div>
-            <div class="user-info">
-              <p><strong>ID:</strong>
-                <%= noleggio.id %>
-              </p>
-              <p><strong>Autore:</strong>
-                <%= noleggio.idUtente %>
-              </p>
-              <p><strong>Data ritorno:</strong>
-                <%= noleggio.dataFine %>
-              </p>
-            </div>
-            <div class="functions">
-              <div class="button-align-left">
-                <button type="submit"><i class='bx bx-edit'></i></button>
-                <div class="optional">
-                  <span class="optional">Modifica il noleggio</span>
+      <!--Container Main start-->
+      <div class="height-100 bg-light">
+        <div class="main-section">
+          <div class="item-container">
+            <div class="item-left">
+              <div class="item-title">
+                <h2>
+                  <%= noleggio.nome%>
+                </h2>
+              </div>
+              <div class="item-picture">
+                <img src="/img/prodotto/1.png" alt="item Picture">
+              </div>
+              <div class="item-info">
+                <p><strong>ID:</strong>
+                  <%= noleggio.id %>
+                </p>
+                <p><strong>Autore:</strong>
+                  <%= noleggio.idUtente %>
+                </p>
+                <p><strong>Data ritorno:</strong>
+                    <% 
+                      let dataFine = new Date(noleggio.dataFine);
+                      let dataFineFormatted = dataFine.toLocaleDateString("en-CH");
+                    %>
+                    <p <% if(new Date() > dataFine){%>style="color: red;"<%}%>>
+                      <strong>Data ritorno:</strong>
+                      <%=dataFineFormatted %>
+                    </p>
+                </p>
+              </div>
+              <div class="functions">
+                <div class="button-align-left">
+                  <button type="submit"><i class='bx bx-edit'></i></button>
+                  <div class="optional">
+                    <span class="optional">Modifica il noleggio</span>
+                  </div>
+                </div>
+                <div class="button-align-left">
+                  <button type="submit"><i class='bx bx-printer'></i></button>
+                  <span class="optional">Stampa lista materiale</span>
+                </div>
+                <div class="button-align-left">
+                  <button type="submit"><i class='bx bx-trash'></i></button>
+                  <span class="optional">Chiudi noleggio</span>
                 </div>
               </div>
-              <div class="button-align-left">
-                <button type="submit"><i class='bx bx-printer'></i></button>
-                <span class="optional">Stampa lista materiale</span>
-              </div>
-              <div class="button-align-left">
-                <button type="submit"><i class='bx bx-trash'></i></button>
-                <span class="optional">Chiudi noleggio</span>
-              </div>
             </div>
-          </div>
-          <div class="item-right">
-            <div class="item-title">
-              <h2>Noleggi</h2>
-            </div>
-            <div class="custom-table-container">
-              <table class="table custom-table">
-                <thead>
-                  <tr>
-                    <th class="optional" scope="col">Id</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Quantità</th>
-                    <th class="optional" scope="col">Categoria</th>
-                    <th scope="col">Mostra</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% for (let item of prodotti) { %>
+            <div class="item-right">
+              <div class="item-title">
+                <h2>Materiale</h2>
+              </div>
+              <div class="custom-table-container">
+                <table class="table custom-table">
+                  <thead>
                     <tr>
-                      <td class="optional">
-                        <%= item.codice%>
-                      </td>
-                      <td>
-                        <%= item.nome%>
-                      </td>
-                      <td>
-                        <%= item.quantita%>
-                      </td>
-                      <td class="optional">
-                        <%= item.categoria%>
-                      </td>
-                      <td><a href="/prodotti/<%= item.codice %>"><button type="submit"><i
-                              class="bx bx-show-alt"></i></button></a></td>
+                      <th class="optional" scope="col">Id</th>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Quantità</th>
+                      <th class="optional" scope="col">Categoria</th>
+                      <th scope="col">Mostra</th>
                     </tr>
-                    <% } %>
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    <% for (let item of prodotti) { %>
+                      <tr>
+                        <td class="optional">
+                          <%= item.codice%>
+                        </td>
+                        <td>
+                          <%= item.nome%>
+                        </td>
+                        <td>
+                          <%= item.quantita%>
+                        </td>
+                        <td class="optional">
+                          <%= item.categoria%>
+                        </td>
+                        <td><a href="/prodotti/<%= item.codice %>"><button type="submit"><i
+                                class="bx bx-show-alt"></i></button></a></td>
+                      </tr>
+                      <% } %>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    <!--Container Main end-->
-    <script type='text/javascript'>document.addEventListener("DOMContentLoaded", function (event) {
-
-        const showNavbar = (toggleId, navId, bodyId, headerId) => {
-          const toggle = document.getElementById(toggleId),
-            nav = document.getElementById(navId),
-            bodypd = document.getElementById(bodyId),
-            headerpd = document.getElementById(headerId)
-
-          // Validate that all variables exist
-          if (toggle && nav && bodypd && headerpd) {
-            toggle.addEventListener('click', () => {
-              // show navbar
-              nav.classList.toggle('show')
-              // change icon
-              toggle.classList.toggle('bx-x')
-              // add padding to body
-              bodypd.classList.toggle('body-pd')
-              // add padding to header
-              headerpd.classList.toggle('body-pd')
-            })
-          }
-        }
-
-        showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
-
-        /*===== LINK ACTIVE =====*/
-        const linkColor = document.querySelectorAll('.nav_link')
-
-        function colorLink() {
-          if (linkColor) {
-            linkColor.forEach(l => l.classList.remove('active'))
-            this.classList.add('active')
-          }
-        }
-        linkColor.forEach(l => l.addEventListener('click', colorLink))
-
-        // Your code to run since DOM is loaded and ready
-      });</script>
-    <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
-      myLink.addEventListener('click', function (e) {
-        e.preventDefault();
-      });</script>
+        <!--Container Main end-->
+        <script type="text/javascript" src="/js/navbar.js"></script>
   </body>
-
 </html>

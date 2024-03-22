@@ -65,6 +65,7 @@ async function showNoleggioDetails(req, res){
     const codice = req.params['codice'];
     const noleggio = await noleggioMapper.getById(codice);
     const prodotti = await noleggioMapper.getMaterialeOfNoleggio(parseInt(codice));
+    console.log(prodotti); 
     return res.status(200).render("noleggio/dettagli.ejs", {prodotti: prodotti, noleggio: noleggio, session: req.session})
 }
 
