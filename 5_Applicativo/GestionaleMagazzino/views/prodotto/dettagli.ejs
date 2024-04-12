@@ -22,7 +22,7 @@
                 </h2>
               </div>
               <div class="item-picture">
-                <img src="/img/prodotto/1.png" alt="item Picture">
+                <img src="<%= product.riferimentoFoto %>" alt="item Picture">
               </div>
               <div class="item-info">
                 <p><strong>Codice:</strong>
@@ -78,8 +78,8 @@
                         <td>
                           <%= noleggio.quantitaMateriale %>
                         </td>
-                        <% let dataInizioFormatted=new Date(noleggio.data.dataInizio).toLocaleDateString("en-CH"); let
-                          dataFineFormatted=new Date(noleggio.data.dataFine).toLocaleDateString("en-CH"); %>
+                        <% let dataInizioFormatted=new Date(noleggio.data.dataInizio).toLocaleDateString("en-CH"); 
+                            let dataFineFormatted=new Date(noleggio.data.dataFine).toLocaleDateString("en-CH"); %>
                           <td class="optional">
                             <%= dataInizioFormatted%>
                           </td>

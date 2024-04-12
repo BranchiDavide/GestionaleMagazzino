@@ -141,3 +141,10 @@ test("_17_getDataDisponibilitaByNoleggi_DataSconosciuta", async () => {
     expect(result).toBeDefined();
     expect(result).toBe("Data sconosciuta");
 });
+
+test("_18_getMaterialeByNomeAndCategoria", async() => {
+    const materiale = await materialeMapper.getMaterialeByNomeAndCategoria("Television", "Elettronica");
+    expect(materiale instanceof Materiale).toBeTruthy();
+    expect(materiale.nome).toEqual("Television");
+    expect(materiale.categoria).toEqual("Elettronica");
+});
