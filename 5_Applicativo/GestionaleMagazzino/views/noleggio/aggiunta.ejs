@@ -14,6 +14,7 @@
   <body id="body-pd">
     <%- include('../_templates/navbar.ejs', {active: "noleggi/nuovo" }); -%>
       <!--Container Main start-->
+      <center>
       <div class="height-100 bg-light">
         <div class="main-section">
           <div class="item-container">
@@ -64,7 +65,7 @@
                         <h3>Inserisci foto opz.</h3>
                       </div>
                       <div class="form-row">
-                        <input class="form-control" type="file" name="foto" id="formFile" accept="image/*"
+                        <input class="form-control" type="file" name="foto" id="formFile" accept="image/jpeg, image/png"
                           capture="camera">
                       </div>
                       <br>
@@ -108,6 +109,7 @@
             </div>
           </div>
         </div>
+      </center>
   </body>
 </body>
 <script src="/js/navbar.js"></script>

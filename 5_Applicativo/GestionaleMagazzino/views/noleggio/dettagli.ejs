@@ -22,7 +22,7 @@
                 </h2>
               </div>
               <div class="item-picture">
-                <img src="/img/prodotto/1.png" alt="item Picture">
+                <img src="<%= noleggio.riferimentoFoto %>" alt="item Picture">
               </div>
               <div class="item-info">
                 <p><strong>ID:</strong>
@@ -42,17 +42,11 @@
               </div>
               <div class="functions">
                 <div class="button-align-left">
-                  <button type="submit"><i class='bx bx-edit'></i></button>
-                  <div class="optional">
-                    <span class="optional">Modifica il noleggio</span>
-                  </div>
-                </div>
-                <div class="button-align-left">
                   <button type="submit"><i class='bx bx-printer'></i></button>
                   <span class="optional">Stampa lista materiale</span>
                 </div>
                 <div class="button-align-left">
-                  <button type="submit"><i class='bx bx-trash'></i></button>
+                  <a href="/noleggi/<%= noleggio.id %>/chiudi"><button type="submit"><i class='bx bx-trash'></i></button></a>
                   <span class="optional">Chiudi noleggio</span>
                 </div>
               </div>

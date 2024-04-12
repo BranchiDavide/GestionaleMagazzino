@@ -74,7 +74,8 @@ test("_05_insertNoleggio", async() =>{
 });
 
 test("_06_closeNoleggio", async() =>{
-    let result = await noleggioMapper.closeNoleggio(1, 0);
+    let materialeNoleggio = await noleggioMapper.getMaterialeOfNoleggio(1);
+    let result = await noleggioMapper.closeNoleggio(1, 0, materialeNoleggio);
     expect(result).toBeTruthy();
     let noleggioDeleted = await noleggioMapper.getById(1);
     expect(noleggioDeleted).toBeNull();
@@ -119,13 +120,24 @@ test("_10_changeIdUtenteToNome_Singolo", async() =>{
     expect(typeof noleggi.idUtente).toBe("string");
 });
 
-test("_11_changeIdUtenteToNome_Singolo", async() =>{
-    let noleggi = await noleggioMapper.getById(1);
+test("_11_changeIdUtenteToNome_All", async() =>{
+    let noleggi = await noleggioMapper.getAll();
     noleggi = await noleggioMapper.changeIdUtenteToNome(noleggi);
-    expect(typeof noleggi.idUtente).toBe("string");
+    for(let item of noleggi){
+        expect(typeof item.idUtente).toBe("string");
+    }
 });
 
-test("_12_getAllByDate", async() =>{
+test("_12_changeIdUtenteToNome_NoleggioArchivio", async() =>{
+    const noleggioArchivioMapper = require("./../models/mappers/noleggioArchivioMapper");
+    let noleggi = await noleggioArchivioMapper.getAll();
+    noleggi = await noleggioMapper.changeIdUtenteToNome(noleggi);
+    for(let item of noleggi){
+        expect(typeof item.idUtente).toBe("string");
+    }
+});
+
+test("_13_getAllByDate", async() =>{
     let noleggi = await noleggioMapper.getAllByDate();
     let lastChecked = null;
     for(let item of noleggi){

@@ -2,6 +2,7 @@ const express = require('express');
 const authenticationRouter = require('./authRoute');
 const prodottiRoutes = require("./prodottiRoutes");
 const noleggiRoutes = require("./noleggiRoutes");
+const archivioRoutes = require("./archivioRoutes");
 const homeController = require("./../controllers/homeController");
 const authMiddleware = require('../middlewares/authMiddleware');
 
@@ -11,6 +12,7 @@ const router = express.Router();
 router.use(authenticationRouter);
 router.use(prodottiRoutes);
 router.use(noleggiRoutes);
+router.use(archivioRoutes);
 
 router.get("/", authMiddleware.isAuthenticated, (req, res) => {
     res.redirect("/home");

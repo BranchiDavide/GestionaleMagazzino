@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Gestionale Magazzino - Noleggio</title>
+  <%- include('../_templates/header'); -%>
+    <link rel="stylesheet" href="/css/noleggio/aggiungi.css">
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/html5qrcode/html5-qrcode.min.js"></script>
+</head>
+
+<body className='snippet-body'>
+
+  <body id="body-pd" >
+    <%- include('../_templates/navbar.ejs', {active: "noleggi" }); -%>
+      <!--Container Main start-->
+      <div class="height-100 bg-light">
+        <div class="main-section">
+          <br>
+          <div class="item-title">
+            <h2>Chiudi noleggio "<%= noleggio.nome%>"</h2>
+          </div>
+          <center>
+          <div class="container item-box-shadow"yy>
+            <br>
+            <!-- Modal con QR scanner-->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Scansiona un prodotto</h5>
+                    <button type="button" id="btnCloseModal" class="btn-close" data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div id="reader">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <center>
+              <div class="col-9">
+                <h3>Materiale rimanente</h3>
+                <table class="table table-striped toScanTable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Codice</th>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Quantità</th>
+                      <th scope="col">Consumato?</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for (let item of prodotti) { %>
+                      <tr>
+                        <td>
+                          <%= String.prototype.trim.apply(item[0].codice) %>
+                        </td>
+                        <td>
+                          <%= String.prototype.trim.apply(item[0].nome) %>
+                        </td>
+                        <td>
+                          <%= String.prototype.trim.apply(item[1]) %>
+                        </td>
+                        <td>
+                          <% if(item[0].isConsumabile){ %>
+                            <input style="width: 25px; height: 25px;" class="form-check-input cons-cb" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                          <% } else { %>
+                            Non consumabile
+                          <% } %>
+                        </td>
+                      </tr>
+                      <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </center>
+            <center>
+              <div class="col-9">
+                <br>
+                <h3>Materiale scansionato</h3>
+                <button type="button" class="btn btn-primary col-12" id="addProduct-btn" data-bs-toggle="modal"
+                  data-bs-target="#exampleModal">
+                  <i class='bx bx-qr-scan'></i>
+                  Scansiona prodotto
+                </button>
+                <br>
+                <br>
+                <table class="table table-striped scannedTable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Codice</th>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Quantità</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </center>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <center>
+              <div class="col-12">
+                <form action="/noleggi/<%= noleggio.id%>/chiudi" method="POST">
+                  <input type="hidden" id="postProdottiNoleggio" name="prodottiNoleggio">
+                  <button class="btn btn-outline-danger col-9" id="close-btn" type="submit" disabled>Chiudi noleggio</button>
+                  <div class="close-force-div"<% if(session.user.ruolo == "utente"){ %> style="display: none;" <% } %>>
+                    <br>
+                    <button class="btn btn-danger col-9" id="close-force-btn">Chiusura forzata</button>
+                    <br>
+                    <br>
+                  </div>
+                </form>
+              </div>
+            </center>
+            </div>
+          </div>
+        </center>
+        </div>
+        <br>
+        <!--Container Main end-->
+        <script type="text/javascript" src="/js/navbar.js"></script>
+        <script src="/js/chiudiNoleggio.js"></script>
+  </body>
+</html>

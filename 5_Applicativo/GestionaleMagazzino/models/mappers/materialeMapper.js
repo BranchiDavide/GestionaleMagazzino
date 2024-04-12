@@ -30,6 +30,21 @@ async function getByCodice(codice){
 }
 
 /**
+ * La funzione ce ritorna il materiale in base al suo codice e alla sua categoria.
+ * @param {String} nome il nome del materiale
+ * @param {String} categoria la categoria del materiale
+ * @returns l'oggetto Materiale o null se non trova niente
+ */
+async function getMaterialeByNomeAndCategoria(nome, categoria){
+    const [result] = await db.query("SELECT * from materiale WHERE nome = ? AND categoria = ?", [nome, categoria]);
+    if (result[0]){
+        return new Materiale(result[0].codice, result[0].nome, result[0].riferimentoFoto, result[0].quantita, result[0].isConsumabile, result[0].isDisponibile, result[0].categoria);
+    }else{
+        return null;
+    }
+}
+
+/**
  * Funzione per inserire un nuovo materiale
  * @param nome 
  * @param riferimentoFoto 
@@ -129,9 +144,14 @@ async function getQuantitaMaterialeNoleggio(codiceMateriale, idNoleggio){
 /**
  * La funzione ritorna la data della prima disponibilità di un noleggio.
  * @param {Noleggio[]} noleggi l'array di noleggi
- * @returns la data più piccola dell'array di noleggi già formattata
+ * @returns la data più piccola dell'array di noleggi già formattata,
+ * oppure stringa "Data sconosciuta" se non è nota la prossima disponibilità
+ * perchè non si dispone del materiale in magazzino
  */
 function getDataDisponibilitaByNoleggi(noleggi){
+    if(noleggi.length == 0){ //Non ci sono noleggi, il prodotto non è presente nel magazzino
+        return "Data sconosciuta";
+    }
     let result = new Date(noleggi[0].dataFine);
 
     for (let i = 1; i < noleggi.length; i++){
@@ -161,6 +181,7 @@ async function search(searchString){
 module.exports = {
     getAll,
     getByCodice,
+    getMaterialeByNomeAndCategoria,
     insertMateriale,
     updateMateriale,
     deleteMateriale,
