@@ -3,6 +3,7 @@ const materialeMapper = require("../models/mappers/materialeMapper");
 const noleggioMapper = require('../models/mappers/noleggioMapper');
 const categoriaMapper = require('../models/mappers/categoriaMapper');
 const sanitizer = require('../models/utils/sanitizer');
+const QRGenerator = require("../models/utils/QRGenerator");
 
 /**
  * La funzione carica la view che mostra la lista di tutti i prodotti.
@@ -43,10 +44,13 @@ async function showProductDetails(req, res){
             });
         }
 
+        let qr = await QRGenerator.toBase64String(codice);
+
         const jsonData = {
             product: product,
             noleggi: noleggiJson,
             prossimaDisponibilita: product.isDisponibile ? "adesso" : materialeMapper.getDataDisponibilitaByNoleggi(noleggi),
+            qrCode: qr,
             session: req.session
         }
     

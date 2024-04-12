@@ -447,3 +447,16 @@ td {
     font-size: 44px;
   }
 }
+
+.qrCodeImg{
+  display: none;
+}
+
+@media print{
+  .main-section, #nav-bar, #header{
+    display: none;
+  }
+  .qrCodeImg{
+    display: block;
+  }
+}

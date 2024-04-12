@@ -41,7 +41,7 @@
               </div>
               <div class="functions">
                 <div class="button-align-left">
-                  <button type="submit"><i class='bx bx-qr'></i></button>
+                  <button type="submit" id="printBtn"><i class='bx bx-qr'></i></button>
                   <span class="optional">Stampa codice QR</span>
                 </div>
                 <div class="button-align-left">
@@ -95,8 +95,9 @@
             </div>
           </div>
         </div>
+        <img src="<%= qrCode %>" class="qrCodeImg">
         <!--Container Main end-->
         <script type="text/javascript" src="/js/navbar.js"></script>
+        <script src="/js/qrPrint.js"></script>
   </body>
-
 </html>
