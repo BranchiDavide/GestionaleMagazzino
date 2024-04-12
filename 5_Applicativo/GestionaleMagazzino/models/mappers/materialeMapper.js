@@ -30,6 +30,21 @@ async function getByCodice(codice){
 }
 
 /**
+ * La funzione ce ritorna il materiale in base al suo codice e alla sua categoria.
+ * @param {String} nome il nome del materiale
+ * @param {String} categoria la categoria del materiale
+ * @returns l'oggetto Materiale o null se non trova niente
+ */
+async function getMaterialeByNomeAndCategoria(nome, categoria){
+    const [result] = await db.query("SELECT * from materiale WHERE nome = ? AND categoria = ?", [nome, categoria]);
+    if (result[0]){
+        return new Materiale(result[0].codice, result[0].nome, result[0].riferimentoFoto, result[0].quantita, result[0].isConsumabile, result[0].isDisponibile, result[0].categoria);
+    }else{
+        return null;
+    }
+}
+
+/**
  * Funzione per inserire un nuovo materiale
  * @param nome 
  * @param riferimentoFoto 
@@ -161,6 +176,7 @@ async function search(searchString){
 module.exports = {
     getAll,
     getByCodice,
+    getMaterialeByNomeAndCategoria,
     insertMateriale,
     updateMateriale,
     deleteMateriale,

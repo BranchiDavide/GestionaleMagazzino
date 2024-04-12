@@ -17,7 +17,14 @@
         <div class="item-title">
           <h2>Cerca prodotti</h2>
         </div>
+        <br>
         <div class="container">
+          <% if(session.displaySuccessMsg){ %>
+            <div class="alert alert-success" role="alert">
+              <%= session.displaySuccessMsg %>
+              <% session.displaySuccessMsg = null %>
+            </div>
+          <% } %>
           <div class="row search-container">
             <form onsubmit="event.preventDefault()">
               <input oninput="tableSearch(this.value, [1,2,3,4])" type="search" name="data" placeholder="Cerca">

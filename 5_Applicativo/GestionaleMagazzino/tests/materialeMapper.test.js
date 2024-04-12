@@ -134,3 +134,10 @@ test("_16_getDataDisponibilitaByNoleggi", async () => {
     expect(result).toBeDefined();
     expect(result).toEqual("25.01.2024");
 });
+
+test("_17_getMaterialeByNomeAndCategoria", async() => {
+    const materiale = await materialeMapper.getMaterialeByNomeAndCategoria("Television", "Elettronica");
+    expect(materiale instanceof Materiale).toBeTruthy();
+    expect(materiale.nome).toEqual("Television");
+    expect(materiale.categoria).toEqual("Elettronica");
+});
