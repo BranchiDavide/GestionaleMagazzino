@@ -1,6 +1,7 @@
 const sanitizer = require("./../models/utils/sanitizer");
 const noleggioMapper = require("./../models/mappers/noleggioMapper");
 const materialeMapper = require("./../models/mappers/materialeMapper");
+const datastoreManager = require("./../models/utils/datastoreManager");
 const dfns = require("date-fns");
 async function showAll(req, res){
     let noleggi = await noleggioMapper.getAllByDate();
@@ -55,11 +56,18 @@ async function addNew(req, res){
         }
         prodottiNoleggioDb.push([prodotto, qta]);
     }
-    await noleggioMapper.insertNoleggio(nome, riferimentoFoto, dataInizio, dataFine, req.session.user.id, 0, prodottiNoleggioDb);
-    req.session.displaySuccessMsg = "Noleggio aggiunto con successo!";
-    req.session.save(function() {             
-        return res.status(200).redirect("/home");
-    });
+    let insertedId = await noleggioMapper.insertNoleggio(nome, riferimentoFoto, dataInizio, dataFine, req.session.user.id, 0, prodottiNoleggioDb);
+    if(!Number.isInteger(insertedId)){
+        req.session.displayErrorMsg = "Errore nella creazione del noleggio!";
+        req.session.save(function() {             
+            return res.status(500).redirect("/home");
+        });
+    }else{
+        req.session.displaySuccessMsg = "Noleggio aggiunto con successo!";
+        req.session.save(function() {             
+            return res.status(200).redirect("/home");
+        });
+    }
 }
 
 async function showNoleggioDetails(req, res){
@@ -76,4 +84,63 @@ async function showNoleggioDetails(req, res){
     return res.status(200).render("noleggio/dettagli.ejs", {prodotti: prodotti, noleggio: noleggio, session: req.session})
 }
 
-module.exports = {showAll, showAddNew, addNew, showNoleggioDetails};
+async function showChiusura(req, res){
+    const codice = sanitizer.sanitizeInput(req.params['codice']);
+    let noleggio = await noleggioMapper.getById(codice);
+    if (noleggio === null){
+        return res.status(404).render("_templates/error.ejs", { error: { status: 404 } });
+    }
+    if(req.session.user.ruolo == "utente" && req.session.user.id != noleggio.idUtente){
+        return res.status(403).render("_templates/error.ejs", { error: { status: 403 } });
+    }
+    noleggio = await noleggioMapper.changeIdUtenteToNome(noleggio);
+    const prodotti = await noleggioMapper.getMaterialeOfNoleggio(parseInt(codice));
+    return res.status(200).render("noleggio/chiusura.ejs", {prodotti: prodotti, noleggio: noleggio, session: req.session})
+}
+
+async function closeNoleggio(req, res){
+    const codice = sanitizer.sanitizeInput(req.params['codice']);
+    let noleggio = await noleggioMapper.getById(codice);
+    if (noleggio === null){
+        return res.status(404).render("_templates/error.ejs", { error: { status: 404 } });
+    }
+    if(req.session.user.ruolo == "utente" && req.session.user.id != noleggio.idUtente){
+        return res.status(403).render("_templates/error.ejs", { error: { status: 403 } });
+    }
+
+    let prodottiNoleggio = sanitizer.sanitizeInput(req.body.prodottiNoleggio);
+    if(!prodottiNoleggio){
+        return res.status(500).render("_templates/error.ejs", { error: { status: 500 } });
+    }
+    try{
+        prodottiNoleggio = JSON.parse(prodottiNoleggio);
+    }catch{
+        return res.status(500).render("_templates/error.ejs", { error: { status: 500 } });
+    }
+    let prodottiNoleggioDb = [];
+    for(let arr of prodottiNoleggio){
+        let codice = sanitizer.sanitizeInput(arr[0]);
+        let qta = sanitizer.sanitizeInput(arr[2]);
+        let prodotto = await materialeMapper.getByCodice(codice);
+        if(!prodotto){
+            return res.status(404).render("_templates/error.ejs", { error: { status: 404 } });
+        }
+        prodottiNoleggioDb.push([prodotto, qta]);
+    }
+    let force = req.originalUrl.includes("chiudi-force"); //Controlla se la chiusura è forzata
+    let noleggioClose = await noleggioMapper.closeNoleggio(codice, force, prodottiNoleggioDb);
+    await datastoreManager.deleteDatastoreElement(noleggio.riferimentoFoto); //Eliminazione immagine da datastore
+    if(!noleggioClose){
+        req.session.displayErrorMsg = "Errore nella chiusura del noleggio!";
+        req.session.save(function() {             
+            return res.status(500).redirect("/home");
+        });
+    }else{
+        req.session.displaySuccessMsg = "Noleggio chiuso e archiviato con successo!";
+        req.session.save(function() {             
+            return res.status(200).redirect("/home");
+        });
+    }
+}
+
+module.exports = {showAll, showAddNew, addNew, showNoleggioDetails, showChiusura, closeNoleggio};

@@ -417,7 +417,7 @@
     }
 
     .item-center {
-      width: 350px;
+      width: 100%;
     }
 
     .item-right {
@@ -425,7 +425,7 @@
     }
 
     .item-container {
-      width: 400px;
+      width: 900px;
     }
 
     .item-picture {
@@ -476,4 +476,27 @@
   }
   .bx-trash:hover{
     cursor: pointer;
+  }
+
+  .item-box-shadow{
+    background-color: #fff;
+    border-radius: 0.6em;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 0.6em 1.2em rgba(28, 0, 80, 0.06);
+  }
+
+  td{
+    white-space:nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    width:100%;
+  }
+
+  .prodottiNoleggio, .toScanTable, .scannedTable{
+    width: 100%;
+    height: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout:fixed;
   }

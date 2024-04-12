@@ -12,7 +12,7 @@ addProductBtn.addEventListener("click", async () => {
         fps: 10,
         qrbox: 200
     }
-    if(isMobile){
+    if(isMobile || isTablet()){
         scanOptions = {
             fps: 10,
             videoConstraints: {
@@ -24,7 +24,6 @@ addProductBtn.addEventListener("click", async () => {
     Html5Qrcode.getCameras().then(devices => {
         if (devices && devices.length) {
             let cameraId = devices[0].id;
-            // .. use this to start scanning.
             html5QrCode.start(
                 cameraId,
                 scanOptions,
@@ -171,3 +170,10 @@ document.getElementById("formFile").addEventListener("change", (e) => {
 document.getElementById("btnCloseModal").addEventListener("click", () => {
     html5QrCode.stop();
 });
+
+function isTablet() {
+    if (/iPad|Android|tablet|kindle/i.test(navigator.userAgent)) {
+        return true;
+    }
+    return false;
+}

@@ -27,12 +27,17 @@
             <% session.displaySuccessMsg = null %>
           </div>
         <% } %>
+        <% if(session.displayErrorMsg){ %>
+          <div class="alert alert-danger" role="alert">
+            <%= session.displayErrorMsg %>
+            <% session.displayErrorMsg = null %>
+          </div>
+        <% } %>
         <div class="container">
           <div class="custom-table-container">
             <table class="table custom-table searchable-table">
               <thead>
                 <tr>
-                  <th class="optional" scope="col">Id</th>
                   <th scope="col">Nome</th>
                   <th scope="col">Scadenza</th>
                   <th class="optional" scope="col">Autore</th>
@@ -42,7 +47,6 @@
               <tbody>
                 <% for (let item of noleggi) { %>
                     <tr>
-                      <td class="optional"><%= item.id %></td>
                       <td><%= item.nome %></td>
                       <% 
                         let dataFine = new Date(item.dataFine);
