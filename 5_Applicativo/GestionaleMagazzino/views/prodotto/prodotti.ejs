@@ -35,10 +35,9 @@
             <table class="table custom-table searchable-table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
                   <th class="optional" scope="col">Id</th>
                   <th scope="col">Nome</th>
-                  <th scope="col">Quantità</th>
+                  <th scope="col">Disponibili</th>
                   <th class="optional" scope="col">Categoria</th>
                   <th scope="col">Mostra</th>
                 </tr>
@@ -46,12 +45,6 @@
               <tbody>
                 <% for (let item of products) { %>
                     <tr>
-                        <td>
-                          <label class="control control--checkbox">
-                            <input type="checkbox" class="js-check-all" />
-                            <div class="control__indicator"></div>
-                          </label>
-                        </td style="height: 50px;">
                         <td class="optional"><%= item.codice%></td>
                         <td><%= item.nome%></td>
                         <td><%= item.quantita%></td>
