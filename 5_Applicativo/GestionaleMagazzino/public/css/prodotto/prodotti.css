@@ -142,7 +142,7 @@
     }
 
     .optional {
-      display: block;
+      display: flex;
     }
   }
 
@@ -200,6 +200,14 @@
     height: 100%;
     border-collapse: separate;
     border-spacing: 0;
+    table-layout:fixed;
+  }
+
+  .custom-table td{
+    white-space:nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    width:auto;
   }
 
   .custom-table thead {
