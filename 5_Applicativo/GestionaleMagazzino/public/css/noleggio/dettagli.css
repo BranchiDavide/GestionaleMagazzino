@@ -386,13 +386,8 @@ td {
     padding: 1rem 1rem 0 0
   }
 
-<<<<<<< HEAD
-  .show {
-    width: calc(var(--nav-width) + 156px)
-=======
   .showNB {
     left: 0
->>>>>>> de4413b6a3e12a080026ba722de1d76bf5965911
   }
 
   .body-pd {
