@@ -132,20 +132,20 @@ INSERT INTO categoria (nome) VALUES
 
 -- Inserimento dei dati fittizi nella tabella `materiale`
 INSERT INTO materiale (nome, riferimentoFoto, quantita, isConsumabile, isDisponibile, categoria) VALUES
-('Panasonic Lumix GH5', 'camera5.jpg', 6, 0, 1, 'Telecamere'),
-('Nikon Z6', 'camera6.jpg', 5, 0, 1, 'Telecamere'),
-('Luce LED Godox SL-60W', 'luce5.jpg', 8, 0, 1, 'Illuminazione'),
-('Softbox Neewer 700W', 'luce6.jpg', 7, 0, 1, 'Illuminazione'),
-('Fake Money Stacks', 'accessorio5.jpg', 30, 1, 1, 'Accessori'),
-('Weapon Props Set', 'accessorio6.jpg', 20, 1, 1, 'Accessori'),
-('Palette Trucco Makeup Revolution', 'trucco3.jpg', 10, 1, 1, 'Trucco'),
-('Registratore Audio Tascam DR-40X', 'audio4.jpg', 8, 0, 1, 'Attrezzatura Audio'),
-('Microfono a Condensatore Rode NT1', 'audio5.jpg', 6, 0, 1, 'Attrezzatura Audio'),
-('Sistema Microfono Senza Fili Sennheiser EW 100 G4', 'audio6.jpg', 4, 0, 1, 'Attrezzatura Audio'),
-('Steadicam Glidecam HD-2000', 'accessorio7.jpg', 3, 0, 1, 'Accessori'),
-('Kit Sangue Finto Mehron', 'trucco4.jpg', 15, 1, 1, 'Trucco'),
-('Manfrotto MT055XPRO3 Treppiede', 'accessorio8.jpg', 5, 0, 1, 'Accessori'),
-('Green Screen Background', 'accessorio9.jpg', 12, 0, 1, 'Accessori');
+('Panasonic Lumix GH5', '/datastore/default.jpg', 6, 0, 1, 'Telecamere'),
+('Nikon Z6', '/datastore/default.jpg', 5, 0, 1, 'Telecamere'),
+('Luce LED Godox SL-60W', '/datastore/default.jpg', 8, 0, 1, 'Illuminazione'),
+('Softbox Neewer 700W', '/datastore/default.jpg', 7, 0, 1, 'Illuminazione'),
+('Fake Money Stacks', '/datastore/default.jpg', 30, 1, 1, 'Accessori'),
+('Weapon Props Set', '/datastore/default.jpg', 20, 1, 1, 'Accessori'),
+('Palette Trucco Makeup Revolution', '/datastore/default.jpg', 10, 1, 1, 'Trucco'),
+('Registratore Audio Tascam DR-40X', '/datastore/default.jpg', 8, 0, 1, 'Attrezzatura Audio'),
+('Microfono a Condensatore Rode NT1', '/datastore/default.jpg', 6, 0, 1, 'Attrezzatura Audio'),
+('Sistema Microfono Senza Fili Sennheiser EW 100 G4', '/datastore/default.jpg', 4, 0, 1, 'Attrezzatura Audio'),
+('Steadicam Glidecam HD-2000', '/datastore/default.jpg', 3, 0, 1, 'Accessori'),
+('Kit Sangue Finto Mehron', '/datastore/default.jpg', 15, 1, 1, 'Trucco'),
+('Manfrotto MT055XPRO3 Treppiede', '/datastore/default.jpg', 5, 0, 1, 'Accessori'),
+('Green Screen Background', '/datastore/default.jpg', 12, 0, 1, 'Accessori');
 
 -- Inserimento dei dati fittizi nella tabella `noleggio`
 INSERT INTO noleggio (nome, riferimentoFoto, dataInizio, dataFine, idUtente, chiusuraForzata) VALUES

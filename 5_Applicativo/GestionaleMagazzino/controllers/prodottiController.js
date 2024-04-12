@@ -3,6 +3,7 @@ const materialeMapper = require("../models/mappers/materialeMapper");
 const noleggioMapper = require('../models/mappers/noleggioMapper');
 const categoriaMapper = require('../models/mappers/categoriaMapper');
 const sanitizer = require('../models/utils/sanitizer');
+const QRGenerator = require("../models/utils/QRGenerator");
 
 /**
  * La funzione carica la view che mostra la lista di tutti i prodotti.
@@ -43,10 +44,13 @@ async function showProductDetails(req, res){
             });
         }
 
+        let qr = await QRGenerator.toBase64String(codice);
+
         const jsonData = {
             product: product,
             noleggi: noleggiJson,
             prossimaDisponibilita: product.isDisponibile ? "adesso" : materialeMapper.getDataDisponibilitaByNoleggi(noleggi),
+            qrCode: qr,
             session: req.session
         }
     
@@ -82,7 +86,13 @@ async function addProduct(req, res){
     let foto = '/datastore/default.jpg';
     if(req.body.fileUploadTry){
         if(!req.file){
-            return res.status(400).render("prodotto/aggiunta.ejs", {session: req.session, displayError: true, message: "Formato immagine non valido!"});
+            const data = {
+                session: req.session,
+                categorie: await categoriaMapper.getAll(),
+                displayError: true,
+                message: "Formato immagine non valido!"
+            }
+            return res.status(400).render("prodotto/aggiunta.ejs", data);
         }else{
             foto = req.file.path.replace("public", "");
         }
