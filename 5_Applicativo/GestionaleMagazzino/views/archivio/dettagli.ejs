@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Gestionale Magazzino - Noleggio</title>
+  <title>Gestionale Magazzino - Archivio noleggi</title>
   <%- include('../_templates/header'); -%>
     <link rel="stylesheet" href="/css/prodotto/dettagli.css">
 </head>
@@ -18,44 +18,49 @@
             <div class="item-left">
               <div class="item-title">
                 <h2>
-                  <%= noleggio.nome%>
+                  <%= noleggio.nome%> <h5>(Archiviato)</h5>
                 </h2>
-              </div>
-              <div class="item-picture">
-                <img src="<%= noleggio.riferimentoFoto %>" alt="item Picture">
               </div>
               <div class="item-info">
                 <p><strong>ID:</strong>
-                  <%= noleggio.id %>
+                  <%= noleggio.idNoleggio %>
                 </p>
                 <p><strong>Autore:</strong>
                   <%= noleggio.idUtente %>
                 </p>
                 <% 
+                let dataInizio=new Date(noleggio.dataInizio); 
+                let dataInizioFormatted = dataInizio.toLocaleDateString("en-CH"); 
+                %>
+                  <p>
+                      <strong>Data inizio:</strong>
+                      <%=dataInizioFormatted %>
+                  </p>
+                <% 
                 let dataFine=new Date(noleggio.dataFine); 
                 let dataFineFormatted=dataFine.toLocaleDateString("en-CH"); 
                 %>
-                  <p <% if(new Date()> dataFine){%>style="color: red;"<%}%>>
-                      <strong>Data ritorno:</strong>
+                  <p>
+                      <strong>Data scadenza:</strong>
                       <%=dataFineFormatted %>
                   </p>
-              </div>
-              <div class="functions">
-                <div class="button-align-left">
-                  <button type="submit"><i class='bx bx-printer'></i></button>
-                  <span class="optional">Stampa lista materiale</span>
-                </div>
-                <div class="button-align-left">
-                  <a href="/noleggi/<%= noleggio.id %>/chiudi"><button type="submit"><i class='bx bx-trash'></i></button></a>
-                  <span class="optional">Chiudi noleggio</span>
-                </div>
+                <p>
+                  <strong>Chiusura forzata:</strong>
+                  <%
+                  let chiusuraForzata = noleggio.chiusuraForzata;
+                  if(chiusuraForzata){%>
+                    <span style="color: red;">SI</span>
+                  <% }else{ %>
+                    <span style="color: green;">NO</span>
+                  <% } %>
+                </p>
               </div>
             </div>
             <div class="item-right">
               <div class="item-title">
                 <h2>Materiale</h2>
               </div>
-              <div class="custom-table-container">
+              <div class="custom-table-container" style="overflow-y: hidden;">
                 <table class="table custom-table">
                   <thead>
                     <tr>
@@ -67,7 +72,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <% for (let item of prodotti) { %>
+                    <% for (let item of prodotti) { console.log(prodotti)%>
+                      
                       <tr>
                         <td class="optional">
                           <%= item[0].codice %>

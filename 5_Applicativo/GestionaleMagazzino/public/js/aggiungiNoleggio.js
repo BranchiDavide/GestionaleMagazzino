@@ -175,10 +175,5 @@ function isTablet() {
     if (/iPad|Android|tablet|kindle/i.test(navigator.userAgent)) {
         return true;
     }
-
-    var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    if (screenWidth > 768 && screenWidth <= 1024) {
-        return true;
-    }
     return false;
 }

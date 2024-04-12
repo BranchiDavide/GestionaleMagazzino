@@ -129,9 +129,14 @@ async function getQuantitaMaterialeNoleggio(codiceMateriale, idNoleggio){
 /**
  * La funzione ritorna la data della prima disponibilità di un noleggio.
  * @param {Noleggio[]} noleggi l'array di noleggi
- * @returns la data più piccola dell'array di noleggi già formattata
+ * @returns la data più piccola dell'array di noleggi già formattata,
+ * oppure stringa "Data sconosciuta" se non è nota la prossima disponibilità
+ * perchè non si dispone del materiale in magazzino
  */
 function getDataDisponibilitaByNoleggi(noleggi){
+    if(noleggi.length == 0){ //Non ci sono noleggi, il prodotto non è presente nel magazzino
+        return "Data sconosciuta";
+    }
     let result = new Date(noleggi[0].dataFine);
 
     for (let i = 1; i < noleggi.length; i++){

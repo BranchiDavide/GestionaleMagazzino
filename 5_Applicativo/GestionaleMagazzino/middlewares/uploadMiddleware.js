@@ -22,7 +22,7 @@ function uploadImg(uploadPath) {
 
             const acceptedExtensions = ['.jpg', '.jpeg', '.png'];
             const acceptedMimeTypes = ['image/jpeg', 'image/png'];
-            if(acceptedMimeTypes.includes(file.mimetype) && acceptedExtensions.includes(path.extname(file.originalname))){
+            if(acceptedMimeTypes.includes(file.mimetype.toLowerCase()) && acceptedExtensions.includes(path.extname(file.originalname.toLowerCase()))){
                 cb(null, true); //File valido
             }else{
                 cb(null, false) //File non valido (non viene salvato)

@@ -134,3 +134,10 @@ test("_16_getDataDisponibilitaByNoleggi", async () => {
     expect(result).toBeDefined();
     expect(result).toEqual("25.01.2024");
 });
+
+test("_17_getDataDisponibilitaByNoleggi_DataSconosciuta", async () => {
+    await materialeMapper.updateQuantita(1, -8);
+    const result = materialeMapper.getDataDisponibilitaByNoleggi([]);
+    expect(result).toBeDefined();
+    expect(result).toBe("Data sconosciuta");
+});
