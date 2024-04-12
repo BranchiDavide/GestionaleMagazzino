@@ -82,7 +82,13 @@ async function addProduct(req, res){
     let foto = '/datastore/default.jpg';
     if(req.body.fileUploadTry){
         if(!req.file){
-            return res.status(400).render("prodotto/aggiunta.ejs", {session: req.session, displayError: true, message: "Formato immagine non valido!"});
+            const data = {
+                session: req.session,
+                categorie: await categoriaMapper.getAll(),
+                displayError: true,
+                message: "Formato immagine non valido!"
+            }
+            return res.status(400).render("prodotto/aggiunta.ejs", data);
         }else{
             foto = req.file.path.replace("public", "");
         }
