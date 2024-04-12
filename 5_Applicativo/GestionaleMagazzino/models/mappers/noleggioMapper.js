@@ -92,12 +92,13 @@ async function insertNoleggio(nome, riferimentoFoto, dataInizio, dataFine, idUte
  * Funzione per chiudere un noleggio
  * @param idNoleggio 
  * @param chiusuraForzata 0 se la chiusura NON è forzata, 1 altrimenti
+ * @param materiali Array bidimensionale con i materiali e le loro relative quantità
+                    es: [[materiale, quantita], [materiale, quantita] ecc...]
  * @returns true se la chiusura è andata a buon fine, false altrimenti
  */
-async function closeNoleggio(idNoleggio, chiusuraForzata){
+async function closeNoleggio(idNoleggio, chiusuraForzata, materiali){
     const materialeMapper = require("./materialeMapper");
     const [result] = await db.query("UPDATE noleggio SET chiusuraForzata=? WHERE id=?", [chiusuraForzata, idNoleggio]);
-    let materiali = await getMaterialeOfNoleggio(idNoleggio);
     for(let item of materiali){
         await materialeMapper.updateQuantita(item[0].codice, item[1]);
     }

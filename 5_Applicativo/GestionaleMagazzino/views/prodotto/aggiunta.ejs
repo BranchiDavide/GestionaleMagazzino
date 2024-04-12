@@ -10,7 +10,7 @@
 <body className='snippet-body'>
 
   <body id="body-pd">
-    <%- include('../_templates/navbar.ejs', {active: "noleggi" }); -%>
+    <%- include('../_templates/navbar.ejs', {active: "prodotti" }); -%>
       <div class="height-100 bg-light">
         <div class="main-section">
           <div class="item-container">
@@ -19,21 +19,25 @@
                 <h2>Nuovo prodotto</h2>
               </div>
               <br>
-              <form action="/prodotti/nuovo" method="POST" enctype="multipart/form-data">
+              <form action="/prodotti/nuovo" method="POST" enctype="multipart/form-data" id="aggiuntaForm">
                 <div class="item-info">
                   <div class="form-row">
                     <label>Nome prodotto:</label>
-                    <input class="form-control" type="text" name="nome" required>
+                    <input class="form-control" id="nome" type="text" name="nome" required>
                   </div>
                   <br>
                   <div class="form-row">
                     <label>Quantità prodotto:</label>
-                    <input class="form-control" type="number" name="quantita" min="1" value="1" required>
+                    <input class="form-control" type="number" id="quantita" name="quantita" min="1" value="1" required>
                   </div>
                   <br>
                   <div class="form-row">
                     <label>Categoria:</label>
-                    <input class="form-control" type="text" name="categoria" required>
+                    <select class="form-control" name="categoria" id="categoria" required>
+                      <% for(let categoria of categorie){ %>
+                        <option value="<%= categoria.nome %>"><%= categoria.nome %></option>
+                      <% } %>
+                    </select>
                   </div>
                   <br>
                   <div class="form-row">
