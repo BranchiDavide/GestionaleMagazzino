@@ -23,6 +23,12 @@
     font-weight: 400 600;
   }
   
+  @font-face {
+    font-family: Rubik;
+    src: url('/font/Rubik/Rubik-Italic-VariableFont_wght.ttf');
+    font-weight: 300 900;
+  }
+
   :root {
     --header-height: 3rem;
     --nav-width: 68px;
@@ -30,6 +36,7 @@
     --first-color-light: #AFA5D9;
     --white-color: #F7F6FB;
     --body-font: 'Nunito', sans-serif;
+    --text-font: "Rubik", sans-serif;
     --normal-font-size: 1rem;
     --z-fixed: 100
   }
@@ -37,7 +44,7 @@
   *,
   ::before,
   ::after {
-    box-sizing: border-box
+    box-sizing: border-box;
   }
 
   body {
@@ -172,14 +179,130 @@
 
   .main-section {
     width: 100%;
-    padding: 20px;
+    display: grid;
+    grid-template-columns: 100%;
   }
 
   .optional {
     display: none;
   }
 
-  @media screen and (min-width: 768px) {
+  .item-container {
+    background-color: #fff;
+    border-radius: 0.6em;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 0 0.6em 1.2em rgba(28, 0, 80, 0.06);
+  }
+
+  .item-picture {
+    border-radius: 5%;
+    margin: 0 auto 20px;
+    overflow: hidden;
+  }
+
+  .item-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .item-title {
+    text-align: center;
+    padding: 10px;
+  }
+
+  .item-info {
+    text-align: left;
+  }
+
+  .item-info p {
+    margin: 5px 0;
+  }
+
+  .functions {
+    align-items: left;
+  }
+
+  .functions div {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 15px;
+  }
+
+  .functions div .optional {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+  }
+
+  .button-align-left {
+    align-items: left;
+    vertical-align: center;
+    display: inline-flex;
+    padding: 3px;
+    width: 100%;
+  }
+
+  .functions div button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: #4723D9;
+    border-radius: 50%;
+    border: 2px solid #4723D9;
+    background: transparent;
+    transition: all .3s ease-in-out;
+    width: 40px;
+    height: 40px;
+  }
+
+  .item-info p button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 22px;
+    color: #4723D9;
+    border-radius: 50%;
+    border: 2px solid #4723D9;
+    background: transparent;
+    transition: all .3s ease-in-out;
+    width: 30px;
+    height: 30px;
+  }
+
+  .functions div button:hover,.item-info p button:hover {
+    color: #fff;
+    background: #4723D9;
+  }
+
+  .functions div span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #5823D9;
+    transition: all .3s ease-in-out;
+  }
+
+  .responsive-button {
+    width: 33%;
+  }
+
+  .vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  form{
+    justify-content: center;
+
+  }
+
+  @media screen and (min-width: 1068px) {
     body {
       margin: calc(var(--header-height) + 1rem) 0 0 0;
       padding-left: calc(var(--nav-width) + 2rem)
@@ -215,63 +338,75 @@
     .optional {
       display: block;
     }
+
+    .item-center {
+      width: 100%;
+    }
+
+    .item-right {
+      width: calc(100% - 350px);
+    }
+
+    .item-container {
+      width: 900px;
+    }
+
+    .item-picture {
+      width: 300px;
+      height: 300px;
+    }
+
+    .responsive-button {
+      width: 100%;
+    }
+
+    .item-container {
+      display: inline-flex;
+    }
   }
 
-  .search-container {
-    width: 100%;
-    height: 100px;
+  @media screen and (max-width: 1700px) {
+    .functions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .functions div {
+      justify-content: center;
+      width: 100%;
+    }
+
+    .functions div .optional {
+      display: none;
+    }
+
+    .functions div button {
+      width: 100px;
+      height: 100px;
+    }
+
+    .functions div button {
+      font-size: 66px;
+    }
   }
 
-  .search-container form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+  .item-picture{
+    display: none;
+  }
+  .prodottiNoleggio{
+    display:none;
+  }
+  .bx-trash:hover{
+    cursor: pointer;
   }
 
-  .search-container input {
-    width: 500px;
-    height: 30px;
-    outline: none;
-    border: 2px solid var(--first-color);
-    border-radius: 10rem 0 0 10rem;
-    border-right: 0;
-    padding: 0 15px;
-  }
-
-  .search-container button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100px;
-    height: 30px;
-    border: none;
-    color: #fff;
-    border: 2px solid var(--first-color);
-    border-left: 0;
-    background: var(--first-color-light);
-    border-radius: 0 10rem 10rem 0;
-    transition: all .3s ease-in-out;
-  }
-
-  .search-container button:hover {
-    background: var(--first-color);
-  }
-
-  .custom-table-container {
-    border-radius: 1rem;
-    border: 2px solid var(--first-color);
-    /* Puoi regolare questo valore a tuo piacimento */
-    overflow: hidden;
-  }
-
-  .custom-table {
-    width: 100%;
-    height: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    table-layout:fixed;
+  .item-box-shadow{
+    background-color: #fff;
+    border-radius: 0.6em;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 0.6em 1.2em rgba(28, 0, 80, 0.06);
   }
 
   td{
@@ -280,59 +415,11 @@
     text-overflow: ellipsis;
     width:100%;
   }
-  .custom-table thead {
-    background-color: var(--first-color);
-    outline: none;
-    padding: 0 15px;
-    color: white;
-  }
 
-  .custom-table tbody {
-    outline: none;
-    border: #eeebf7;
-    padding: 0 15px;
-  }
-
-  .custom-table th:first-child {
-    border-top-left-radius: inherit;
-    border-bottom-left-radius: inherit;
-  }
-
-  .custom-table th:last-child {
-    border-top-right-radius: inherit;
-    border-bottom-right-radius: inherit;
-  }
-
-  .custom-table td:first-child {
-    border-top-left-radius: inherit;
-    border-bottom-left-radius: inherit;
-  }
-
-  .custom-table td:last-child {
-    border-top-right-radius: inherit;
-    border-bottom-right-radius: inherit;
-  }
-
-  .custom-table tr:nth-child(even) {
-    background-color: #eeebf7;
-  }
-
-  .custom-table button {
-    color: #fff;
-    background: var(--first-color-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 30px;
-    border-radius: 1rem;
-    border: 1px solid var(--first-color);
-  }
-
-  td {
-    min-height: 48px;
-  }
-
-  .item-title {
-    text-align: center;
+  .prodottiNoleggio, .toScanTable, .scannedTable{
+    width: 100%;
+    height: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout:fixed;
   }
