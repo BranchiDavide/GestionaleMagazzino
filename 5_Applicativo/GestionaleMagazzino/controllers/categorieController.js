@@ -67,7 +67,7 @@ async function addCategoria(req, res){
  * @param {Response} res la risposta
  */
 async function deleteCategoria(req, res){
-    const nome = sanitizer.sanitizeInput(req.params.nome);
+    const nome = sanitizer.sanitizeInput(req.body.nome);
 
     const isEliminata = await categoriaMapper.deleteCategoria(nome);
     if (!isEliminata) {

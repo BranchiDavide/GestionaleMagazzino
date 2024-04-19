@@ -68,7 +68,9 @@
                       <th scope="col">Quantità</th>
                       <th class="optional" scope="col">Data prestito</th>
                       <th scope="col">Data ritorno</th>
+                      <% if (session.user.ruolo !== "utente"){%>
                       <th scope="col">Mostra</th>
+                      <% } %>
                     </tr>
                   </thead>
                   <tbody>
@@ -91,7 +93,9 @@
                           <td>
                             <%= dataFineFormatted %>
                           </td>
-                          <td><a href="/noleggi/<%= noleggio.data.id %>"><button type="submit"><i class="bx bx-show-alt"></i></button></a></td>
+                          <% if (session.user.ruolo !== "utente"){ %>
+                            <td><a href="/noleggi/<%= noleggio.data.id %>"><button type="submit"><i class="bx bx-show-alt"></i></button></a></td>
+                          <% } %>
                       </tr>
                       <% } %>
                   </tbody>

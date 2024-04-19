@@ -5,6 +5,7 @@
   <%- include('../_templates/header'); -%>
   <title>Gestionale Magazzino - Prodotti</title>
   <link rel="stylesheet" href="/css/prodotto/prodotti.css">
+  <script src="/sweetalert/sweetalert.min.js"></script>
 </head>
 
 <body className='snippet-body'>
@@ -43,7 +44,12 @@
                 <% for (let item of categorie) { %>
                     <tr>
                         <td><%= item.nome%></td>
-                        <td><a><button type="submit"><i class="bx bx-trash"></i></button></a></td>
+                        <td>
+                          <form action="/categorie/elimina" method="POST" id="deleteCategoriaForm">
+                            <input type="hidden" name="nome" id="nome" value="<%= item.nome%>">
+                            <a><button type="submit"><i class="bx bx-trash"></i></button></a>
+                          </form>
+                        </td>
                     </tr>
                 <% } %>
               </tbody>
@@ -52,6 +58,7 @@
         </div>
       </div>
     </div>
+    <script src="/js/eliminaCategoriaForm.js"></script>
     <script src="/js/navbar.js"></script>
     <script src="/js/search.js"></script>
   </body>
