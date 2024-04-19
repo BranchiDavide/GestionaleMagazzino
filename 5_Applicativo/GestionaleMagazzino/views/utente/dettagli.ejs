@@ -43,26 +43,40 @@
               </div>
               <div class="functions">
                 <div class="button-align-left">
-                  <button type="submit"><i class='bx bx-printer'></i></button>
-                  <span class="optional">Stampa lista materiale</span>
-                </div>
+                    <button type="submit"><i class='bx bx-edit-alt'></i></button>
+                    <span class="optional">Modifica utente</span>
+                  </div>
+                  <div class="button-align-left">
+                    <button type="submit"><i class='bx bx-trash'></i></button>
+                    <span class="optional">Rimuovi utente</span>
+                  </div>
               </div>
             </div>
             <div class="item-right">
               <div class="item-title">
-                <h2>Noleggi in corso utente</h2>
+                <h2>Noleggi in corso dell'utente</h2>
               </div>
               <div class="custom-table-container">
                 <table class="table custom-table">
                   <thead>
                     <tr>
                       <th scope="col">Nome</th>
+                      <th scope="col">Data inizio</th>
                       <th scope="col">Data fine</th>
                       <th scope="col">Mostra</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <!-- mettere for per vedere i noleggi dell'utente -->
+                    <% for(let noleggio of noleggi){ %>
+                        <tr>
+                            <td><%= noleggio.nome%></td>
+                            <% let dataInizioNoleggio = new Date(noleggio.dataInizio).toLocaleDateString("en-CH")%>
+                            <td class="optional"><%= dataInizioNoleggio%></td>
+                            <% let dataFineNoleggio = new Date(noleggio.dataFine).toLocaleDateString("en-CH")%>
+                            <td><%= dataFineNoleggio%></td>
+                            <td><a href="/noleggi/<%= noleggio.id %>"><button type="submit"><i class="bx bx-show-alt"></i></button></a></td>
+                        </tr>
+                    <% } %>
                   </tbody>
                 </table>
               </div>

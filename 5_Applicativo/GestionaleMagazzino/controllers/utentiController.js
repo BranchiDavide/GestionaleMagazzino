@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const userMapper = require("../models/mappers/userMapper");
+const noleggioMapper = require("../models/mappers/noleggioMapper");
 const sanitizer = require("../models/utils/sanitizer");
 const { toInt } = require("validator");
 
@@ -21,12 +22,18 @@ async function showAll(req, res) {
  * @return la view con mostrati i dettagli dell'utente
  */
 async function showUserDetail(req, res){
-    const userId = toInt(sanitizer.sanitizeInput(req.params.id));
+    const userId = sanitizer.sanitizeInput(req.params.userId);
     const user = await userMapper.getById(userId);
+
+    // se l'utente non esiste, carico la pagina di errore
+    if (user === null){
+        return res.status(404).render("_templates/error.ejs", { error: { status: 404 } });
+    }
 
     const data = {
         session: req.session,
-        user: user
+        user: user,
+        noleggi: await noleggioMapper.getNoleggiOfUtente(user.id)
     }
     return res.status(200).render("utente/dettagli.ejs", data);
 }
