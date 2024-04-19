@@ -35,7 +35,6 @@
             <table class="table custom-table searchable-table">
               <thead>
                 <tr>
-                  <th class="optional" scope="col">Id</th>
                   <th scope="col">Email</th>
                   <th scope="col">Nome</th>
                   <th scope="col">Cognome</th>
@@ -47,7 +46,6 @@
               <tbody>
                 <% for (let user of users) { %>
                     <tr>
-                        <td class="optional"><%= user.id%></td>
                         <td><%= user.email%></td>
                         <td><%= user.nome%></td>
                         <td><%= user.cognome%></td>

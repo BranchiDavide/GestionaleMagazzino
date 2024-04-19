@@ -2,7 +2,6 @@ const bcrypt = require("bcrypt");
 const userMapper = require("../models/mappers/userMapper");
 const noleggioMapper = require("../models/mappers/noleggioMapper");
 const sanitizer = require("../models/utils/sanitizer");
-const { toInt } = require("validator");
 
 /**
  * La funzione carica la view che mostra la lista di tutti gli utenti.

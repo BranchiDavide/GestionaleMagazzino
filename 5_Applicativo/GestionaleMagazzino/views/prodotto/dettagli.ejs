@@ -40,6 +40,7 @@
                   <%= prossimaDisponibilita %>
                 </p>
               </div>
+              <% if(session.user.ruolo !== 'utente'){ %>
               <div class="functions">
                 <div class="button-align-left">
                   <button type="submit" id="printBtn"><i class='bx bx-qr'></i></button>
@@ -54,6 +55,7 @@
                   <span class="optional">Rimuovi oggetto</span>
                 </div>
               </div>
+              <% } %>
             </div>
             <div class="item-right">
               <div class="item-title">
