@@ -1,4 +1,5 @@
 const userMapper = require("../models/mappers/userMapper");
+const sanitizer = require("../models/utils/sanitizer");
 
 /**
  * La funzione carica la view che mostra la lista di tutti gli utenti.
@@ -8,7 +9,18 @@ const userMapper = require("../models/mappers/userMapper");
  */
 async function showAll(req, res) {
     const users = await userMapper.getAll();
-    return res.status(200).render("utente/utenti.ejs", {users: users, session: req.session})
+    return res.status(200).render("utente/utenti.ejs", {users: users, session: req.session});
+}
+
+/**
+ * La funzione serve per caricare la view per aggiungere un utente.
+ * @param {Request} req la richiesta che arriva al controller
+ * @param {Response} res la risposta
+ * @returns la pagina per aggiungere un utente
+ */
+function loadViewAddUtente(req, res){
+    const ruoli = ['utente', 'gestore', 'amministratore'];
+    return res.status(200).render("utente/aggiunta.ejs", { session: req.session, ruoli: ruoli });
 }
 
 /**
@@ -23,10 +35,11 @@ async function showAll(req, res) {
  *          che la creazione è avvenuta con successo
  */
 async function addNew(req, res){
-
+    const email = sanitizer.sanitizeInputTruncate(req.body.email);
 }
 
 module.exports = {
     showAll,
+    loadViewAddUtente,
     addNew
 }

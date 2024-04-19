@@ -9,16 +9,15 @@
         <div class="nav_list"> 
           <a href="/home" class="nav_link <% if(active == "dashboard"){%>active<%}%>"><i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a> 
           <a href="/prodotti" class="nav_link <% if(active == "prodotti"){%>active<%}%>"> <i class='bx bx-box nav_icon'></i> <span class="nav_name">Inventario</span></a> 
-          <% if(session.user.ruolo == "gestore"){%>
+          <% if(session.user.ruolo != "utente"){%>
             <a href="/categorie" class="nav_link <% if(active == "categorie"){%>active<%}%>"> <i class='bx bx-purchase-tag-alt nav_icon'></i><span class="nav_name">Categorie</span> </a> 
-          <% }%>
-          <% if(session.user.ruolo == "amministratore"){%>
-            <a href="/utenti" class="nav_link <% if(active == "utenti"){%>active<%}%>"> <i class='bx bx-user nav_icon'></i><span class="nav_name">Utenti</span> </a> 
           <% }%>
           <% if(session.user.ruolo != "utente"){%>
             <a href="/noleggi" class="nav_link <% if(active == "noleggi"){%>active<%}%>"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Noleggi</span> </a> 
           <% }%>
-          <a href="/noleggi/nuovo" class="nav_link <% if(active == "noleggi/nuovo"){%>active<%}%>"> <i class='bx bx-message-alt-add nav_icon'></i> <span class="nav_name">Crea noleggio</span></a>
+          <% if(session.user.ruolo == "amministratore"){%>
+            <a href="/utenti" class="nav_link <% if(active == "utenti"){%>active<%}%>"> <i class='bx bx-user nav_icon'></i><span class="nav_name">Utenti</span> </a> 
+          <% }%>
           <a href="#" class="nav_link <% if(active == "manuale"){%>active<%}%>"> <i class='bx bx-book-bookmark nav_icon'></i> <span class="nav_name">Manuale</span> </a> 
           <a href="/logout" class="nav_link"> <i class='bx bx-log-out nav_icon' style="height: 100%;"></i> <span class="nav_name">Logout</span></a>
         </div>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+
+<head>
+  <%- include('../_templates/header'); -%>
+  <title>Gestionale Magazzino - Utenti</title>
+  <link rel="stylesheet" href="/css/prodotto/prodotti.css">
+</head>
+
+<body className='snippet-body'>
+
+  <body id="body-pd">
+    <%- include('../_templates/navbar.ejs', {active: "utenti"}); -%>
+    <!--Container Main start-->
+    <div class="height-100 bg-light">
+      <div class="main-section">
+        <div class="item-title">
+          <h2>Cerca utenti</h2>
+        </div>
+        <br>
+        <div class="container">
+          <% if(session.displaySuccessMsg){ %>
+            <div class="alert alert-success" role="alert">
+              <%= session.displaySuccessMsg %>
+              <% session.displaySuccessMsg = null %>
+            </div>
+          <% } %>
+          <div class="row search-container">
+            <form onsubmit="event.preventDefault()">
+              <input oninput="tableSearch(this.value, [0,1,2,3,4,6])" type="search" name="data" placeholder="Cerca">
+              <button><i class="bx bx-search-alt"></i></button>
+            </form>
+          </div>
+          <div class="custom-table-container">
+            <table class="table custom-table searchable-table">
+              <thead>
+                <tr>
+                  <th class="optional" scope="col">Id</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Cognome</th>
+                  <th scope="col">Data di nascita</th>
+                  <th scope="col">Ruolo</th>
+                  <th scope="col">Mostra</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (let user of users) { %>
+                    <tr>
+                        <td class="optional"><%= user.id%></td>
+                        <td><%= user.email%></td>
+                        <td><%= user.nome%></td>
+                        <td><%= user.cognome%></td>
+                        <% user.dataNascita = new Date(user.dataNascita).toLocaleDateString("en-CH")%>
+                        <td><%= user.dataNascita%></td>
+                        <td><%= user.ruolo.charAt(0).toUpperCase() + user.ruolo.substring(1, user.ruolo.length)%></td>
+                        <td><a href="/utenti/<%= user.id %>"><button type="submit"><i class="bx bx-show-alt"></i></button></a></td>
+                      </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/navbar.js"></script>
+    <script src="/js/search.js"></script>
+  </body>
+</html>

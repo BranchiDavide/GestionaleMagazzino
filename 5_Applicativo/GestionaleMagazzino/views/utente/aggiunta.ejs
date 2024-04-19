@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <%- include('../_templates/header'); -%>
+    <link rel="stylesheet" href="/css/noleggio/aggiungi.css">
+    <title>GestionaleMagazzino - Nuovo utente</title>
+</head>
+
+<body className='snippet-body'>
+
+  <body id="body-pd">
+    <%- include('../_templates/navbar.ejs', {active: "utenti" }); -%>
+      <div class="height-100 bg-light">
+        <div class="main-section">
+          <div class="item-container">
+            <div class="item-center">
+              <div class="item-title">
+                <h2>Nuovo utente</h2>
+              </div>
+              <br>
+              <form action="/utenti/nuovo" method="POST" id="aggiuntaForm">
+                <div class="item-info">
+                  <div class="form-row">
+                    <label>Email:</label>
+                    <input class="form-control" id="email" type="text" name="email" maxlength="255" required>
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <label>Nome:</label>
+                    <input class="form-control" type="text" id="nome" name="nome" maxlength="64" required>
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <label>Cognome:</label>
+                    <input class="form-control" type="text" id="cognome" name="cognome" maxlength="64" required>
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <label>Data di nascita:</label>
+                    <input class="form-control" type="date" id="dataNascita" name="dataNascita" required>
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <label>Ruolo:</label>
+                    <select class="form-control" name="categoria" id="categoria" required>
+                      <% for(let ruolo of ruoli){ %>
+                        <option value="<%= ruolo %>">
+                            <% ruolo = ruolo.charAt(0).toUpperCase() + ruolo.substring(1, ruolo.length)%>
+                            <%= ruolo %>
+                        </option>
+                      <% } %>
+                    </select>
+                  </div>
+                  <br>
+                <% if(typeof displayError !== "undefined" && displayError){ %>
+                  <div class="alert alert-danger" role="alert">
+                    <%= message %>
+                  </div>
+                <% } %>
+                <div class="functions">
+                  <div class="button-align-left">
+                    <button type="submit"><i class='bx bxs-check-circle'></i></button>
+                    <span class="optional">Conferma</span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+  </body>
+</body>
+<script src="/js/navbar.js"></script>
+</html>

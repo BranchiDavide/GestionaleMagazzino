@@ -18,7 +18,7 @@ async function showAll(req, res){
 
 /**
  * la funzione carica la view dei dettagli del prodotto.
- * @param {Requst} req la richiesta
+ * @param {Request} req la richiesta
  * @param {Response} res la risposta
  * @returns la pagina con i dettagli del prodotto
  */
