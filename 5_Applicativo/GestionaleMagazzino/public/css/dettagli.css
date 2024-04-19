@@ -99,3 +99,19 @@
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+
+.qrCodeImg{
+    display: none;
+  }
+
+@media print{
+    .main-section, #nav-bar, #header{
+      display: none;
+    }
+    .qrCodeImg{
+      display: inline;
+    }
+    .print-none{
+      height: 0px;
+    }
+  }
