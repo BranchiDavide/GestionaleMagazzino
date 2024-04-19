@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Gestionale Magazzino - Utente</title>
+  <%- include('../headers/header'); -%>
+  <%- include('../headers/headerDettagliPage'); -%>
+</head>
+
+<body className='snippet-body'>
+
+  <body id="body-pd">
+    <%- include('../_templates/navbar.ejs', {active: "utenti" }); -%>
+      <!--Container Main start-->
+      <div class="height-100 bg-light">
+        <div class="main-section">
+          <div class="item-container">
+            <div class="item-left">
+              <div class="item-title">
+                <h2>
+                  <%= user.nome%>
+                </h2>
+              </div>
+              <div class="item-picture">
+                <img src="<%= user.riferimentoFoto %>" alt="item Picture">
+              </div>
+              <div class="item-info">
+                <p><strong>ID:</strong>
+                  <%= user.id %>
+                </p>
+                <p><strong>Nome:</strong>
+                  <%= user.nome %>
+                </p>
+                <p><strong>Cognome:</strong>
+                    <%= user.cognome %>
+                </p>
+                <% 
+                let dataNascita=new Date(user.dataNascita).toLocaleDateString("en-CH");
+                %>
+                <p><strong>Data di nascita:</strong>
+                    <%= dataNascita %>
+                </p>
+              </div>
+              <div class="functions">
+                <div class="button-align-left">
+                  <button type="submit"><i class='bx bx-printer'></i></button>
+                  <span class="optional">Stampa lista materiale</span>
+                </div>
+              </div>
+            </div>
+            <div class="item-right">
+              <div class="item-title">
+                <h2>Noleggi in corso utente</h2>
+              </div>
+              <div class="custom-table-container">
+                <table class="table custom-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Data fine</th>
+                      <th scope="col">Mostra</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- mettere for per vedere i noleggi dell'utente -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="/js/navbar.js"></script>
+  </body>
+
+</html>

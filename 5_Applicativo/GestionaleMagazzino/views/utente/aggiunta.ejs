@@ -2,7 +2,7 @@
 <html lang="it">
 
 <head>
-  <%- include('../_templates/header'); -%>
+  <%- include('../headers/header'); -%>
     <link rel="stylesheet" href="/css/noleggio/aggiungi.css">
     <title>GestionaleMagazzino - Nuovo utente</title>
 </head>
@@ -43,14 +43,24 @@
                   <br>
                   <div class="form-row">
                     <label>Ruolo:</label>
-                    <select class="form-control" name="categoria" id="categoria" required>
+                    <select class="form-control" name="ruolo" id="ruolo" required>
                       <% for(let ruolo of ruoli){ %>
                         <option value="<%= ruolo %>">
-                            <% ruolo = ruolo.charAt(0).toUpperCase() + ruolo.substring(1, ruolo.length)%>
-                            <%= ruolo %>
+                          <% ruolo = ruolo.charAt(0).toUpperCase() + ruolo.substring(1, ruolo.length)%>
+                          <%= ruolo %>
                         </option>
                       <% } %>
                     </select>
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <label>Password:</label>
+                    <input class="form-control" type="password" id="password" name="password" required>
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <label>Ripeti password:</label>
+                    <input class="form-control" type="password" id="passwordRipetuta" name="passwordRipetuta" required>
                   </div>
                   <br>
                 <% if(typeof displayError !== "undefined" && displayError){ %>
