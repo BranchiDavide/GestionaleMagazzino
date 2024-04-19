@@ -41,16 +41,27 @@ addProductBtn.addEventListener("click", async () => {
                         updateTables();
                         updateButtons();
                     }else{
-                        alert("Prodotto non trovato!");
+                        swal({
+                            title: "Prodotto non trovato!",
+                            icon: "error"
+                        });
                     }
                     $("#exampleModal").modal("hide");
                 })
                 .catch(err => {
-                    alert("Impossibile scannerizzare i prodotti, controllare permesso fotocamera!");
+                    swal({
+                        title: "Si è verificato un errore!",
+                        text: "Impossibile scannerizzare i prodotti, controllare permesso fotocamera!",
+                        icon: "error"
+                    });
             });
         }
     }).catch(err => {
-        alert("Impossibile scannerizzare i prodotti, controllare permesso fotocamera!");
+        swal({
+            title: "Si è verificato un errore!",
+            text: "Impossibile scannerizzare i prodotti, controllare permesso fotocamera!",
+            icon: "error"
+        });
     });
 });
 
@@ -210,11 +221,27 @@ function isTablet() {
 }
 
 closeForceBtn.addEventListener("click", (e) => {
-    if(confirm("Sei sicuro di voler chiudere in maniera forzata questo noleggio?\n\nLa chiusura forzata deve essere utilizzata unicamente in caso di smarrimento di prodotti")){
-        form.action = form.action.replace("chiudi", "chiudi-force");
-    }else{
-        e.preventDefault();
-    }
+    e.preventDefault();
+    swal({
+        title: "Sei sicuro di voler chiudere in maniera forzata questo noleggio?",
+        text: "La chiusura forzata deve essere utilizzata unicamente in caso di smarrimento di prodotti",
+        icon: "warning",
+        buttons: {
+          cancel: "Annulla",
+          confirm: {
+            text: "Si",
+            value: "yes",
+            className: "confirm-btn"
+          }
+        },
+      })
+      .then((value) => {
+        if (value === "yes") {
+            form.action = form.action.replace("chiudi", "chiudi-force");
+            hiddenInput.value = JSON.stringify(scannedProducts);
+            form.submit();
+        }
+    });
 });
 
 document.getElementById("btnCloseModal").addEventListener("click", () => {

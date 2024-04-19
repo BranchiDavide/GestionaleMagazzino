@@ -3,8 +3,8 @@
 
 <head>
   <title>Gestionale Magazzino - Noleggio</title>
-  <%- include('../_templates/header'); -%>
-    <link rel="stylesheet" href="/css/prodotto/dettagli.css">
+  <%- include('../headers/header'); -%>
+  <%- include('../headers/headerDettagliPage'); -%>
 </head>
 
 <body className='snippet-body'>
@@ -46,8 +46,8 @@
                   <span class="optional">Stampa lista materiale</span>
                 </div>
                 <div class="button-align-left">
-                  <a href="/noleggi/<%= noleggio.id %>/chiudi"><button type="submit"><i class='bx bx-trash'></i></button></a>
-                  <span class="optional">Chiudi noleggio</span>
+                  <a href="/noleggi/<%= noleggio.id %>/chiudi"><button type="submit"><i class='bx bx-rotate-left'></i></button></a>
+                  <span class="optional">Ritorna materiale noleggio</span>
                 </div>
               </div>
             </div>
@@ -59,7 +59,6 @@
                 <table class="table custom-table">
                   <thead>
                     <tr>
-                      <th class="optional" scope="col">Id</th>
                       <th scope="col">Nome</th>
                       <th scope="col">Quantità</th>
                       <th class="optional" scope="col">Categoria</th>
@@ -69,9 +68,6 @@
                   <tbody>
                     <% for (let item of prodotti) { %>
                       <tr>
-                        <td class="optional">
-                          <%= item[0].codice %>
-                        </td>
                         <td>
                           <%= item[0].nome %>
                         </td>

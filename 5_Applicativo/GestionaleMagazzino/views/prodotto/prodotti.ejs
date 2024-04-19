@@ -2,9 +2,9 @@
 <html>
 
 <head>
-  <%- include('../_templates/header'); -%>
   <title>Gestionale Magazzino - Prodotti</title>
-  <link rel="stylesheet" href="/css/prodotto/prodotti.css">
+  <%- include('../headers/header'); -%>
+  <%- include('../headers/headerTablePage'); -%>
 </head>
 
 <body className='snippet-body'>
@@ -27,7 +27,7 @@
           <% } %>
           <div class="row search-container">
             <form onsubmit="event.preventDefault()">
-              <input oninput="tableSearch(this.value, [1,2,3,4])" type="search" name="data" placeholder="Cerca">
+              <input oninput="tableSearch(this.value, [0,1,2,3])" type="search" name="data" placeholder="Cerca">
               <button><i class="bx bx-search-alt"></i></button>
             </form>
           </div>
@@ -35,7 +35,6 @@
             <table class="table custom-table searchable-table">
               <thead>
                 <tr>
-                  <th class="optional" scope="col">Id</th>
                   <th scope="col">Nome</th>
                   <th scope="col">Disponibili</th>
                   <th class="optional" scope="col">Categoria</th>
@@ -45,7 +44,6 @@
               <tbody>
                 <% for (let item of products) { %>
                     <tr>
-                        <td class="optional"><%= item.codice%></td>
                         <td><%= item.nome%></td>
                         <td><%= item.quantita%></td>
                         <td class="optional"><%= item.categoria%></td>

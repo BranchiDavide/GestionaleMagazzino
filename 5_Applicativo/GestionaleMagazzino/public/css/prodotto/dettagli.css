@@ -465,6 +465,9 @@ td {
     display: none;
   }
   .qrCodeImg{
-    display: block;
+    display: inline;
+  }
+  .print-none{
+    height: 0px;
   }
 }

@@ -1,0 +1,30 @@
+.dashboard-functions button{
+  color: #fff;
+  background: var(--first-color-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 30px;
+  border-radius: 1rem;
+  border: 1px solid var(--first-color);
+  transition: all .3s ease-in-out;
+}
+
+.dashboard-functions a{
+  width: 80px;
+  display: inline-flex;
+}
+
+.dashboard-functions button:hover{
+  background-color: var(--first-color);
+}
+
+.dashboard-functions{
+  padding: 12px;
+  padding-left: 20%;
+  padding-right: 20%;
+  display: flex;
+  justify-content: space-between;
+}
+
