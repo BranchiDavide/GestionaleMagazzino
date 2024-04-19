@@ -4,7 +4,8 @@
 <head>
   <title>Gestionale Magazzino - Prodotti</title>
   <%- include('../_templates/header'); -%>
-    <link rel="stylesheet" href="/css/prodotto/dettagli.css">
+  <link rel="stylesheet" href="/css/prodotto/dettagli.css">
+  <script src="/sweetalert/sweetalert.min.js"></script>
 </head>
 
 <body className='snippet-body'>
@@ -12,7 +13,7 @@
   <body id="body-pd">
     <%- include('../_templates/navbar.ejs', {active: "prodotti" }); -%>
       <!--Container Main start-->
-      <div class="height-100 bg-light">
+      <div class="height-100 bg-light print-none">
         <div class="main-section">
           <div class="item-container">
             <div class="item-left">

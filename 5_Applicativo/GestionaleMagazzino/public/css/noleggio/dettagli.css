@@ -265,7 +265,6 @@ a {
 }
 
 .functions div span {
-  border:
   font-size: 18px;
   font-weight: bold;
   color: #5823D9;
@@ -292,12 +291,12 @@ a {
   table-layout:fixed;
 }
 
-td{
+/*td{
   white-space:nowrap;
   overflow: hidden; 
   text-overflow: ellipsis;
   width:100%;
-}
+}*/
 
 .custom-table thead {
   background-color: var(--first-color);
@@ -348,14 +347,14 @@ td{
   border: 1px solid var(--first-color);
 }
 
-tr {
+/*tr {
   width: 100%;
   height: 38px;
 }
 
 td {
   height: 47px;
-}
+}*/
 
 .responsive-button {
   width: 33%;
