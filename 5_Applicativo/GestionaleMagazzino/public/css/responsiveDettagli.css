@@ -58,6 +58,11 @@
 
     .item-container {
         display: inline-flex;
+
+    }
+
+    .item-container .item-title{
+        width: 100%;
     }
 }
 

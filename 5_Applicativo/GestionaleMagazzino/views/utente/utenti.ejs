@@ -5,6 +5,7 @@
   <title>Gestionale Magazzino - Utenti</title>
   <%- include('../headers/header'); -%>
   <%- include('../headers/headerTablePage'); -%>
+  <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 
 <body className='snippet-body'>
@@ -17,7 +18,6 @@
         <div class="item-title">
           <h2>Cerca utenti</h2>
         </div>
-        <br>
         <div class="container">
           <% if(session.displaySuccessMsg){ %>
             <div class="alert alert-success" role="alert">
@@ -31,6 +31,10 @@
               <button><i class="bx bx-search-alt"></i></button>
             </form>
           </div>
+          <div class="dashboard-functions">
+            <a href="/utenti/nuovo"><button type="submit"><i class='bx bxs-user-plus'></i></button></a>
+¨          </div>
+<br>  
           <div class="custom-table-container">
             <table class="table custom-table searchable-table">
               <thead>

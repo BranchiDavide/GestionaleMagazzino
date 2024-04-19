@@ -4,8 +4,8 @@
 <head>
   <title>Gestionale Magazzino - Prodotti</title>
   <%- include('../headers/header'); -%>
-  <%- include('../headers/headerDettagliPage'); -%>
-  <script src="/sweetalert/sweetalert.min.js"></script>
+    <%- include('../headers/headerDettagliPage'); -%>
+      <script src="/sweetalert/sweetalert.min.js"></script>
 </head>
 
 <body className='snippet-body'>
@@ -16,12 +16,14 @@
       <div class="height-100 bg-light print-none">
         <div class="main-section">
           <div class="item-container">
+            <div class="item-title">
+              <h2>
+                <%= product.nome%>
+              </h2>
+            </div>
+          </div>
+          <div class="item-container">
             <div class="item-left">
-              <div class="item-title">
-                <h2>
-                  <%= product.nome%>
-                </h2>
-              </div>
               <div class="item-picture">
                 <img src="<%= product.riferimentoFoto %>" alt="item Picture">
               </div>
@@ -40,22 +42,22 @@
                   <%= prossimaDisponibilita %>
                 </p>
               </div>
-              <% if(session.user.ruolo !== 'utente'){ %>
-              <div class="functions">
-                <div class="button-align-left">
-                  <button type="submit" id="printBtn"><i class='bx bx-qr'></i></button>
-                  <span class="optional">Stampa codice QR</span>
+              <% if(session.user.ruolo !=='utente' ){ %>
+                <div class="functions">
+                  <div class="button-align-left">
+                    <button type="submit" id="printBtn"><i class='bx bx-qr'></i></button>
+                    <span class="optional">Stampa codice QR</span>
+                  </div>
+                  <div class="button-align-left">
+                    <button type="submit"><i class='bx bx-edit-alt'></i></button>
+                    <span class="optional">Modifica oggetto</span>
+                  </div>
+                  <div class="button-align-left">
+                    <button type="submit"><i class='bx bx-trash'></i></button>
+                    <span class="optional">Rimuovi oggetto</span>
+                  </div>
                 </div>
-                <div class="button-align-left">
-                  <button type="submit"><i class='bx bx-edit-alt'></i></button>
-                  <span class="optional">Modifica oggetto</span>
-                </div>
-                <div class="button-align-left">
-                  <button type="submit"><i class='bx bx-trash'></i></button>
-                  <span class="optional">Rimuovi oggetto</span>
-                </div>
-              </div>
-              <% } %>
+                <% } %>
             </div>
             <div class="item-right">
               <div class="item-title">
@@ -69,9 +71,9 @@
                       <th scope="col">Quantità</th>
                       <th class="optional" scope="col">Data prestito</th>
                       <th scope="col">Data ritorno</th>
-                      <% if (session.user.ruolo !== "utente"){%>
-                      <th scope="col">Mostra</th>
-                      <% } %>
+                      <% if (session.user.ruolo !=="utente" ){%>
+                        <th scope="col">Mostra</th>
+                        <% } %>
                     </tr>
                   </thead>
                   <tbody>
@@ -83,17 +85,18 @@
                         <td>
                           <%= noleggio.quantitaMateriale %>
                         </td>
-                        <% let dataInizioFormatted=new Date(noleggio.data.dataInizio).toLocaleDateString("en-CH"); 
-                            let dataFineFormatted=new Date(noleggio.data.dataFine).toLocaleDateString("en-CH"); %>
+                        <% let dataInizioFormatted=new Date(noleggio.data.dataInizio).toLocaleDateString("en-CH"); let
+                          dataFineFormatted=new Date(noleggio.data.dataFine).toLocaleDateString("en-CH"); %>
                           <td class="optional">
                             <%= dataInizioFormatted%>
                           </td>
                           <td>
                             <%= dataFineFormatted %>
                           </td>
-                          <% if (session.user.ruolo !== "utente"){ %>
-                            <td><a href="/noleggi/<%= noleggio.data.id %>"><button type="submit"><i class="bx bx-show-alt"></i></button></a></td>
-                          <% } %>
+                          <% if (session.user.ruolo !=="utente" ){ %>
+                            <td><a href="/noleggi/<%= noleggio.data.id %>"><button type="submit"><i
+                                    class="bx bx-show-alt"></i></button></a></td>
+                            <% } %>
                       </tr>
                       <% } %>
                   </tbody>
@@ -107,4 +110,5 @@
         <script type="text/javascript" src="/js/navbar.js"></script>
         <script src="/js/qrPrint.js"></script>
   </body>
+
 </html>
