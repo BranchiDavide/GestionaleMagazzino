@@ -1,0 +1,113 @@
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
+  @font-face {
+    font-family: Nunito;
+    src: url('/font/Nunito/Nunito-VariableFont_wght.ttf');
+    font-weight: 400 600;
+  }
+  
+  :root {
+    --header-height: 3rem;
+    --nav-width: 68px;
+    --first-color: #4723D9;
+    --first-color-light: #AFA5D9;
+    --white-color: #F7F6FB;
+    --body-font: 'Nunito', sans-serif;
+    --normal-font-size: 1rem;
+    --z-fixed: 100
+  }
+  
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box
+  }
+  
+  body {
+    position: relative;
+    margin: var(--header-height) 0 0 0;
+    padding: 0 1rem;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    transition: .5s
+  }
+  
+  a {
+    text-decoration: none
+  }
+  
+  .header {
+    width: 100%;
+    height: var(--header-height);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    background-color: var(--white-color);
+    z-index: var(--z-fixed);
+    transition: .5s
+  }
+  
+  .header_toggle {
+    color: var(--first-color);
+    font-size: 1.5rem;
+    cursor: pointer
+  }
+  
+  .header_img {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden
+  }
+  
+  .header_img img {
+    width: 40px
+  }
+  
+  .showNB {
+    left: 0
+  }
+  
+  .body-pd {
+    padding-left: calc(var(--nav-width) + 1rem)
+  }
+  
+  .height-100 {
+    height: 100vh
+  }
+  
+  .main-section {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .optional {
+    display: none;
+  }
+  
+  .item-title {
+    text-align: center;
+  }
