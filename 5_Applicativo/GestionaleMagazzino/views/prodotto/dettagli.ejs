@@ -63,7 +63,6 @@
                 <table class="table custom-table">
                   <thead>
                     <tr>
-                      <th class="optional" scope="col">Id</th>
                       <th scope="col">Nome</th>
                       <th scope="col">Quantità</th>
                       <th class="optional" scope="col">Data prestito</th>
@@ -76,9 +75,6 @@
                   <tbody>
                     <% for (let noleggio of noleggi){ %>
                       <tr>
-                        <td class="optional">
-                          <%= noleggio.data.id %>
-                        </td>
                         <td>
                           <%= noleggio.data.nome %>
                         </td>

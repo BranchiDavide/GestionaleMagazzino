@@ -1,3 +1,9 @@
+.main-section {
+    width: 100%;
+    padding: 10px;
+    display: grid;
+}
+
 .custom-table-container {
     border-radius: 1rem;
     border: 2px solid var(--first-color);
@@ -71,6 +77,7 @@ td {
     height: 30px;
     border-radius: 1rem;
     border: 1px solid var(--first-color);
+    transition: all .3s ease-in-out;
 }
 
 .search-container {
@@ -112,5 +119,9 @@ td {
 }
 
 .search-container button:hover {
+    background: var(--first-color);
+}
+
+.custom-table button:hover {
     background: var(--first-color);
 }
