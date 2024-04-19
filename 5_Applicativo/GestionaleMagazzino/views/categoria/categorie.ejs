@@ -10,12 +10,12 @@
 <body className='snippet-body'>
 
   <body id="body-pd">
-    <%- include('../_templates/navbar.ejs', {active: "prodotti"}); -%>
+    <%- include('../_templates/navbar.ejs', {active: "categorie"}); -%>
     <!--Container Main start-->
     <div class="height-100 bg-light">
       <div class="main-section">
         <div class="item-title">
-          <h2>Cerca prodotti</h2>
+          <h2>Cerca Categorie</h2>
         </div>
         <br>
         <div class="container">
@@ -27,7 +27,7 @@
           <% } %>
           <div class="row search-container">
             <form onsubmit="event.preventDefault()">
-              <input oninput="tableSearch(this.value, [0,1,2,3])" type="search" name="data" placeholder="Cerca">
+              <input oninput="tableSearch(this.value, [0])" type="search" name="data" placeholder="Cerca">
               <button><i class="bx bx-search-alt"></i></button>
             </form>
           </div>
@@ -35,22 +35,16 @@
             <table class="table custom-table searchable-table">
               <thead>
                 <tr>
-                  <th class="optional" scope="col">Id</th>
                   <th scope="col">Nome</th>
-                  <th scope="col">Disponibili</th>
-                  <th class="optional" scope="col">Categoria</th>
-                  <th scope="col">Mostra</th>
+                  <th scope="col">Elimina</th>
                 </tr>
               </thead>
               <tbody>
-                <% for (let item of products) { %>
+                <% for (let item of categorie) { %>
                     <tr>
-                        <td class="optional"><%= item.codice%></td>
                         <td><%= item.nome%></td>
-                        <td><%= item.quantita%></td>
-                        <td class="optional"><%= item.categoria%></td>
-                        <td><a href="/prodotti/<%= item.codice %>"><button type="submit"><i class="bx bx-show-alt"></i></button></a></td>
-                      </tr>
+                        <td><a><button type="submit"><i class="bx bx-trash"></i></button></a></td>
+                    </tr>
                 <% } %>
               </tbody>
             </table>
