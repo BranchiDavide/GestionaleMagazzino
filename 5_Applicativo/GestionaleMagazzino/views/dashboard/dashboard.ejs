@@ -4,7 +4,10 @@
 <head>
   <%- include('../_templates/header'); -%>
   <title>Gestionale Magazzino - Dashboard</title>
-  <link rel="stylesheet" href="/css/dashboard/dashboard.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/customTable.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/responsiveTable.css">
 </head>
 
 <body className='snippet-body'>
@@ -18,6 +21,10 @@
           <h2>Benvenuto/a nella Dashboard <%= session.user.nome %></h2>
         </div>
         <br>
+        <div class="dashboard-functions">
+          <a href="/noleggi/nuovo"><button type="submit"><i class='bx bx-message-alt-add nav_icon'></i> </button></a>
+          <a href="/prodotti/nuovo"><button type="submit"><i class="bx bx-show-alt"></i></button></a>
+        </div>
         <div class="item-title">
           <h2>I tuoi noleggi</h2>
         </div>
