@@ -33,16 +33,27 @@ addProductBtn.addEventListener("click", async () => {
                     if(product){
                         addProdotto(product);
                     }else{
-                        alert("Prodotto non trovato!");
+                        swal({
+                            title: "Prodotto non trovato!",
+                            icon: "error"
+                        });
                     }
                     $("#exampleModal").modal("hide");
                 })
                 .catch(err => {
-                    alert("Impossibile scannerizzare i prodotti, controllare permesso fotocamera!");
+                    swal({
+                        title: "Si è verificato un errore!",
+                        text: "Impossibile scannerizzare i prodotti, controllare permesso fotocamera!",
+                        icon: "error"
+                    });
             });
         }
     }).catch(err => {
-        alert("Impossibile scannerizzare i prodotti, controllare permesso fotocamera!");
+        swal({
+            title: "Si è verificato un errore!",
+            text: "Impossibile scannerizzare i prodotti, controllare permesso fotocamera!",
+            icon: "error"
+        });
     });
 });
 
@@ -58,7 +69,10 @@ form.addEventListener("submit", (e) => {
         hiddenInput.value = JSON.stringify(prodottiNoleggio);
     }else{
         e.preventDefault();
-        alert("È necessario aggiungere almeno un prodotto per creare il noleggio!");
+        swal({
+            title: "È necessario aggiungere almeno un prodotto per creare il noleggio!",
+            icon: "warning"
+        });
     }
 });
 

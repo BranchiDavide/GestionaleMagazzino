@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Gestionale Magazzino - Prodotti</title>
+  <%- include('../headers/header'); -%>
+  <%- include('../headers/headerTablePage'); -%>
+  <script src="/sweetalert/sweetalert.min.js"></script>
+</head>
+
+<body className='snippet-body'>
+
+  <body id="body-pd">
+    <%- include('../_templates/navbar.ejs', {active: "categorie"}); -%>
+    <!--Container Main start-->
+    <div class="height-100 bg-light">
+      <div class="main-section">
+        <div class="item-title">
+          <h2>Cerca Categorie</h2>
+        </div>
+        <br>
+        <div class="container">
+          <% if(session.displaySuccessMsg){ %>
+            <div class="alert alert-success" role="alert">
+              <%= session.displaySuccessMsg %>
+              <% session.displaySuccessMsg = null %>
+            </div>
+          <% } %>
+          <div class="row search-container">
+            <form onsubmit="event.preventDefault()">
+              <input oninput="tableSearch(this.value, [0])" type="search" name="data" placeholder="Cerca">
+              <button><i class="bx bx-search-alt"></i></button>
+            </form>
+          </div>
+          <div class="custom-table-container">
+            <table class="table custom-table searchable-table">
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Elimina</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (let item of categorie) { %>
+                    <tr>
+                        <td><%= item.nome%></td>
+                        <td>
+                          <form action="/categorie/elimina" method="POST" id="deleteCategoriaForm">
+                            <input type="hidden" name="nome" id="nome" value="<%= item.nome%>">
+                            <a><button type="submit"><i class="bx bx-trash"></i></button></a>
+                          </form>
+                        </td>
+                    </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/eliminaCategoriaForm.js"></script>
+    <script src="/js/navbar.js"></script>
+    <script src="/js/search.js"></script>
+  </body>
+</html>

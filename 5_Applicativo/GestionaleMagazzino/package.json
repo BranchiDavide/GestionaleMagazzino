@@ -27,6 +27,7 @@
     "mysql2": "^3.9.1",
     "qrcode": "^1.5.3",
     "sanitize-html": "^2.12.1",
+    "sweetalert": "^2.1.2",
     "validator": "^13.11.0"
   },
   "devDependencies": {

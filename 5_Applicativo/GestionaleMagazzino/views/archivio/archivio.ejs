@@ -2,9 +2,9 @@
 <html>
 
 <head>
-  <%- include('../_templates/header'); -%>
-  <link rel="stylesheet" href="/css/noleggio/noleggi.css">
   <title>Gestionale Magazzino- Archivio noleggi</title>
+  <%- include('../headers/header'); -%>
+  <%- include('../headers/headerTablePage'); -%>
 
 <body className='snippet-body'>
   <body id="body-pd">
@@ -26,7 +26,6 @@
             <table class="table custom-table searchable-table">
               <thead>
                 <tr>
-                <th class="optional" scope="col">Id</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Data scadenza</th>
                 <th scope="col" class="optional">Autore</th>
@@ -36,7 +35,6 @@
               <tbody>
                 <% for (let item of noleggi) { %>
                   <tr>
-                    <td class="optional"><%= item.idNoleggio %></td>
                     <td><%= item.nome %></td>
                     <% 
                       let dataFine = new Date(item.dataFine);

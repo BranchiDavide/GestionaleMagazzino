@@ -32,6 +32,7 @@ app.use("/bootstrap", express.static(__dirname + "/node_modules/bootstrap/dist")
 app.use("/boxicons", express.static(__dirname + "/node_modules/boxicons"));
 app.use("/jquery", express.static(__dirname + "/node_modules/jquery/dist"))
 app.use("/html5qrcode", express.static(__dirname + "/node_modules/html5-qrcode"));
+app.use("/sweetalert", express.static(__dirname + "/node_modules/sweetalert/dist"));
 app.use("/font", express.static(__dirname + "/public/font"));
 app.use("/css", express.static(__dirname + "/public/css"));
 app.use("/js", express.static(__dirname + "/public/js"));
