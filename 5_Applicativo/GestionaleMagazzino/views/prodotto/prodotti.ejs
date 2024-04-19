@@ -35,7 +35,6 @@
             <table class="table custom-table searchable-table">
               <thead>
                 <tr>
-                  <th class="optional" scope="col">Id</th>
                   <th scope="col">Nome</th>
                   <th scope="col">Disponibili</th>
                   <th class="optional" scope="col">Categoria</th>
@@ -45,7 +44,6 @@
               <tbody>
                 <% for (let item of products) { %>
                     <tr>
-                        <td class="optional"><%= item.codice%></td>
                         <td><%= item.nome%></td>
                         <td><%= item.quantita%></td>
                         <td class="optional"><%= item.categoria%></td>

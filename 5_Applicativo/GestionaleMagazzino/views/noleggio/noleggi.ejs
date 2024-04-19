@@ -25,7 +25,6 @@
             <table class="table custom-table searchable-table">
               <thead>
                 <tr>
-                <th class="optional" scope="col">Id</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Data fine</th>
                 <th scope="col" class="optional">Autore</th>
@@ -35,7 +34,6 @@
               <tbody>
                 <% for (let item of noleggi) { %>
                   <tr>
-                    <td class="optional"><%= item.id %></td>
                     <td><%= item.nome %></td>
                     <% 
                       let dataFine = new Date(item.dataFine);
