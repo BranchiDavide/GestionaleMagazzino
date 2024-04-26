@@ -21,7 +21,6 @@
           <% if(session.user.ruolo != "utente"){%>
             <a href="/archivio" class="nav_link <% if(active == "archivio"){%>active<%}%>"> <i class='bx bx-history nav_icon'></i><span class="nav_name">Archivio noleggi</span> </a> 
           <% }%>
-          <a href="#" class="nav_link <% if(active == "manuale"){%>active<%}%>"> <i class='bx bx-book-bookmark nav_icon'></i> <span class="nav_name">Manuale</span> </a> 
           <a href="/logout" class="nav_link"> <i class='bx bx-log-out nav_icon' style="height: 100%;"></i> <span class="nav_name">Logout</span></a>
         </div>
       </div> 
