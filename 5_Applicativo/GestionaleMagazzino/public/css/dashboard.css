@@ -30,3 +30,26 @@
 .dashboard-functions button:hover {
   background-color: var(--first-color);
 }
+
+.dashboard-functions{
+  padding-left: 5%;
+  padding-right: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+div.subcontainer-row-dashboard{
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 50%; 
+}
+
+.function-button-link{
+  text-decoration: none;
+}
+
+/* icona pulsanti*/
+.bx.bx-message-alt-add.nav_icon{
+  color: #fff;
+  font-size: xx-large;
+}

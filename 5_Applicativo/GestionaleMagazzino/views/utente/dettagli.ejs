@@ -5,6 +5,7 @@
   <title>Gestionale Magazzino - Utente</title>
   <%- include('../headers/header'); -%>
   <%- include('../headers/headerDettagliPage'); -%>
+  <script src="/sweetalert/sweetalert.min.js"></script>
 </head>
 
 <body className='snippet-body'>
@@ -45,12 +46,17 @@
               </div>
               <div class="functions">
                 <div class="button-align-left">
-                    <button type="submit"><i class='bx bx-edit-alt'></i></button>
+                    <a href="/utenti/modifica/<%= user.id %>"><button type="submit"><i class='bx bx-edit-alt'></i></button></a>
                     <span class="optional">Modifica utente</span>
                   </div>
                   <div class="button-align-left">
-                    <button type="submit"><i class='bx bx-trash'></i></button>
-                    <span class="optional">Rimuovi utente</span>
+                    <form action="/utenti/elimina" method="POST" id="deleteForm">
+                      <input type="hidden" name="id" value="<%= user.id %>">
+                      <div>
+                        <button type="submit"><i class='bx bx-trash'></i></button>
+                        <span class="optional">Rimuovi utente</span>
+                      </div>
+                    </form>
                   </div>
               </div>
             </div>
@@ -85,6 +91,30 @@
             </div>
           </div>
         </div>
+        <script>
+          const form = document.getElementById("deleteForm");
+    
+          form.addEventListener('submit', (e) => {
+              e.preventDefault();
+              swal({
+                  title: "Sei sicuro di voler eliminare questo utente?",
+                  text: "L'eliminazione dell'utente è immediata, quindi non sarà possibile recuperarlo in alcun modo.",
+                  icon: "warning",
+                  buttons: {
+                  cancel: "Annulla",
+                  confirm: {
+                      text: "Si",
+                      value: "yes",
+                      className: "confirm-btn"
+                  }
+                  },
+              }).then((value) => {
+                  if (value === "yes") {
+                      form.submit();
+                  }
+              });
+          });
+        </script>
         <script type="text/javascript" src="/js/navbar.js"></script>
   </body>
 

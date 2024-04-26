@@ -86,12 +86,105 @@ async function addProduct(req, res){
     let foto = '/datastore/default.jpg';
     if(req.body.fileUploadTry){
         if(!req.file){
-            const data = {
-                session: req.session,
-                categorie: await categoriaMapper.getAll(),
-                displayError: true,
-                message: "Formato immagine non valido!"
-            }
+            data.message = "Formato immagine non valido!";
+            return res.status(400).render("prodotto/aggiunta.ejs", data);
+        }else{
+            foto = req.file.path.replace("public", "");
+        }
+    }
+
+    let isConsumabile = false;
+    // controllo se hanno messo la spunta sulla spunta 'isConsumabile'
+    if (req.body.isConsumabile !== 'undefined' && req.body.isConsumabile === 'true'){
+        isConsumabile = true;
+    }
+
+    // dati per errori
+    const data = {
+        session: req.session,
+        categorie: await categoriaMapper.getAll(),
+        displayError: true,
+        message: "Errore"
+    }
+    // controllo lunghezza nome
+    if (nome.length > 64){
+        data.message = "Il nome del prodotto è troppo lungo. Massimo 64 caratteri!";
+        return res.status(400).render("prodotto/aggiunta.ejs", data);
+    }
+
+    // controllo se il prodotto esiste già
+    const materiale = await materialeMapper.getMaterialeByNomeAndCategoria(nome, categoria);
+    if (materiale !== null){
+        data.message = "Il prodotto esiste già";
+        return res.status(400).render("prodotto/aggiunta.ejs", data);
+    }
+
+    await materialeMapper.insertMateriale(nome, foto, quantita, isConsumabile, true, categoria);
+
+    req.session.save(function(){
+        req.session.displaySuccessMsg = "Prodotto aggiunto con successo!";
+        return res.status(200).redirect("/prodotti");
+    });
+}
+
+/**
+ * La funzione per eliminare un prodotto.
+ * @param {Request} req la richiesta
+ * @param {Response} res la risposta
+ */
+async function deleteProduct(req, res){
+    const codice = sanitizer.sanitizeInput(req.body.codice);
+
+    const isEliminato = await materialeMapper.deleteMateriale(codice);
+    if (!isEliminato) {
+        return res.status(500).render("_templates/error.ejs", { error: { status: 500 } });
+    }
+
+    req.session.save(function(){
+        req.session.displaySuccessMsg = "Prodotto eliminato con successo!";
+        return res.status(200).redirect("/prodotti");
+    });
+}
+
+/**
+ * La funzione per caricare la view del prodotto.
+ * @param {Request} req la richiesta
+ * @param {Response} res la risposta
+ * @returns la view per modificare il prodotto
+ */
+async function loadViewEditProduct(req, res) {
+    const categorie = await categoriaMapper.getAll();
+    const prodotto = await materialeMapper.getByCodice(sanitizer.sanitizeInput(req.params['codice']));
+    if (prodotto === null){
+        return res.status(404).render("_templates/error.ejs", { error: { status: 404 } });
+    }
+    return res.status(200).render("prodotto/modifica.ejs", { session: req.session, categorie: categorie, prodotto: prodotto });
+}
+
+/**
+ * La funzione per modificare un prodotto.
+ * @param {Request} req la richiesta che arriva al controller
+ * @param {Response} res la risposta
+ */
+async function editProduct(req, res) {
+    const codice = toInt(req.body.codice);
+    const nome = sanitizer.sanitizeInput(req.body.nome);
+    const quantita = toInt(sanitizer.sanitizeInput(req.body.quantita));
+    const categoria = sanitizer.sanitizeInput(req.body.categoria);
+
+    // dati per errori
+    const data = {
+        session: req.session,
+        prodotto: await materialeMapper.getByCodice(codice),
+        categorie: await categoriaMapper.getAll(),
+        displayError: true,
+        message: "Errore"
+    }
+    // controllo se utente ha caricato una foto, altrimenti c'è quella di default
+    let foto = '/datastore/default.jpg';
+    if(req.body.fileUploadTry){
+        if(!req.file){
+            data.message = "Formato immagine non valido!";
             return res.status(400).render("prodotto/aggiunta.ejs", data);
         }else{
             foto = req.file.path.replace("public", "");
@@ -106,31 +199,22 @@ async function addProduct(req, res){
 
     // controllo lunghezza nome
     if (nome.length > 64){
-        const data = {
-            session: req.session,
-            categorie: await categoriaMapper.getAll(),
-            displayError: true,
-            message: "Il nome del prodotto è troppo lungo. Massimo 64 caratteri!"
-        }
-        return res.status(400).render("prodotto/aggiunta.ejs", data);
+        data.message = "Il nome del prodotto è troppo lungo. Massimo 64 caratteri!";
+        return res.status(400).render("prodotto/modifica.ejs", data);
     }
 
     // controllo se il prodotto esiste già
     const materiale = await materialeMapper.getMaterialeByNomeAndCategoria(nome, categoria);
-    if (materiale !== null){
-        const data = {
-            session: req.session,
-            categorie: await categoriaMapper.getAll(),
-            displayError: true,
-            message: "Il prodotto esiste già"
-        }
-        return res.status(400).render("prodotto/aggiunta.ejs", data);
+    if (materiale !== null && materiale.codice != codice){
+        data.message = "Il prodotto con questo nome e categoria esiste già";
+        return res.status(400).render("prodotto/modifica.ejs", data);
     }
 
-    await materialeMapper.insertMateriale(nome, foto, quantita, isConsumabile, true, categoria);
+    const isDisponibile = quantita > 0 ? true : false;
+    await materialeMapper.updateMateriale(codice, nome, foto, quantita, isConsumabile, isDisponibile, categoria);
 
     req.session.save(function(){
-        req.session.displaySuccessMsg = "Prodotto aggiunto con successo!";
+        req.session.displaySuccessMsg = "Prodotto modificato con successo!";
         return res.status(200).redirect("/prodotti");
     });
 }
@@ -139,5 +223,8 @@ module.exports = {
     showAll,
     showProductDetails,
     loadViewAddProduct,
-    addProduct
+    addProduct,
+    deleteProduct,
+    loadViewEditProduct,
+    editProduct
 };

@@ -57,7 +57,21 @@
                     <span class="optional">Rimuovi oggetto</span>
                   </div>
                 </div>
-                <% } %>
+                <div class="button-align-left">
+                    <a href="/prodotti/modifica/<%= product.codice %>"><button type="submit"><i class='bx bx-edit-alt'></i></button></a>
+                    <span class="optional">Modifica oggetto</span>
+                </div>
+                <div class="button-align-left">
+                  <form action="/prodotti/elimina" method="POST" id="deleteForm">
+                    <input type="hidden" value="<%= product.codice %>" name="codice">
+                    <div>
+                      <button type="submit"><i class='bx bx-trash'></i></button>
+                      <span class="optional">Rimuovi oggetto</span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <% } %>
             </div>
             <div class="item-right">
               <div class="item-title">
@@ -106,7 +120,30 @@
           </div>
         </div>
         <img src="<%= qrCode %>" class="qrCodeImg">
-        <!--Container Main end-->
+        <script>
+          const form = document.getElementById("deleteForm");
+    
+          form.addEventListener('submit', (e) => {
+              e.preventDefault();
+              swal({
+                  title: "Sei sicuro di voler eliminare questo prodotto?",
+                  text: "L'eliminazione del prodotto è immediata, quindi non sarà possibile recuperarlo in alcun modo.",
+                  icon: "warning",
+                  buttons: {
+                  cancel: "Annulla",
+                  confirm: {
+                      text: "Si",
+                      value: "yes",
+                      className: "confirm-btn"
+                  }
+                  },
+              }).then((value) => {
+                  if (value === "yes") {
+                      form.submit();
+                  }
+              });
+          });
+        </script>
         <script type="text/javascript" src="/js/navbar.js"></script>
         <script src="/js/qrPrint.js"></script>
   </body>
