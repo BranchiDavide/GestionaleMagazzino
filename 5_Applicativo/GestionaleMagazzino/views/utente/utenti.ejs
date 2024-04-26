@@ -30,13 +30,13 @@
               <input oninput="tableSearch(this.value, [0,1,2,3,4])" type="search" name="data" placeholder="Cerca">
               <button><i class="bx bx-search-alt"></i></button>
               <% if (session.user.ruolo != "utente"){ %>
-                <a href="/utenti/nuovo" style="margin-left: 2rem;"><button style="border-radius: 0;" onclick="window.location = '/utenti/nuovo'"><i class='bx bxs-plus-square'></i></button></a>
-              <% } %>
+                <div class="spacer"></div>
+                <div class="add-button">
+                  <a><button onclick="window.location='/utenti/nuovo'"><i class='bx bxs-plus-square'></i></button></a>
+                </div>
+                <% } %>
             </form>
           </div>
-          <div class="dashboard-functions">
-            <a href="/utenti/nuovo"><button type="submit"><i class='bx bxs-user-plus'></i></button></a>
-¨          </div>
 <br>  
           <div class="custom-table-container">
             <table class="table custom-table searchable-table">

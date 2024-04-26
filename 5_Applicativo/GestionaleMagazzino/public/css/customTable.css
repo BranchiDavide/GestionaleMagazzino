@@ -94,7 +94,7 @@ td {
 }
 
 .search-container input {
-    width: 500px;
+    width: 600px;
     height: 30px;
     outline: none;
     border: 2px solid var(--first-color);
@@ -124,4 +124,17 @@ td {
 
 .custom-table button:hover {
     background: var(--first-color);
+}
+
+.spacer{
+    width: 50px;
+}
+
+.add-button button{
+    border-radius: 10rem;   
+    border: 2px solid var(--first-color); 
+}
+
+.add-button{
+    height: 30px;
 }
