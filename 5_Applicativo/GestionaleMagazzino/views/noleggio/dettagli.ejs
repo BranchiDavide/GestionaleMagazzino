@@ -8,11 +8,10 @@
 </head>
 
 <body className='snippet-body'>
-
   <body id="body-pd">
     <%- include('../_templates/navbar.ejs', {active: "noleggi" }); -%>
       <!--Container Main start-->
-      <div class="height-100 bg-light">
+      <div class="height-100 bg-light print-none">
         <div class="main-section">
           <div class="item-container">
             <div class="item-title">
@@ -49,7 +48,7 @@
               </div>
               <div class="functions">
                 <div class="button-align-left">
-                  <button type="submit"><i class='bx bx-printer'></i></button>
+                  <button type="submit" onclick="window.print()"><i class='bx bx-printer'></i></button>
                   <span class="optional">Stampa lista materiale</span>
                 </div>
                 <div class="button-align-left">
@@ -94,6 +93,28 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="table-materiale-print">
+          <h1>Materiali per "<%= noleggio.nome%>"</h1>
+          <br><br>
+          <table class="table table-striped table-secondary">
+            <thead>
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Quantità</th>
+                <th scope="col">Categoria</th>
+              </tr>
+              <tbody>
+                <% for (let item of prodotti){ %>
+                  <tr>
+                    <td><%= item[0].nome%></td>
+                    <td><%= item[1]%></td>
+                    <td><%= item[0].categoria%></td>
+                  </tr>
+                <% }%>
+              </tbody>
+            </thead>
+          </table>
         </div>
         <!--Container Main end-->
         <script type="text/javascript" src="/js/navbar.js"></script>
