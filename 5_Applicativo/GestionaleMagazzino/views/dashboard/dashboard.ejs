@@ -18,6 +18,19 @@
         <div class="item-title">
           <h2>Benvenuto/a nella Dashboard <%= session.user.nome %></h2>
         </div>
+        <% if(session.displaySuccessMsg){ %>
+          <br>
+          <div class="alert alert-success" role="alert">
+            <%= session.displaySuccessMsg %>
+            <% session.displaySuccessMsg = null %>
+          </div>
+        <% } %>
+        <% if(session.displayErrorMsg){ %>
+          <div class="alert alert-danger" role="alert">
+            <%= session.displayErrorMsg %>
+            <% session.displayErrorMsg = null %>
+          </div>
+        <% } %>
         <div style="margin-bottom: 2.5rem; margin-top: 2.5rem;">
           <div class="dashboard-functions">
             <div class="subcontainer-row-dashboard">
@@ -40,18 +53,6 @@
         <div class="item-title">
           <h2>I tuoi noleggi</h2>
         </div>
-        <% if(session.displaySuccessMsg){ %>
-          <div class="alert alert-success" role="alert">
-            <%= session.displaySuccessMsg %>
-            <% session.displaySuccessMsg = null %>
-          </div>
-        <% } %>
-        <% if(session.displayErrorMsg){ %>
-          <div class="alert alert-danger" role="alert">
-            <%= session.displayErrorMsg %>
-            <% session.displayErrorMsg = null %>
-          </div>
-        <% } %>
         <div class="container">
           <div class="custom-table-container">
             <table class="table custom-table searchable-table">

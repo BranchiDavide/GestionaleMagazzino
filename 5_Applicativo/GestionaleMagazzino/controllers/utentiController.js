@@ -230,7 +230,7 @@ function loadViewEditProfilo(req, res){
  * @param {Response} res la risposta
  */
 async function editProfilo(req, res){
-    const id = req.body.session.user.id;
+    const id = req.session.user.id;
     const nome = sanitizer.sanitizeInput(req.body.nome);
     const cognome = sanitizer.sanitizeInput(req.body.cognome);
     const nascita = sanitizer.sanitizeInput(req.body.dataNascita);
@@ -292,7 +292,8 @@ async function editProfilo(req, res){
     }
 
     await userMapper.updateUser(id, nome, cognome, foto, nascita, email, passwordHashata, ruolo);
-
+    req.session.user = await userMapper.getById(id); // aggiorno utente nella sessione
+    
     req.session.save(function(){
         req.session.displaySuccessMsg = "Utente aggiornato con successo!";
         return res.status(200).redirect("/home");
