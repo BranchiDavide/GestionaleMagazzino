@@ -94,7 +94,26 @@
     
           form.addEventListener('submit', (e) => {
               e.preventDefault();
-              swal({
+              <% if(session.user.id == user.id){ %>
+                swal({
+                  title: "ATTENZIONE: Stai eliminando il tuo utente!",
+                  text: "Sei sicuro di voler eliminare il tuo utente? L'azione è irreversibile e non sarai più in grado di accedere all'applicativo!",
+                  icon: "warning",
+                  buttons: {
+                  cancel: "Annulla",
+                  confirm: {
+                      text: "Si",
+                      value: "yes",
+                      className: "confirm-btn"
+                  }
+                  },
+              }).then((value) => {
+                  if (value === "yes") {
+                      form.submit();
+                  }
+              });
+              <%}else{%>
+                swal({
                   title: "Sei sicuro di voler eliminare questo utente?",
                   text: "L'eliminazione dell'utente è immediata, quindi non sarà possibile recuperarlo in alcun modo.",
                   icon: "warning",
@@ -111,6 +130,7 @@
                       form.submit();
                   }
               });
+              <%}%>
           });
         </script>
         <script type="text/javascript" src="/js/navbar.js"></script>

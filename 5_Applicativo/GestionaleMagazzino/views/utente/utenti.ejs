@@ -25,6 +25,12 @@
               <% session.displaySuccessMsg = null %>
             </div>
           <% } %>
+          <% if(session.displayErrorMsg){ %>
+            <div class="alert alert-danger" role="alert">
+              <%= session.displayErrorMsg %>
+              <% session.displayErrorMsg = null %>
+            </div>
+          <% } %>
           <div class="row search-container">
             <form onsubmit="event.preventDefault()">
               <input oninput="tableSearch(this.value, [0,1,2,3,4])" type="search" name="data" placeholder="Cerca">
