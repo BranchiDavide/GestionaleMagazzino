@@ -48,7 +48,7 @@
                     <tr>
                         <td><%= item.nome%></td>
                         <td>
-                          <form action="/categorie/elimina" method="POST" id="deleteForm">
+                          <form action="/categorie/elimina" method="POST" class="deleteForm">
                             <input type="hidden" name="nome" id="nome" value="<%= item.nome%>">
                             <a><button type="submit"><i class="bx bx-trash"></i></button></a>
                           </form>
@@ -62,9 +62,10 @@
       </div>
     </div>
     <script>
-      const form = document.getElementById("deleteForm");
+      const forms = document.getElementsByClassName("deleteForm");
 
-      form.addEventListener('submit', (e) => {
+      for (let form of forms){
+        form.addEventListener('submit', (e) => {
           e.preventDefault();
           swal({
               title: "Sei sicuro di voler eliminare questa categoria?",
@@ -83,7 +84,8 @@
                   form.submit();
               }
           });
-      });
+       });
+      }
     </script>
     <script src="/js/navbar.js"></script>
     <script src="/js/search.js"></script>
