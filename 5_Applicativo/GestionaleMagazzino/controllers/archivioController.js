@@ -1,6 +1,7 @@
 const noleggiArchivioMapper = require("./../models/mappers/noleggioArchivioMapper");
 const noleggioMapper = require("./../models/mappers/noleggioMapper");
 const sanitizer = require("./../models/utils/sanitizer");
+
 async function showAll(req, res){
     let noleggiArchivio = await noleggiArchivioMapper.getAllByDate();
     noleggiArchivio = await noleggioMapper.changeIdUtenteToNome(noleggiArchivio);

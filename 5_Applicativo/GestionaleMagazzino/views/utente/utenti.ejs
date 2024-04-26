@@ -29,6 +29,9 @@
             <form onsubmit="event.preventDefault()">
               <input oninput="tableSearch(this.value, [0,1,2,3,4])" type="search" name="data" placeholder="Cerca">
               <button><i class="bx bx-search-alt"></i></button>
+              <% if (session.user.ruolo != "utente"){ %>
+                <a href="/utenti/nuovo" style="margin-left: 2rem;"><button style="border-radius: 0;" onclick="window.location = '/utenti/nuovo'"><i class='bx bxs-plus-square'></i></button></a>
+              <% } %>
             </form>
           </div>
           <div class="custom-table-container">

@@ -71,12 +71,7 @@ async function deleteCategoria(req, res){
 
     const isEliminata = await categoriaMapper.deleteCategoria(nome);
     if (!isEliminata) {
-        const data = {
-            session: req.session,
-            displayError: true,
-            message: "C'è stato un problema con l'eliminazione della categoria. Riprova più tardi!"
-        }
-        return res.status(500).render("categoria/aggiunta.ejs", data);
+        return res.status(500).render("_templates/error.ejs", {error: {status: 500}});
     }
 
     req.session.save(function(){
