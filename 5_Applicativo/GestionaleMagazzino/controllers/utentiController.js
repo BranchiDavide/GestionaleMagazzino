@@ -212,7 +212,91 @@ async function editUtente(req, res){
         req.session.displaySuccessMsg = "Utente aggiornato con successo!";
         return res.status(200).redirect("/utenti");
     });
+}
 
+/**
+ * La funzione carica la pagina per la modifica del profilo.
+ * @param {Request} req la richiesta
+ * @param {Response} res la risposta
+ */
+function loadViewEditProfilo(req, res){
+    const ruoli = ['utente', 'gestore', 'amministratore'];
+    return res.status(200).render("utente/modifica.ejs", { session: req.session, ruoli: ruoli, user: req.session.user });
+}
+
+/**
+ * La funzione per modificare il proprio profilo utente.
+ * @param {Request} req la richiesta che arriva al controller
+ * @param {Response} res la risposta
+ */
+async function editProfilo(req, res){
+    const id = req.body.session.user.id;
+    const nome = sanitizer.sanitizeInput(req.body.nome);
+    const cognome = sanitizer.sanitizeInput(req.body.cognome);
+    const nascita = sanitizer.sanitizeInput(req.body.dataNascita);
+    const ruolo = sanitizer.sanitizeInput(req.body.ruolo);
+    const password = sanitizer.sanitizeInput(req.body.password);
+    const passwordRipetuta = sanitizer.sanitizeInput(req.body.passwordRipetuta);
+    const email = sanitizer.sanitizeInputTruncate(req.body.email);
+
+    // utente che servira per i controlli, sarebbe l'utente che deve essere modificato
+    const user = await userMapper.getById(id);
+    // dati per errori
+    const data = {
+        session: req.session,
+        ruoli: ['utente', 'gestore', 'amministratore'],
+        displayError: true,
+        message: "Errore",
+        user: user
+    }
+    // controllo se email valida
+    if (!sanitizer.validateEmail(email)){
+        data.message = "Inserire un indirizzo email valido!";
+        return res.status(400).render("utente/modificaAmministratore.ejs", data);
+    }
+    const otherUser = await userMapper.getByEmail(email);
+    if (otherUser !== null && otherUser.id != id){
+        data.message = `Esiste già un utente con l'email: ${email}`;
+        return res.status(400).render("utente/modificaAmministratore.ejs", data);
+    }
+    // controllo lunghezza nome
+    if (nome.length > 64){
+        data.message = "Il nome dell' utente è troppo lungo. Massimo 64 caratteri!";
+        return res.status(400).render("utente/modificaAmministratore.ejs", data);
+    }
+    // controllo lunghezza cognome
+    if (cognome.length > 64){
+        data.message = "Il cognome dell' utente è troppo lungo. Massimo 64 caratteri!";
+        return res.status(400).render("utente/modificaAmministratore.ejs", data);
+    }
+
+    // controlli sulle password
+    if (password !== passwordRipetuta){
+        data.message = "Le passowrd non coincidono!";
+        return res.status(400).render("utente/modificaAmministratore.ejs", data);
+    }
+    let passwordHashata = password;
+    if (password !== user.password){
+        passwordHashata = await bcrypt.hash(password, 10);
+    }
+
+    // controllo se utente ha caricato una foto, altrimenti c'è quella che aveva prima
+    let foto = req.session.user.riferimentoFoto;
+    if(req.body.fileUploadTry){
+        if(!req.file){
+            data.message = "Formato immagine non valido!";
+            return res.status(400).render("utente/modifica.ejs", data);
+        }else{
+            foto = req.file.path.replace("public", "");
+        }
+    }
+
+    await userMapper.updateUser(id, nome, cognome, foto, nascita, email, passwordHashata, ruolo);
+
+    req.session.save(function(){
+        req.session.displaySuccessMsg = "Utente aggiornato con successo!";
+        return res.status(200).redirect("/home");
+    });
 }
 
 module.exports = {
@@ -222,5 +306,7 @@ module.exports = {
     addNew,
     deleteUser,
     loadViewEditUtente,
-    editUtente
+    editUtente,
+    loadViewEditProfilo,
+    editProfilo
 }
