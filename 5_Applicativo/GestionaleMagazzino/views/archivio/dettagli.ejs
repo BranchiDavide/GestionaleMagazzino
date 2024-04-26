@@ -10,17 +10,19 @@
 <body className='snippet-body'>
 
   <body id="body-pd">
-    <%- include('../_templates/navbar.ejs', {active: "noleggi" }); -%>
+    <%- include('../_templates/navbar.ejs', {active: "archivio" }); -%>
       <!--Container Main start-->
       <div class="height-100 bg-light">
         <div class="main-section">
           <div class="item-container">
+          <div class="item-title">
+            <h2>
+              <%= noleggio.nome%> <h5>(Archiviato)</h5>
+            </h2>
+          </div>
+        </div>
+          <div class="item-container">
             <div class="item-left">
-              <div class="item-title">
-                <h2>
-                  <%= noleggio.nome%> <h5>(Archiviato)</h5>
-                </h2>
-              </div>
               <div class="item-info">
                 <p><strong>ID:</strong>
                   <%= noleggio.idNoleggio %>
@@ -56,6 +58,7 @@
                 </p>
               </div>
             </div>
+            <div class="spacer"></div>
             <div class="item-right">
               <div class="item-title">
                 <h2>Materiale</h2>
@@ -71,7 +74,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <% for (let item of prodotti) { console.log(prodotti)%>
+                    <% for (let item of prodotti) { %>
                       
                       <tr>
                         <td>

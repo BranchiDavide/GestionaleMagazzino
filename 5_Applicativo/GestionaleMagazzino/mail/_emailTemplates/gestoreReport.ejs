@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionale Magazzino</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gestionale Magazzino</h1>
+        <br>
+        <h3>Buongiorno <%= utente.nome + " " + utente.cognome %></h3>
+        <p>Ecco il report giornaliero dei noleggi scaduti non ancora chiusi</p>
+        <% if(noleggi.length != 0){ %>
+            <% if(noleggi.length == 1){ %>
+                <p style="color: red;">C'è 1 noleggio scaduto</p>
+            <% }else{ %>
+                <p style="color: red;">Ci sono <%= noleggi.length %> noleggi scaduti</p>
+            <% } %>
+            <p>Dettagli:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Data inizio</th>
+                        <th>Data scadenza</th>
+                        <th>Autore</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let noleggio of noleggi) { %>
+                        <tr>
+                            <td><%= noleggio.nome %></td>
+                            <%
+                                let dataInizio = new Date(noleggio.dataInizio);
+                                let dataFine = new Date(noleggio.dataFine);
+                                let dataInizioFormatted = dataInizio.toLocaleDateString("en-CH");
+                                let dataFineFormatted = dataFine.toLocaleDateString("en-CH");
+                            %>
+                            <td><%= dataInizioFormatted %></td>
+                            <td><%= dataFineFormatted %></td>
+                            <td><%= noleggio.idUtente %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        <% }else{ %>
+            <p style="color: green;">Non c'è nessun noleggio scaduto!</p>
+        <% } %>
+    </div>
+</body>
+</html>

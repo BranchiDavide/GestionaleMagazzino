@@ -1,0 +1,42 @@
+<div class="dashboard-functions">
+    <div class="subcontainer-row-dashboard">
+        <a href="/noleggi/nuovo" class="function-button-link"><button><i class='bx bx-list-plus'></i>
+                <div style="width: 8px;"></div> Crea noleggio
+            </button></a>
+    </div>
+    <div class="subcontainer-row-dashboard" style="text-align: right;">
+        <a href="#" class="function-button-link"><button><i class='bx bx-book-bookmark'></i>
+            <div style="width: 8px;"></div> Manuale
+        </button></a>
+    </div>
+</div>
+<% if(session.user.ruolo !="utente" ){%>
+    <br>
+    <div class="dashboard-functions">
+        <div class="subcontainer-row-dashboard">
+            <a href="/prodotti/nuovo" class="function-button-link"><button><i class='bx bxs-package' ></i>
+            <div style="width: 8px;"></div> Crea materiale
+        </button></a>
+        </div>
+        <div class="subcontainer-row-dashboard" style="text-align: right;">
+            <a href="/categorie/nuovo" class="function-button-link"><button><i class='bx bx-purchase-tag-alt'></i>
+                <div style="width: 8px;"></div> Crea categoria
+            </button></a>
+        </div>
+    </div>
+    <% if(session.user.ruolo !="gestore" ){%>
+        <br>
+        <div class="dashboard-functions">
+            <div class="subcontainer-row-dashboard">
+                <a href="/utenti/nuovo" class="function-button-link"><button><i class='bx bx-user-plus' ></i>
+                    <div style="width: 8px;"></div> Crea utente
+                </button></a>
+            </div>
+            <div class="subcontainer-row-dashboard" style="text-align: right;">
+                <a href="/utenti" class="function-button-link"><button><i class='bx bx-user' ></i>
+                    <div style="width: 8px;"></div> Lista utenti
+                </button></a>
+            </div>
+        </div>
+        <% }%>
+    <% }%>

@@ -1,6 +1,7 @@
 <header class="header" id="header">
   <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-  <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
+  <div style="text-align: right; width: 95%"><%= session.user.nome %> <%= session.user.cognome%></div>
+  <div class="header_img"><a href="/profilo/modifica"><img src="<%= session.user.riferimentoFoto %>" alt=""></a></div>
 </header>
 <div class="l-navbar" id="nav-bar">
     <nav class="nav">
@@ -17,6 +18,9 @@
           <% }%>
           <% if(session.user.ruolo == "amministratore"){%>
             <a href="/utenti" class="nav_link <% if(active == "utenti"){%>active<%}%>"> <i class='bx bx-user nav_icon'></i><span class="nav_name">Utenti</span> </a> 
+          <% }%>
+          <% if(session.user.ruolo != "utente"){%>
+            <a href="/archivio" class="nav_link <% if(active == "archivio"){%>active<%}%>"> <i class='bx bx-history nav_icon'></i><span class="nav_name">Archivio noleggi</span> </a> 
           <% }%>
           <a href="#" class="nav_link <% if(active == "manuale"){%>active<%}%>"> <i class='bx bx-book-bookmark nav_icon'></i> <span class="nav_name">Manuale</span> </a> 
           <a href="/logout" class="nav_link"> <i class='bx bx-log-out nav_icon' style="height: 100%;"></i> <span class="nav_name">Logout</span></a>

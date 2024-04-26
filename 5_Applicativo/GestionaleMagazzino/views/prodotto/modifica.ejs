@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <title>GestionaleMagazzino - Prodotti</title>
+    <%- include('../headers/header'); -%>
+    <%- include('../headers/headerModifyPage'); -%>
+</head>
+
+<body className='snippet-body'>
+
+  <body id="body-pd">
+    <%- include('../_templates/navbar.ejs', {active: "prodotti" }); -%>
+      <div class="height-100 bg-light">
+        <div class="main-section">
+          <div class="item-container">
+            <div class="item-center">
+              <div class="item-title">
+                <h2>Modifica prodotto</h2>
+              </div>
+              <br>
+              <form action="/prodotti/modifica" method="POST" enctype="multipart/form-data" id="aggiuntaForm">
+                <div class="item-info">
+                  <div class="form-row">
+                    <label>Nome prodotto:</label>
+                    <input class="form-control" id="nome" type="text" value="<%= prodotto.nome %>" name="nome" maxlength="64" required>
+                    <input type="hidden" id="codice" name="codice" value="<%= prodotto.codice%>">
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <label>Quantità prodotto:</label>
+                    <input class="form-control" type="number" id="quantita" name="quantita" min="1" max="100000" value="<%= prodotto.quantita%>" required>
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <label>Categoria:</label>
+                    <select class="form-control" name="categoria" id="categoria" required>
+                      <% for(let categoria of categorie){ %>
+                        <% if (prodotto.categoria === categoria){ %>
+                            <option value="<%= categoria.nome %>" selected="selected"><%= categoria.nome %></option>
+                        <% }else{ %>
+                            <option value="<%= categoria.nome %>"><%= categoria.nome %></option>
+                        <% } %>
+                      <% } %>
+                    </select>
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <div class="form-check">
+                      <% if (prodotto.isConsumabile){ %>
+                        <input class="form-check-input" type="checkbox" value="true" id="isConsumabile" name="isConsumabile" checked>
+                      <% }else{ %>
+                        <input class="form-check-input" type="checkbox" value="true" id="isConsumabile" name="isConsumabile">
+                      <% } %>
+                      <label class="form-check-label" for="isConsumabile"> È consumabile</label>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="item-title">
+                    <h3>Inserisci foto opz.</h3>
+                  </div>
+                  <div class="form-row">
+                    <input class="form-control" type="file" name="foto" id="formFile" capture="camera" accept="image/jpeg, image/png">
+                  </div>
+                  <br>
+                  <div class="item-picture" style="display: block;">
+                    <img id="previewImage" src="<%= prodotto.riferimentoFoto %>" width="400" height="300">
+                  </div>
+                </div>
+                <% if(typeof displayError !== "undefined" && displayError){ %>
+                  <div class="alert alert-danger" role="alert">
+                    <%= message %>
+                  </div>
+                <% } %>
+                <div class="functions">
+                  <div class="button-align-left">
+                    <button type="submit"><i class='bx bxs-check-circle'></i></button>
+                    <span class="optional">Conferma</span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+  </body>
+</body>
+<script src="/js/navbar.js"></script>
+<script src="/js/imagePreview.js"></script>
+</html>

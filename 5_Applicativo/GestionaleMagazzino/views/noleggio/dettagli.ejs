@@ -8,19 +8,20 @@
 </head>
 
 <body className='snippet-body'>
-
   <body id="body-pd">
     <%- include('../_templates/navbar.ejs', {active: "noleggi" }); -%>
       <!--Container Main start-->
-      <div class="height-100 bg-light">
+      <div class="height-100 bg-light print-none">
         <div class="main-section">
           <div class="item-container">
+            <div class="item-title">
+              <h2>
+                <%= noleggio.nome%>
+              </h2>
+            </div>
+          </div>
+          <div class="item-container">
             <div class="item-left">
-              <div class="item-title">
-                <h2>
-                  <%= noleggio.nome%>
-                </h2>
-              </div>
               <div class="item-picture">
                 <img src="<%= noleggio.riferimentoFoto %>" alt="item Picture">
               </div>
@@ -32,9 +33,14 @@
                   <%= noleggio.idUtente %>
                 </p>
                 <% 
+                let dataInizio = new Date(noleggio.dataInizio);
+                let dataInizioFormatted = dataInizio.toLocaleDateString("en-CH");
                 let dataFine=new Date(noleggio.dataFine); 
                 let dataFineFormatted=dataFine.toLocaleDateString("en-CH"); 
                 %>
+                <p><strong>Data inizio:</strong>
+                  <%= dataFineFormatted %>
+                </p>
                   <p <% if(new Date()> dataFine){%>style="color: red;"<%}%>>
                       <strong>Data ritorno:</strong>
                       <%=dataFineFormatted %>
@@ -42,7 +48,7 @@
               </div>
               <div class="functions">
                 <div class="button-align-left">
-                  <button type="submit"><i class='bx bx-printer'></i></button>
+                  <button type="submit" onclick="window.print()"><i class='bx bx-printer'></i></button>
                   <span class="optional">Stampa lista materiale</span>
                 </div>
                 <div class="button-align-left">
@@ -51,6 +57,7 @@
                 </div>
               </div>
             </div>
+            <div class="spacer"></div>
             <div class="item-right">
               <div class="item-title">
                 <h2>Materiale</h2>
@@ -86,6 +93,28 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="table-materiale-print">
+          <h1>Materiali per "<%= noleggio.nome%>"</h1>
+          <br><br>
+          <table class="table table-striped table-secondary">
+            <thead>
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Quantità</th>
+                <th scope="col">Categoria</th>
+              </tr>
+              <tbody>
+                <% for (let item of prodotti){ %>
+                  <tr>
+                    <td><%= item[0].nome%></td>
+                    <td><%= item[1]%></td>
+                    <td><%= item[0].categoria%></td>
+                  </tr>
+                <% }%>
+              </tbody>
+            </thead>
+          </table>
         </div>
         <!--Container Main end-->
         <script type="text/javascript" src="/js/navbar.js"></script>

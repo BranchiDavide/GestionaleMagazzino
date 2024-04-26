@@ -93,4 +93,13 @@ async function deleteUser(id){
     return result.affectedRows == 1;
 }
 
-module.exports = {getAll, getByEmail, getById, insertUser, updateUser, deleteUser};
+async function getAllGestoriAndAmministratori(){
+    const [result] = await db.query("SELECT * FROM utente WHERE ruolo='amministratore' OR ruolo='gestore'");
+    let users = [];
+    for(let item of result){
+        users.push(new User(item.id, item.nome, item.cognome, item.riferimentoFoto, item.dataNascita, item.email, item.password, item.ruolo));
+    }
+    return users;
+}
+
+module.exports = {getAll, getByEmail, getById, insertUser, updateUser, deleteUser, getAllGestoriAndAmministratori};

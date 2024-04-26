@@ -67,8 +67,12 @@ async function addNew(req, res){
         });
     }else{
         req.session.displaySuccessMsg = "Noleggio aggiunto con successo!";
-        req.session.save(function() {             
-            return res.status(200).redirect("/home");
+        req.session.save(function() {     
+            if (req.session.user.ruolo === "utente"){
+                return res.status(200).redirect("/home");
+            }else{
+                return res.status(200).redirect("/noleggi");
+            }
         });
     }
 }
