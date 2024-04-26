@@ -8,6 +8,7 @@ const routes = require("./routes/index");
 const https = require('https');
 const fs = require('fs');
 const logMiddleware = require("./middlewares/logMiddleware");
+const mailerWorker = require("./mail/mailerWorker");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -68,6 +69,9 @@ app.use(session({
 
 // routes per l'indirizzamento delle pagine
 app.use("/", routes);
+
+// Avvio del modulo per inviare le email di notifica
+mailerWorker.initializeMailerWorker();
 
 server.listen(PORT, () => {
 	let date = new Date();

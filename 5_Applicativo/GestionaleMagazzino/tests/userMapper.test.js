@@ -84,3 +84,12 @@ test("_08_deleteUser", async () => {
     expect(result).toBeTruthy();
     expect(userDeleted).toBeNull();
 });
+
+test("_09_getAllGestoriAndAmministratori", async () => {
+    let result = await userMapper.getAllGestoriAndAmministratori();
+    expect(result.length).toBeGreaterThan(0);
+    for(let item of result){
+        expect(item instanceof User).toBeTruthy();
+        expect(item.ruolo == "gestore" || item.ruolo == "amministratore").toBeTruthy();
+    }
+});
