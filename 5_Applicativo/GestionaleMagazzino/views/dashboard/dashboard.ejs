@@ -18,29 +18,8 @@
         <div class="item-title">
           <h2>Benvenuto/a nella Dashboard <%= session.user.nome %></h2>
         </div>
-        <div style="margin-bottom: 3.5rem; margin-top: 2.5rem;">
-          <div class="dashboard-functions">
-            <div class="subcontainer-row-dashboard">
-              <a href="/noleggi/nuovo" class="function-button-link"><button style="height: 7.5rem; width: 100%; left: 0;"><i class='bx bx-message-alt-add nav_icon'></i><a style="text-decoration: none;">Nuovo noleggio</a></button></a>
-            </div>
-            <div class="subcontainer-row-dashboard" style="text-align: right;">
-              <a href="/noleggi/nuovo" class="function-button-link"><button style="height: 7.5rem; width: 100%; left: 0;"><i class='bx bx-message-alt-add nav_icon'></i><a style="text-decoration: none;">Nuovo noleggio</a></button></a>
-            </div>
-          </div>
-          <div class="dashboard-functions">
-            <div class="subcontainer-row-dashboard">
-              <a href="/noleggi/nuovo" class="function-button-link"><button style="height: 7.5rem; width: 100%; left: 0;"><i class='bx bx-message-alt-add nav_icon'></i><a style="text-decoration: none;">Nuovo noleggio</a></button></a>
-            </div>
-            <div class="subcontainer-row-dashboard" style="text-align: right;">
-              <a href="/noleggi/nuovo" class="function-button-link"><button style="height: 7.5rem; width: 100%; left: 0;"><i class='bx bx-message-alt-add nav_icon'></i><a style="text-decoration: none;">Nuovo noleggio</a></button></a>
-            </div>
-          </div>
-        </div>
-        <br><br>
-        <div class="item-title">
-          <h2>I tuoi noleggi</h2>
-        </div>
         <% if(session.displaySuccessMsg){ %>
+          <br>
           <div class="alert alert-success" role="alert">
             <%= session.displaySuccessMsg %>
             <% session.displaySuccessMsg = null %>
@@ -52,6 +31,28 @@
             <% session.displayErrorMsg = null %>
           </div>
         <% } %>
+        <div style="margin-bottom: 2.5rem; margin-top: 2.5rem;">
+          <div class="dashboard-functions">
+            <div class="subcontainer-row-dashboard">
+              <a href="/noleggi/nuovo" class="function-button-link"><button style="height: 7.5rem; width: 100%; left: 0;"><i class='bx bx-message-alt-add nav_icon'></i><a style="text-decoration: none;"></a></button></a>
+            </div>
+            <div class="subcontainer-row-dashboard" style="text-align: right;">
+              <a href="/utente/nuovo" class="function-button-link"><button style="height: 7.5rem; width: 100%; left: 0;"><i class='bx bx-message-alt-add nav_icon'></i><a style="text-decoration: none;"></a></button></a>
+            </div>
+          </div>
+          <div class="dashboard-functions">
+            <div class="subcontainer-row-dashboard">
+              <a href="/noleggi/nuovo" class="function-button-link"><button style="height: 7.5rem; width: 100%; left: 0;"><i class='bx bx-message-alt-add nav_icon'></i><a style="text-decoration: none;"></a></button></a>
+            </div>
+            <div class="subcontainer-row-dashboard" style="text-align: right;">
+              <a href="/noleggi/nuovo" class="function-button-link"><button style="height: 7.5rem; width: 100%; left: 0;"><i class='bx bx-message-alt-add nav_icon'></i><a style="text-decoration: none;"></a></button></a>
+            </div>
+          </div>
+        </div>
+        <br><br>
+        <div class="item-title">
+          <h2>I tuoi noleggi</h2>
+        </div>
         <div class="container">
           <div class="custom-table-container">
             <table class="table custom-table searchable-table">

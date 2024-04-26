@@ -47,6 +47,8 @@ td {
 .custom-table th:last-child {
     border-top-right-radius: inherit;
     border-bottom-right-radius: inherit;
+    text-align: right;
+    padding-right: 55px;
 }
 
 .custom-table td:first-child {
@@ -68,6 +70,7 @@ td {
 }
 
 .custom-table button {
+    margin: 0 0 0 calc(100% - 100px);
     color: #fff;
     background: var(--first-color-light);
     display: flex;
@@ -94,7 +97,7 @@ td {
 }
 
 .search-container input {
-    width: 500px;
+    width: 600px;
     height: 30px;
     outline: none;
     border: 2px solid var(--first-color);
@@ -124,4 +127,17 @@ td {
 
 .custom-table button:hover {
     background: var(--first-color);
+}
+
+.spacer{
+    width: 50px;
+}
+
+.add-button button{
+    border-radius: 10rem;   
+    border: 2px solid var(--first-color); 
+}
+
+.add-button{
+    height: 30px;
 }

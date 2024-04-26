@@ -16,12 +16,14 @@
       <div class="height-100 bg-light">
         <div class="main-section">
           <div class="item-container">
+            <div class="item-title">
+              <h2>
+                <%= user.nome%> <%= user.cognome%>
+              </h2>
+            </div>
+          </div>
+          <div class="item-container">
             <div class="item-left">
-              <div class="item-title">
-                <h2>
-                  <%= user.nome%>
-                </h2>
-              </div>
               <div class="item-picture">
                 <img src="<%= user.riferimentoFoto %>" alt="item Picture">
               </div>
@@ -44,7 +46,11 @@
               </div>
               <div class="functions">
                 <div class="button-align-left">
-                    <a href="/utenti/modifica/<%= user.id %>"><button type="submit"><i class='bx bx-edit-alt'></i></button></a>
+                    <% if (session.user.id === user.id){ %>
+                      <a href="/profilo/modifica"><button type="submit"><i class='bx bx-edit-alt'></i></button></a>
+                    <% }else{ %>
+                      <a href="/utenti/modifica/<%= user.id %>"><button type="submit"><i class='bx bx-edit-alt'></i></button></a>
+                    <%}%>
                     <span class="optional">Modifica utente</span>
                   </div>
                   <div class="button-align-left">

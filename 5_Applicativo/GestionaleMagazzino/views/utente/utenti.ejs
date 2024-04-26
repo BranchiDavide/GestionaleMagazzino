@@ -5,6 +5,7 @@
   <title>Gestionale Magazzino - Utenti</title>
   <%- include('../headers/header'); -%>
   <%- include('../headers/headerTablePage'); -%>
+  <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 
 <body className='snippet-body'>
@@ -17,7 +18,6 @@
         <div class="item-title">
           <h2>Cerca utenti</h2>
         </div>
-        <br>
         <div class="container">
           <% if(session.displaySuccessMsg){ %>
             <div class="alert alert-success" role="alert">
@@ -36,18 +36,23 @@
               <input oninput="tableSearch(this.value, [0,1,2,3,4])" type="search" name="data" placeholder="Cerca">
               <button><i class="bx bx-search-alt"></i></button>
               <% if (session.user.ruolo != "utente"){ %>
-                <a href="/utenti/nuovo" style="margin-left: 2rem;"><button style="border-radius: 0;" onclick="window.location = '/utenti/nuovo'"><i class='bx bxs-plus-square'></i></button></a>
-              <% } %>
+                <div class="spacer"></div>
+                <div class="add-button">
+                  <a><button onclick="window.location='/utenti/nuovo'"><i class='bx bxs-plus-square'></i></button></a>
+                </div>
+                <% } %>
             </form>
           </div>
+<br>  
           <div class="custom-table-container">
             <table class="table custom-table searchable-table">
               <thead>
                 <tr>
-                  <th scope="col">Email</th>
+                  <th scope="col" class="optional">Email</th>
                   <th scope="col">Nome</th>
-                  <th scope="col">Cognome</th>
-                  <th scope="col">Data di nascita</th>
+                  <th scope="col" class="optional">Cognome</th>
+                  <th style="width: 0%;"></th>
+                  <th scope="col" class="optional">Data di nascita</th>
                   <th scope="col">Ruolo</th>
                   <th scope="col">Mostra</th>
                 </tr>
@@ -55,11 +60,12 @@
               <tbody>
                 <% for (let user of users) { %>
                     <tr>
-                        <td><%= user.email%></td>
+                        <td class="optional"><%= user.email%></td>
                         <td><%= user.nome%></td>
-                        <td><%= user.cognome%></td>
+                        <td class="optional"><%= user.cognome%></td>
                         <% user.dataNascita = new Date(user.dataNascita).toLocaleDateString("en-CH")%>
-                        <td><%= user.dataNascita%></td>
+                        <td style="width: 0%;"></td>
+                        <td class="optional"><%= user.dataNascita%></td>
                         <td><%= user.ruolo.charAt(0).toUpperCase() + user.ruolo.substring(1, user.ruolo.length)%></td>
                         <td><a href="/utenti/<%= user.id %>"><button type="submit"><i class="bx bx-show-alt"></i></button></a></td>
                       </tr>
