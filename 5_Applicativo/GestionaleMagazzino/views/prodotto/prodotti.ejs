@@ -31,7 +31,10 @@
               <input oninput="tableSearch(this.value, [0,1,2])" type="search" name="data" placeholder="Cerca">
               <button><i class="bx bx-search-alt"></i></button>
               <% if (session.user.ruolo != "utente"){ %>
-                <a style="margin-left: 2rem;" href="/prodotti/nuovo"><button style="border-radius: 0;" onclick="window.location = '/prodotti/nuovo'"><i class='bx bxs-plus-square'></i></button></a>
+                <div class="spacer"></div>
+                <div class="add-button">
+                  <a><button onclick="window.location='/prodotti/nuovo'"><i class='bx bxs-plus-square'></i></button></a>
+                </div>
               <% } %>
             </form>
           </div>
