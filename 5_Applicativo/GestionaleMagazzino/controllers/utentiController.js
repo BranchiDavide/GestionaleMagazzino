@@ -122,15 +122,27 @@ async function addNew(req, res){
  */
 async function deleteUser(req, res){
     const userId = sanitizer.sanitizeInput(req.body.id);
+    const noleggi = await noleggioMapper.getNoleggiOfUtente(userId);
+    if(noleggi.length != 0){
+        req.session.save(function(){
+            req.session.displayErrorMsg = "Impossibile eliminare questo utente, è necessario chiudere prima tutti i noleggi di cui è autore!";
+            return res.status(400).redirect("/utenti");
+        });
+        return;
+    }
 
-    const isEliminato = userMapper.deleteUser(userId);
+    const isEliminato = await userMapper.deleteUser(userId);
     if (!isEliminato){
         return res.status(500).render("_templates/error.ejs", {error: { status:500 } });
     }
 
     req.session.save(function(){
         req.session.displaySuccessMsg = "Utente eliminato con successo!";
-        return res.status(200).redirect("/utenti");
+        if(req.session.user.id == userId){ // L'utente si è auto-eliminato
+            return res.status(200).redirect("/logout");
+        }else{
+            return res.status(200).redirect("/utenti");
+        }
     });
 }
 
