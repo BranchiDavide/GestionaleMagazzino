@@ -2,11 +2,9 @@
 <html lang="it">
 
 <head>
-  <%- include('../_templates/header'); -%>
-    <link rel="stylesheet" href="/css/noleggio/aggiungi.css">
     <title>GestionaleMagazzino - Nuovo noleggio</title>
-    <script src="/jquery/jquery.min.js"></script>
-    <script src="/html5qrcode/html5-qrcode.min.js"></script>
+    <%- include('../headers/header'); -%>
+    <%- include('../headers/headerModifyPage'); -%>
 </head>
 
 <body className='snippet-body'>
@@ -48,7 +46,7 @@
                     <div class="item-info">
                       <div class="form-row">
                         <label>Nome Noleggio</label>
-                        <input class="form-control" type="text" name="nome" required>
+                        <input class="form-control" type="text" name="nome" maxlength="64" required>
                       </div>
                       <br>
                       <div class="form-row">
@@ -114,5 +112,4 @@
 </body>
 <script src="/js/navbar.js"></script>
 <script src="/js/aggiungiNoleggio.js"></script>
-
 </html>

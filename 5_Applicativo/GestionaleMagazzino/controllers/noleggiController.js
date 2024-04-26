@@ -19,6 +19,9 @@ async function addNew(req, res){
     if(!nome || !dataFine){
         return res.status(400).render("noleggio/aggiunta.ejs", {session: req.session, displayError: true, message: "Inserire tutti i valori!"});
     }
+    if (nome.length > 64){
+        return res.status(400).render("noleggio/aggiunta.ejs", { session: req.session, displayError: true, message: "Il nome della categoria è troppo lungo. Massimo 64 caratteri!"});
+    }
     if(!sanitizer.validateDate(dataFine)){
         return res.status(400).render("noleggio/aggiunta.ejs", {session: req.session, displayError: true, message: "Formato data fine non valido!"});
     }

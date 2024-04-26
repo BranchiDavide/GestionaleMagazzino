@@ -2,9 +2,9 @@
 <html>
 
 <head>
-  <title>Gestionale Magazzino - Archivio noleggi</title>
-  <%- include('../_templates/header'); -%>
-    <link rel="stylesheet" href="/css/prodotto/dettagli.css">
+    <title>Gestionale Magazzino - Archivio noleggi</title>
+    <%- include('../headers/header'); -%>
+    <%- include('../headers/headerDettagliPage'); -%>
 </head>
 
 <body className='snippet-body'>
@@ -64,7 +64,6 @@
                 <table class="table custom-table">
                   <thead>
                     <tr>
-                      <th class="optional" scope="col">Id</th>
                       <th scope="col">Nome</th>
                       <th scope="col">Quantità</th>
                       <th class="optional" scope="col">Categoria</th>
@@ -75,9 +74,6 @@
                     <% for (let item of prodotti) { console.log(prodotti)%>
                       
                       <tr>
-                        <td class="optional">
-                          <%= item[0].codice %>
-                        </td>
                         <td>
                           <%= item[0].nome %>
                         </td>

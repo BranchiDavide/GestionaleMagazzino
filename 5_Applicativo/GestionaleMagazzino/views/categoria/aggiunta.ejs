@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <title>GestionaleMagazzino - Nuova categoria</title>
+    <%- include('../_templates/header'); -%>
+    <%- include('../headers/headerModifyPage'); -%>
+</head>
+
+<body className='snippet-body'>
+
+    <body id="body-pd">
+      <%- include('../_templates/navbar.ejs', {active: "categorie" }); -%>
+        <div class="height-100 bg-light">
+          <div class="main-section">
+            <div class="item-container">
+              <div class="item-center">
+                <div class="item-title">
+                  <h2>Nuova categoria</h2>
+                </div>
+                <br>
+                <form action="/categorie/nuovo" method="POST" id="aggiuntaForm">
+                  <div class="item-info">
+                    <div class="form-row">
+                      <label>Nome:</label>
+                      <input class="form-control" id="nome" type="text" name="nome" maxlength="64" required>
+                    </div>
+                  </div>
+                  <br>
+                  <% if(typeof displayError !== "undefined" && displayError){ %>
+                    <div class="alert alert-danger" role="alert">
+                      <%= message %>
+                    </div>
+                  <% } %>
+                  <div class="functions">
+                    <div class="button-align-left">
+                      <button type="submit"><i class='bx bxs-check-circle'></i></button>
+                      <span class="optional">Conferma</span>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+    </body>
+  </body>
+  <script src="/js/navbar.js"></script>
+  </html>

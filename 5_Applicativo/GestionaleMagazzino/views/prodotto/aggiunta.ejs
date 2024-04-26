@@ -2,9 +2,9 @@
 <html lang="it">
 
 <head>
-  <%- include('../_templates/header'); -%>
-    <link rel="stylesheet" href="/css/noleggio/aggiungi.css">
     <title>GestionaleMagazzino - Nuovo prodotto</title>
+    <%- include('../headers/header'); -%>
+    <%- include('../headers/headerModifyPage'); -%>
 </head>
 
 <body className='snippet-body'>
@@ -23,7 +23,7 @@
                 <div class="item-info">
                   <div class="form-row">
                     <label>Nome prodotto:</label>
-                    <input class="form-control" id="nome" type="text" name="nome" required>
+                    <input class="form-control" id="nome" type="text" name="nome" maxlength="64" required>
                   </div>
                   <br>
                   <div class="form-row">

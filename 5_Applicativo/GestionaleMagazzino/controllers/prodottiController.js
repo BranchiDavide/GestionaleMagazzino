@@ -18,7 +18,7 @@ async function showAll(req, res){
 
 /**
  * la funzione carica la view dei dettagli del prodotto.
- * @param {Requst} req la richiesta
+ * @param {Request} req la richiesta
  * @param {Response} res la risposta
  * @returns la pagina con i dettagli del prodotto
  */
@@ -102,6 +102,17 @@ async function addProduct(req, res){
     // controllo se hanno messo la spunta sulla spunta 'isConsumabile'
     if (req.body.isConsumabile !== 'undefined' && req.body.isConsumabile === 'true'){
         isConsumabile = true;
+    }
+
+    // controllo lunghezza nome
+    if (nome.length > 64){
+        const data = {
+            session: req.session,
+            categorie: await categoriaMapper.getAll(),
+            displayError: true,
+            message: "Il nome del prodotto è troppo lungo. Massimo 64 caratteri!"
+        }
+        return res.status(400).render("prodotto/aggiunta.ejs", data);
     }
 
     // controllo se il prodotto esiste già
