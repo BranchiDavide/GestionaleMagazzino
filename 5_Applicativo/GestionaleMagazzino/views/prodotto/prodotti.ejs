@@ -26,9 +26,16 @@
             </div>
           <% } %>
           <div class="row search-container">
+            
             <form onsubmit="event.preventDefault()">
-              <input oninput="tableSearch(this.value, [0,1,2,3])" type="search" name="data" placeholder="Cerca">
+              <input oninput="tableSearch(this.value, [0,1,2])" type="search" name="data" placeholder="Cerca">
               <button><i class="bx bx-search-alt"></i></button>
+              <% if (session.user.ruolo != "utente"){ %>
+                <div class="spacer"></div>
+                <div class="add-button">
+                  <a><button onclick="window.location='/prodotti/nuovo'"><i class='bx bxs-plus-square'></i></button></a>
+                </div>
+              <% } %>
             </form>
           </div>
           <div class="custom-table-container">

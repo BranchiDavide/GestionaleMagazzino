@@ -104,6 +104,10 @@
     display: none;
   }
 
+.table-materiale-print{
+    display: none;
+}
+
 @media print{
     .main-section, #nav-bar, #header{
       display: none;
@@ -113,5 +117,25 @@
     }
     .print-none{
       height: 0px;
+    }
+    .table-materiale-print{
+        display: block;
+
+    }
+    .table-materiale-print table{
+        border: solid black 3px;
+    }
+    .table-materiale-print th{
+        background: #707070;
+        border: solid black 2px;
+        font-weight: bold;
+        border-bottom: 3px solid black;
+    }
+    .table-materiale-print td{
+        border: solid black 2px;
+    }
+
+    .snippet-body{
+        height: 0px;
     }
   }

@@ -18,7 +18,6 @@
         <div class="item-title">
           <h2>Cerca Categorie</h2>
         </div>
-        <br>
         <div class="container">
           <% if(session.displaySuccessMsg){ %>
             <div class="alert alert-success" role="alert">
@@ -30,6 +29,10 @@
             <form onsubmit="event.preventDefault()">
               <input oninput="tableSearch(this.value, [0])" type="search" name="data" placeholder="Cerca">
               <button><i class="bx bx-search-alt"></i></button>
+              <div class="spacer"></div>
+              <div class="add-button">
+                <a><button onclick="window.location='/categorie/nuovo'"><i class='bx bxs-plus-square'></i></button></a>
+              </div>  
             </form>
           </div>
           <div class="custom-table-container">
@@ -45,7 +48,7 @@
                     <tr>
                         <td><%= item.nome%></td>
                         <td>
-                          <form action="/categorie/elimina" method="POST" id="deleteCategoriaForm">
+                          <form action="/categorie/elimina" method="POST" class="deleteForm">
                             <input type="hidden" name="nome" id="nome" value="<%= item.nome%>">
                             <a><button type="submit"><i class="bx bx-trash"></i></button></a>
                           </form>
@@ -58,7 +61,32 @@
         </div>
       </div>
     </div>
-    <script src="/js/eliminaCategoriaForm.js"></script>
+    <script>
+      const forms = document.getElementsByClassName("deleteForm");
+
+      for (let form of forms){
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          swal({
+              title: "Sei sicuro di voler eliminare questa categoria?",
+              text: "L'eliminazione della categoria è immediata, quindi non sarà possibile recuperarla in alcun modo.",
+              icon: "warning",
+              buttons: {
+              cancel: "Annulla",
+              confirm: {
+                  text: "Si",
+                  value: "yes",
+                  className: "confirm-btn"
+              }
+              },
+          }).then((value) => {
+              if (value === "yes") {
+                  form.submit();
+              }
+          });
+       });
+      }
+    </script>
     <script src="/js/navbar.js"></script>
     <script src="/js/search.js"></script>
   </body>
