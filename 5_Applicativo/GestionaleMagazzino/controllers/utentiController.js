@@ -252,28 +252,28 @@ async function editProfilo(req, res){
     // controllo se email valida
     if (!sanitizer.validateEmail(email)){
         data.message = "Inserire un indirizzo email valido!";
-        return res.status(400).render("utente/modificaAmministratore.ejs", data);
+        return res.status(400).render("utente/modifica.ejs", data);
     }
     const otherUser = await userMapper.getByEmail(email);
     if (otherUser !== null && otherUser.id != id){
         data.message = `Esiste già un utente con l'email: ${email}`;
-        return res.status(400).render("utente/modificaAmministratore.ejs", data);
+        return res.status(400).render("utente/modifica.ejs", data);
     }
     // controllo lunghezza nome
     if (nome.length > 64){
         data.message = "Il nome dell' utente è troppo lungo. Massimo 64 caratteri!";
-        return res.status(400).render("utente/modificaAmministratore.ejs", data);
+        return res.status(400).render("utente/modifica.ejs", data);
     }
     // controllo lunghezza cognome
     if (cognome.length > 64){
         data.message = "Il cognome dell' utente è troppo lungo. Massimo 64 caratteri!";
-        return res.status(400).render("utente/modificaAmministratore.ejs", data);
+        return res.status(400).render("utente/modifica.ejs", data);
     }
 
     // controlli sulle password
     if (password !== passwordRipetuta){
         data.message = "Le passowrd non coincidono!";
-        return res.status(400).render("utente/modificaAmministratore.ejs", data);
+        return res.status(400).render("utente/modifica.ejs", data);
     }
     let passwordHashata = password;
     if (password !== user.password){
