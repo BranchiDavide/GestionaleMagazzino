@@ -47,6 +47,8 @@ td {
 .custom-table th:last-child {
     border-top-right-radius: inherit;
     border-bottom-right-radius: inherit;
+    text-align: right;
+    padding-right: 55px;
 }
 
 .custom-table td:first-child {
@@ -68,6 +70,7 @@ td {
 }
 
 .custom-table button {
+    margin: 0 0 0 calc(100% - 100px);
     color: #fff;
     background: var(--first-color-light);
     display: flex;
