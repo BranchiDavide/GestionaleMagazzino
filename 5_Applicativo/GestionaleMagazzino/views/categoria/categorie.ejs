@@ -30,6 +30,9 @@
             <form onsubmit="event.preventDefault()">
               <input oninput="tableSearch(this.value, [0])" type="search" name="data" placeholder="Cerca">
               <button><i class="bx bx-search-alt"></i></button>
+              <% if (session.user.ruolo != "utente"){ %>
+                <a href="/categorie/nuovo" style="margin-left: 2rem;"><button onclick="window.location = '/categorie/nuovo'" style="border-radius: 0;"><i class='bx bxs-plus-square'></i></button></a>
+              <% } %>
             </form>
           </div>
           <div class="custom-table-container">
@@ -45,7 +48,7 @@
                     <tr>
                         <td><%= item.nome%></td>
                         <td>
-                          <form action="/categorie/elimina" method="POST" id="deleteCategoriaForm">
+                          <form action="/categorie/elimina" method="POST" id="deleteForm">
                             <input type="hidden" name="nome" id="nome" value="<%= item.nome%>">
                             <a><button type="submit"><i class="bx bx-trash"></i></button></a>
                           </form>
@@ -58,7 +61,30 @@
         </div>
       </div>
     </div>
-    <script src="/js/eliminaCategoriaForm.js"></script>
+    <script>
+      const form = document.getElementById("deleteForm");
+
+      form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          swal({
+              title: "Sei sicuro di voler eliminare questa categoria?",
+              text: "L'eliminazione della categoria è immediata, quindi non sarà possibile recuperarla in alcun modo.",
+              icon: "warning",
+              buttons: {
+              cancel: "Annulla",
+              confirm: {
+                  text: "Si",
+                  value: "yes",
+                  className: "confirm-btn"
+              }
+              },
+          }).then((value) => {
+              if (value === "yes") {
+                  form.submit();
+              }
+          });
+      });
+    </script>
     <script src="/js/navbar.js"></script>
     <script src="/js/search.js"></script>
   </body>

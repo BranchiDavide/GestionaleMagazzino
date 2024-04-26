@@ -8,7 +8,7 @@
 
 <body className='snippet-body'>
   <body id="body-pd">
-    <%- include('../_templates/navbar.ejs', {active: "noleggi"}); -%>
+    <%- include('../_templates/navbar.ejs', {active: "archivio"}); -%>
     <!--Container Main start-->
     <div class="height-100 bg-light">
       <div class="main-section">
@@ -18,7 +18,7 @@
         <div class="container">
           <div class="row search-container">
             <form onsubmit="event.preventDefault()">
-              <input oninput="tableSearch(this.value, [1,3])" type="search" name="data" placeholder="Cerca">
+              <input oninput="tableSearch(this.value, [0,1,2])" type="search" name="data" placeholder="Cerca">
               <button><i class="bx bx-search-alt"></i></button>
             </form>
           </div>

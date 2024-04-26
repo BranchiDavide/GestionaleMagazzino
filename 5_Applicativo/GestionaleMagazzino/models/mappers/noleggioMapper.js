@@ -117,11 +117,20 @@ async function changeIdUtenteToNome(noleggi){
     const userMapper = require("./userMapper");
     if(!Array.isArray(noleggi)){
         let user = await userMapper.getById(noleggi.idUtente);
-        noleggi.idUtente = user.nome + " " + user.cognome;
+        if (user === null){
+            noleggi.idUtente = "Sconosciuto";
+        }else{
+            noleggi.idUtente = user.nome + " " + user.cognome;
+        }
+        
     }else{
         for(let item of noleggi){
             let user = await userMapper.getById(item.idUtente);
-            item.idUtente = user.nome + " " + user.cognome;
+            if (user === null){
+                item.idUtente = "Sconosciuto";
+            }else{
+                item.idUtente = user.nome + " " + user.cognome;
+            }
         }
     }
     return noleggi;

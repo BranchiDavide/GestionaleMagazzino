@@ -32,9 +32,14 @@
                   <%= noleggio.idUtente %>
                 </p>
                 <% 
+                let dataInizio = new Date(noleggio.dataInizio);
+                let dataInizioFormatted = dataInizio.toLocaleDateString("en-CH");
                 let dataFine=new Date(noleggio.dataFine); 
                 let dataFineFormatted=dataFine.toLocaleDateString("en-CH"); 
                 %>
+                <p><strong>Data inizio:</strong>
+                  <%= dataFineFormatted %>
+                </p>
                   <p <% if(new Date()> dataFine){%>style="color: red;"<%}%>>
                       <strong>Data ritorno:</strong>
                       <%=dataFineFormatted %>
