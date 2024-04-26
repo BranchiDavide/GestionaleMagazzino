@@ -18,14 +18,8 @@
         <div class="item-title">
           <h2>Benvenuto/a nella Dashboard <%= session.user.nome %></h2>
         </div>
-        <div style="margin-bottom: 2.5rem; margin-top: 2.5rem;">
-          <%- include('../_templates/dashboard.ejs') -%>
-        </div>
-        <br><br>
-        <div class="item-title">
-          <h2>I tuoi noleggi</h2>
-        </div>
         <% if(session.displaySuccessMsg){ %>
+          <br>
           <div class="alert alert-success" role="alert">
             <%= session.displaySuccessMsg %>
             <% session.displaySuccessMsg = null %>
@@ -37,6 +31,13 @@
             <% session.displayErrorMsg = null %>
           </div>
         <% } %>
+        <div style="margin-bottom: 2.5rem; margin-top: 2.5rem;">
+          <%- include('../_templates/dashboard.ejs') -%>
+        </div>
+        <br><br>
+        <div class="item-title">
+          <h2>I tuoi noleggi</h2>
+        </div>
         <div class="container">
           <div class="custom-table-container">
             <table class="table custom-table searchable-table">

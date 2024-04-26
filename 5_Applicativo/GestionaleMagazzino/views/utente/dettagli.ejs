@@ -46,7 +46,11 @@
               </div>
               <div class="functions">
                 <div class="button-align-left">
-                    <a href="/utenti/modifica/<%= user.id %>"><button type="submit"><i class='bx bx-edit-alt'></i></button></a>
+                    <% if (session.user.id === user.id){ %>
+                      <a href="/profilo/modifica"><button type="submit"><i class='bx bx-edit-alt'></i></button></a>
+                    <% }else{ %>
+                      <a href="/utenti/modifica/<%= user.id %>"><button type="submit"><i class='bx bx-edit-alt'></i></button></a>
+                    <%}%>
                     <span class="optional">Modifica utente</span>
                   </div>
                   <div class="button-align-left">
