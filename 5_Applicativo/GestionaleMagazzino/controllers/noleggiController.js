@@ -187,7 +187,11 @@ async function closeNoleggio(req, res){
     }else{
         req.session.displaySuccessMsg = "Noleggio chiuso e archiviato con successo!";
         req.session.save(function() {             
-            return res.status(200).redirect("/home");
+            if (req.session.user.ruolo === "utente"){
+                return res.status(200).redirect("/home");
+            }else{
+                return res.status(200).redirect("/noleggi");
+            }
         });
     }
 }
