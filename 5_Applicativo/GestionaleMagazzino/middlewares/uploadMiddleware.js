@@ -26,6 +26,7 @@ function uploadImg(uploadPath) {
                 cb(null, true); //File valido
             }else{
                 cb(null, false) //File non valido (non viene salvato)
+                // Nel controller req.body.file sarà undefined
             }
         };
 

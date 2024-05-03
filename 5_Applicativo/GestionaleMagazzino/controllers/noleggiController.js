@@ -3,16 +3,38 @@ const noleggioMapper = require("./../models/mappers/noleggioMapper");
 const materialeMapper = require("./../models/mappers/materialeMapper");
 const datastoreManager = require("./../models/utils/datastoreManager");
 const dfns = require("date-fns");
+/**
+ * Funzione che si occupa di renderizzare la GUI con tutti i noleggi
+ * aperti
+ * @param req richiesta
+ * @param res risposta
+ * @returns GUI con tutti i noleggi aperti
+ */
 async function showAll(req, res){
     let noleggi = await noleggioMapper.getAllByDate();
     noleggi = await noleggioMapper.changeIdUtenteToNome(noleggi);
     return res.status(200).render("noleggio/noleggi.ejs", {noleggi: noleggi, session: req.session});
 }
 
+/**
+ * Funzione che si occupa di renderizzare la GUI per la creazione di un nuovo noleggio
+ * @param req richiesta
+ * @param res risposta
+ * @returns GUI per aggiungere un nuovo noleggio
+ */
 function showAddNew(req, res){
     return res.status(200).render("noleggio/aggiunta.ejs", {session: req.session});
 }
 
+/**
+ * Funzione che riceve i dati per la creazione di un nuovo noleggio tramite POST
+ * si occupa di validare tutti i dati e di chiamare il noleggioMapper per memorizzare
+ * il nuovo noleggio nel db
+ * @param req richiesta
+ * @param res risposta
+ * @returns messaggio di successo se il noleggio è stato creato correttamente,
+ * altrimenti messaggio di errore
+ */
 async function addNew(req, res){
     let nome = sanitizer.sanitizeInputTruncate(req.body.nome);
     let dataFine = sanitizer.sanitizeInputTruncate(req.body.dataFine);
@@ -77,6 +99,12 @@ async function addNew(req, res){
     }
 }
 
+/**
+ * Funzione che si occupa di renderizzare la GUI con i dettagli di un noleggio
+ * @param req richiesta
+ * @param res risposta
+ * @returns GUI con i dettagli
+ */
 async function showNoleggioDetails(req, res){
     const codice = sanitizer.sanitizeInput(req.params['codice']);
     let noleggio = await noleggioMapper.getById(codice);
@@ -91,6 +119,12 @@ async function showNoleggioDetails(req, res){
     return res.status(200).render("noleggio/dettagli.ejs", {prodotti: prodotti, noleggio: noleggio, session: req.session})
 }
 
+/**
+ * Funzione che si occupa di renderizzare la GUI per la chiusura di un noleggio
+ * @param req richiesta
+ * @param res risposta
+ * @returns GUI per la chiusura del noleggio
+ */
 async function showChiusura(req, res){
     const codice = sanitizer.sanitizeInput(req.params['codice']);
     let noleggio = await noleggioMapper.getById(codice);
@@ -105,6 +139,14 @@ async function showChiusura(req, res){
     return res.status(200).render("noleggio/chiusura.ejs", {prodotti: prodotti, noleggio: noleggio, session: req.session})
 }
 
+/**
+ * Funzione che riceve i dati per la chiusura del noleggio tramite POST,
+ * si occupa di validarli e di salvare la chiusura del nolegio nel db
+ * @param req richiesta
+ * @param res risposta
+   @returns messaggio di successo se il noleggio è stato chiuso correttamente,
+ * altrimenti messaggio di errore
+ */
 async function closeNoleggio(req, res){
     const codice = sanitizer.sanitizeInput(req.params['codice']);
     let noleggio = await noleggioMapper.getById(codice);

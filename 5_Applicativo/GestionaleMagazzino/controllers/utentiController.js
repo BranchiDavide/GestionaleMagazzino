@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const userMapper = require("../models/mappers/userMapper");
 const noleggioMapper = require("../models/mappers/noleggioMapper");
 const sanitizer = require("../models/utils/sanitizer");
+const datastoreManager = require("./../models/utils/datastoreManager");
 
 /**
  * La funzione carica la view che mostra la lista di tutti gli utenti.
@@ -122,6 +123,7 @@ async function addNew(req, res){
  */
 async function deleteUser(req, res){
     const userId = sanitizer.sanitizeInput(req.body.id);
+    const user = await userMapper.getById(userId);
     const noleggi = await noleggioMapper.getNoleggiOfUtente(userId);
     if(noleggi.length != 0){
         req.session.save(function(){
@@ -135,7 +137,7 @@ async function deleteUser(req, res){
     if (!isEliminato){
         return res.status(500).render("_templates/error.ejs", {error: { status:500 } });
     }
-
+    await datastoreManager.deleteDatastoreElement(user.riferimentoFoto); //Eliminazione dell'immagine del profilo dal datastore
     req.session.save(function(){
         req.session.displaySuccessMsg = "Utente eliminato con successo!";
         if(req.session.user.id == userId){ // L'utente si è auto-eliminato
@@ -300,6 +302,7 @@ async function editProfilo(req, res){
             return res.status(400).render("utente/modifica.ejs", data);
         }else{
             foto = req.file.path.replace("public", "");
+            await datastoreManager.deleteDatastoreElement(req.session.user.riferimentoFoto); //Elimina immagine vecchia da datastore
         }
     }
 
