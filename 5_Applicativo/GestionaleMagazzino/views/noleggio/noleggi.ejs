@@ -14,6 +14,12 @@
         <div class="item-title">
           <h2>Cerca noleggi</h2>
         </div>
+        <% if(session.displaySuccessMsg){ %>
+          <div class="alert alert-success" role="alert">
+            <%= session.displaySuccessMsg %>
+            <% session.displaySuccessMsg = null %>
+          </div>
+        <% } %>
         <div class="container">
           <div class="row search-container">
             <form onsubmit="event.preventDefault()">
@@ -30,7 +36,7 @@
               <thead>
                 <tr>
                 <th scope="col">Nome</th>
-                <th scope="col">Data fine</th>
+                <th scope="col">Data scadenza</th>
                 <th scope="col" class="optional">Autore</th>
                 <th scope="col">Mostra</th>
               </tr>

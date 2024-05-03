@@ -36,9 +36,3 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     // Your code to run since DOM is loaded and ready
   });
-
-
-  var myLink = document.querySelector('a[href="#"]');
-      myLink.addEventListener('click', function (e) {
-        e.preventDefault();
-      });
