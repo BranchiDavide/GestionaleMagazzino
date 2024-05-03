@@ -114,73 +114,65 @@ DELIMITER ;
 -- Inserimento ruoli utente
 INSERT INTO ruolo (nome) VALUES ('amministratore'), ('gestore'), ('utente');
 
--- Popolare la tabella categoria con dati di esempio
-INSERT INTO categoria (nome) VALUES 
-  ('Elettronica'),
-  ('Abbigliamento'),
-  ('Casa'),
-  ('Giardino'),
-  ('Sport'),
-  ('Cucina'),
-  ('Musica'),
-  ('Libri'),
-  ('Film'),
-  ('Fai da te');
-
 -- Popolare la tabella utente con dati di esempio
-INSERT INTO utente (nome, cognome, dataNascita, email, password, ruolo)
+INSERT INTO utente (nome, cognome, riferimentoFoto, dataNascita, email, password, ruolo)
 VALUES 
-('Mario', 'Rossi', '1990-05-15', 'mario@email.com', '$2b$10$KxDnkD1nru/H6geeJaYp6uPH.lg5RfLlYtS5jf5zQxMtBsUysXUci', 'utente'), /* pass: password123 */
-('Giulia', 'Bianchi', '1985-10-20', 'giulia@email.com', '$2b$10$DboaTlg8.XlfJ0OVWG.Haug.XQoLdgxmFo/6S57sfFQ9AzpryThBa', 'gestore'), /* pass: securepwd */
-('Luigi', 'Verdi', '1988-07-25', 'luigi@email.com', '$2b$10$nHCMQwpnOdIG/4EnZMudpuDqKXrvbJvorK22rdMG8E2kYe.Mk4he.', 'amministratore'), /* pass: test123 */
-('Giovanna', 'Neri', '1995-03-12', 'giovanna@email.com', '$2b$10$Rw8zv5OGCCk7tuQNAJ4g4.jJx2CMyHWTdC0Ct.H2QcefAIrfnCTyO', 'utente'); /* pass: password456 */
+('Mario', 'Rossi', '/datastore/default.jpg', '1990-05-15', 'mario@email.com', '$2b$10$KxDnkD1nru/H6geeJaYp6uPH.lg5RfLlYtS5jf5zQxMtBsUysXUci', 'utente'), /* pass: password123 */
+('Giulia', 'Bianchi', '/datastore/default.jpg', '1985-10-20', 'giulia@email.com', '$2b$10$DboaTlg8.XlfJ0OVWG.Haug.XQoLdgxmFo/6S57sfFQ9AzpryThBa', 'gestore'), /* pass: securepwd */
+('Luigi', 'Verdi', '/datastore/default.jpg', '1988-07-25', 'luigi@email.com', '$2b$10$nHCMQwpnOdIG/4EnZMudpuDqKXrvbJvorK22rdMG8E2kYe.Mk4he.', 'amministratore'), /* pass: test123 */
+('Giovanna', 'Neri', '/datastore/default.jpg', '1995-03-12', 'giovanna@email.com', '$2b$10$Rw8zv5OGCCk7tuQNAJ4g4.jJx2CMyHWTdC0Ct.H2QcefAIrfnCTyO', 'utente'); /* pass: password456 */
 
+-- Inserimento dei dati fittizi nella tabella `categoria`
+INSERT INTO categoria (nome) VALUES
+('Telecamere'),
+('Illuminazione'),
+('Accessori'),
+('Trucco'),
+('Attrezzatura Audio');
+
+-- Inserimento dei dati fittizi nella tabella `materiale`
 INSERT INTO materiale (nome, riferimentoFoto, quantita, isConsumabile, isDisponibile, categoria) VALUES
-  ('Television', '/path/to/photo35.jpg', 8, 0, 1, 'Elettronica'),
-  ('Jeans', '/path/to/photo36.jpg', 30, 0, 1, 'Abbigliamento'),
-  ('Coffee maker', '/path/to/photo37.jpg', 5, 0, 1, 'Cucina'),
-  ('Garden hose', '/path/to/photo38.jpg', 12, 0, 1, 'Giardino'),
-  ('Tennis racket', '/path/to/photo39.jpg', 10, 0, 1, 'Sport'),
-  ('Bookshelf', '/path/to/photo40.jpg', 3, 0, 1, 'Casa'),
-  ('Acoustic guitar', '/path/to/photo41.jpg', 4, 0, 1, 'Musica'),
-  ('Cookbook', '/path/to/photo42.jpg', 15, 0, 1, 'Libri'),
-  ('DVD player', '/path/to/photo43.jpg', 6, 0, 1, 'Film'),
-  ('Toolbox', '/path/to/photo44.jpg', 8, 0, 1, 'Fai da te');
+('Panasonic Lumix GH5', '/datastore/default.jpg', 6, 0, 1, 'Telecamere'),
+('Nikon Z6', '/datastore/default.jpg', 5, 0, 1, 'Telecamere'),
+('Luce LED Godox SL-60W', '/datastore/default.jpg', 8, 0, 1, 'Illuminazione'),
+('Softbox Neewer 700W', '/datastore/default.jpg', 7, 0, 1, 'Illuminazione'),
+('Fake Money Stacks', '/datastore/default.jpg', 30, 1, 1, 'Accessori'),
+('Weapon Props Set', '/datastore/default.jpg', 20, 1, 1, 'Accessori'),
+('Palette Trucco Makeup Revolution', '/datastore/default.jpg', 10, 1, 1, 'Trucco'),
+('Registratore Audio Tascam DR-40X', '/datastore/default.jpg', 8, 0, 1, 'Attrezzatura Audio'),
+('Microfono a Condensatore Rode NT1', '/datastore/default.jpg', 6, 0, 1, 'Attrezzatura Audio'),
+('Sistema Microfono Senza Fili Sennheiser EW 100 G4', '/datastore/default.jpg', 4, 0, 1, 'Attrezzatura Audio'),
+('Steadicam Glidecam HD-2000', '/datastore/default.jpg', 3, 0, 1, 'Accessori'),
+('Kit Sangue Finto Mehron', '/datastore/default.jpg', 15, 1, 1, 'Trucco'),
+('Manfrotto MT055XPRO3 Treppiede', '/datastore/default.jpg', 5, 0, 1, 'Accessori'),
+('Green Screen Background', '/datastore/default.jpg', 12, 0, 1, 'Accessori');
 
-
+-- Inserimento dei dati fittizi nella tabella `noleggio`
 INSERT INTO noleggio (nome, riferimentoFoto, dataInizio, dataFine, idUtente, chiusuraForzata) VALUES
-  ('Noleggio 1', '/path/to/photo1.jpg', '2024-02-08', '2024-02-15', 1, 0),
-  ('Noleggio 2', '/path/to/photo2.jpg', '2024-01-20', '2024-01-30', 2, 0),
-  ('Noleggio 3', '/path/to/photo3.jpg', '2024-02-02', '2024-02-10', 3, 0),
-  ('Noleggio 4', '/path/to/photo4.jpg', '2024-01-15', '2024-01-25', 2, 0),
-  ('Noleggio 5', '/path/to/photo5.jpg', '2024-02-12', '2024-02-20', 3, 0),
-  ('Noleggio 6', '/path/to/photo6.jpg', '2024-01-25', '2024-02-05', 1, 0),
-  ('Noleggio 7', '/path/to/photo7.jpg', '2024-02-05', '2024-02-15', 1, 0),
-  ('Noleggio 8', '/path/to/photo8.jpg', '2024-01-10', '2024-01-20', 2, 0),
-  ('Noleggio 9', '/path/to/photo9.jpg', '2024-02-18', '2024-02-28', 2, 0),
-  ('Noleggio 10', '/path/to/photo10.jpg', '2024-01-08', '2024-01-18', 3, 0);
+('Progetto Film 10', '/datastore/default.jpg', '2024-05-01', '2024-05-15', 1, 0),
+('Progetto Film 11', '/datastore/default.jpg', '2024-05-05', '2024-05-20', 2, 0),
+('Progetto Film 12', '/datastore/default.jpg', '2024-05-10', '2024-05-25', 3, 0),
+('Progetto Film 13', '/datastore/default.jpg', '2024-05-15', '2024-05-30', 4, 0),
+('Progetto Film 14', '/datastore/default.jpg', '2024-05-20', '2024-06-05', 1, 0),
+('Progetto Film 15', '/datastore/default.jpg', '2024-05-25', '2024-06-10', 2, 0),
+('Progetto Film 16', '/datastore/default.jpg', '2024-05-30', '2024-06-15', 3, 0),
+('Progetto Film 17', '/datastore/default.jpg', '2024-06-01', '2024-06-16', 4, 0),
+('Progetto Film 18', '/datastore/default.jpg', '2024-06-05', '2024-06-20', 1, 0),
+('Progetto Film 19', '/datastore/default.jpg', '2024-06-10', '2024-06-25', 2, 0);
 
-/*
--- Popolare la tabella noleggio con dati di esempio
-INSERT INTO noleggio (nome, dataInizio, dataFine, autore)
-VALUES 
-('Noleggio di prova', '2024-02-01', '2024-02-10', 1),
-('Altro noleggio', '2024-01-15', '2024-02-20', 2),
-('Terzo noleggio', '2024-03-05', '2024-03-15', 3);
-
--- Popolare la tabella materiale con dati di esempio
-INSERT INTO materiale (nome, quantita, isConsumabile, isDisponibile, categoria)
-VALUES 
-('Computer', 10, 0, 1, 'Elettronica'),
-('Divano', 5, 0, 1, 'Casa'),
-('T-shirt', 20, 1, 1, 'Abbigliamento'),
-('Lego', 30, 1, 1, 'Giocattoli');
-
--- Popolare la tabella materialeNoleggio con dati di esempio
-INSERT INTO materialeNoleggio (idNoleggio, idMateriale, quantita)
-VALUES 
+-- Inserimento dei dati fittizi nella tabella `materialeNoleggio`
+INSERT INTO materialeNoleggio (idNoleggio, idMateriale, quantita) VALUES
 (1, 1, 2),
 (1, 2, 1),
-(2, 3, 3),
-(3, 4, 5);
-*/
+(1, 4, 5),
+(2, 3, 1),
+(2, 5, 3),
+(2, 6, 2),
+(3, 5, 3),
+(4, 7, 2),
+(5, 9, 1),
+(6, 11, 2),
+(7, 13, 4),
+(8, 14, 3),
+(9, 2, 1),
+(10, 4, 2);
