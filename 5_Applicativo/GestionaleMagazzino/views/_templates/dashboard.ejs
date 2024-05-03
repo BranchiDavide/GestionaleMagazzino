@@ -1,3 +1,20 @@
+<!-- Modal con QR scanner-->
+<div class="modal fade" id="exampleModal" tabindex="-1"
+aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Cerca prodotto tramite QR</h5>
+      <button type="button" id="btnCloseModal" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <div id="reader">
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- pulsanti -->
 <div class="dashboard-functions">
     <div class="subcontainer-row-dashboard">
         <a href="/noleggi/nuovo" class="function-button-link"><button><i class='bx bx-list-plus'></i>
@@ -5,8 +22,9 @@
             </button></a>
     </div>
     <div class="subcontainer-row-dashboard" style="text-align: right;">
-        <a href="#" class="function-button-link"><button><i class='bx bx-book-bookmark'></i>
-            <div style="width: 8px;"></div> Manuale
+        <a href="#" class="function-button-link"><button id="search-prod-qr-button" data-bs-toggle="modal"
+            data-bs-target="#exampleModal"><i class='bx bx-qr-scan'></i>
+            <div style="width: 8px;"></div> Cerca prodotto
         </button></a>
     </div>
 </div>

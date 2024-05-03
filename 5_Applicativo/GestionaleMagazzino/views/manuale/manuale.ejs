@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Gestionale Magazzino - Manuale</title>
+  <%- include('../headers/header'); -%>
+  <%- include('../headers/headerTablePage'); -%>
+</head>
+
+<body className='snippet-body'>
+
+  <body id="body-pd">
+    <%- include('../_templates/navbar.ejs', {active: "manuale"}); -%>
+    <!--Container Main start-->
+    <div style="width: 100%; height: 80%; margin-top: 7rem;">
+      <% if (session.user.ruolo === "amministratore"){ %>
+      <a href="/manuale/amministratore" target="_blank">Manuale amministratore</a>
+      <br>
+      <% } %>
+      <% if (session.user.ruolo !== "utente"){ %>
+      <a href="/manuale/gestore" target="_blank">Manuale gestore</a>
+      <br>
+      <% } %>
+      <a href="/manuale/utente" target="_blank">Manuale utente</a>
+    </div>
+    <script src="/js/navbar.js"></script>
+  </body>
+</html>

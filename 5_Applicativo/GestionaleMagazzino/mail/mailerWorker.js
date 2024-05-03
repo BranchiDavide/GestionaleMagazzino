@@ -9,13 +9,13 @@ const userMapper = require("./../models/mappers/userMapper");
  * di inviare le email di notifica per i noleggi in scadenza e scaduti
  */
 function initializeMailerWorker(){
-    log("Initializing Mail Worker");
+    log("Initializing Mailer Worker");
     // MailWorker programmato ogni giorno alle 00:00
     cron.schedule('0 0 * * *', async() => {
         await sendNotificationEmails();
         await sendExpiredNotificationEmails();
     });
-    log("Mail Worker Initialized");
+    log("Mailer Worker Initialized");
 }
 
 /**
@@ -35,8 +35,8 @@ async function sendNotificationEmails(){
         }
         if(toNotify.length > 0){
             let templateRendered = await ejs.renderFile("mail/_emailTemplates/normal.ejs", {noleggi: toNotify, utente: user});
-            let mail = await mailer.sendMail(user.email, "Gestionale Magazzino - Notifica noleggi in scadenza", templateRendered)
-            log("Notification email sent to " + user.email + " | STATUS: " + mail)
+            let mail = await mailer.sendMail(user.email, "Gestionale Magazzino - Notifica noleggi in scadenza", templateRendered);
+            log("Notification email sent to " + user.email + " | STATUS: " + mail);
         }
     }
     log("Send notification emails task ended");
@@ -61,16 +61,16 @@ async function sendExpiredNotificationEmails(){
         }
         if(userToNotify.length > 0){
             let templateRendered = await ejs.renderFile("mail/_emailTemplates/expired.ejs", {noleggi: userToNotify, utente: user});
-            let mail = await mailer.sendMail(user.email, "Gestionale Magazzino - Notifica noleggi scaduti", templateRendered)
-            log("Notification email sent to " + user.email + " | STATUS: " + mail)
+            let mail = await mailer.sendMail(user.email, "Gestionale Magazzino - Notifica noleggi scaduti", templateRendered);
+            log("Notification email sent to " + user.email + " | STATUS: " + mail);
         }
     }
     let gestori = await userMapper.getAllGestoriAndAmministratori();
     gestoriToNotify = await noleggioMapper.changeIdUtenteToNome(gestoriToNotify);
     for(let gestore of gestori){
         let templateRendered = await ejs.renderFile("mail/_emailTemplates/gestoreReport.ejs", {noleggi: gestoriToNotify, utente: gestore});
-        let mail = await mailer.sendMail(gestore.email, "Gestionale Magazzino - Report noleggi scaduti", templateRendered)
-        log("Report email sent to " + gestore.email + " | STATUS: " + mail)
+        let mail = await mailer.sendMail(gestore.email, "Gestionale Magazzino - Report noleggi scaduti", templateRendered);
+        log("Report email sent to " + gestore.email + " | STATUS: " + mail);
     }
     log("Send notification emails for expired rentals task ended");
 }

@@ -108,6 +108,10 @@
     display: none;
 }
 
+.h1Print{
+    display: none;
+}
+
 @media print{
     .main-section, #nav-bar, #header{
       display: none;
@@ -137,5 +141,9 @@
 
     .snippet-body{
         height: 0px;
+    }
+
+    .h1Print{
+        display: block;
     }
   }

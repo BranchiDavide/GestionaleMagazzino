@@ -113,12 +113,14 @@
                 <form action="/noleggi/<%= noleggio.id%>/chiudi" method="POST">
                   <input type="hidden" id="postProdottiNoleggio" name="prodottiNoleggio">
                   <button class="btn btn-outline-danger col-9" id="close-btn" type="submit" disabled>Chiudi noleggio</button>
-                  <div class="close-force-div"<% if(session.user.ruolo == "utente"){ %> style="display: none;" <% } %>>
-                    <br>
-                    <button class="btn btn-danger col-9" id="close-force-btn">Chiusura forzata</button>
-                    <br>
-                    <br>
-                  </div>
+                  <% if(session.user.ruolo != "utente"){ %>
+                    <div class="close-force-div">
+                      <br>
+                      <button class="btn btn-danger col-9" id="close-force-btn">Chiusura forzata</button>
+                      <br>
+                      <br>
+                    </div>
+                  <% } %>
                 </form>
               </div>
             </center>

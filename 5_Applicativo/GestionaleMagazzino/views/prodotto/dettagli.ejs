@@ -135,9 +135,14 @@
                   }
               });
           });
+          window.onload = () =>{
+            let h1p = document.createElement("h1");
+            h1p.setAttribute("class", "h1Print");
+            h1p.textContent = `QR per "<%= product.nome %>"`;
+            document.body.appendChild(h1p);
+          }
         </script>
         <script type="text/javascript" src="/js/navbar.js"></script>
         <script src="/js/qrPrint.js"></script>
   </body>
-
 </html>

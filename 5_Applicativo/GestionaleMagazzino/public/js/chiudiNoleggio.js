@@ -191,14 +191,18 @@ function updateButtons(){
         closeBtn.removeAttribute("disabled");
         closeBtn.classList.remove("btn-outline-danger");
         closeBtn.classList.add("btn-danger");
-        closeForceDiv.style.display = "none";
+        if(closeForceDiv){
+            closeForceDiv.style.display = "none";
+        }
     }else{
         addProductBtn.style.display = "";
         addProductBtn.nextElementSibling.style.display = "block";
         closeBtn.setAttribute("disabled", "");
         closeBtn.classList.remove("btn-danger");
         closeBtn.classList.add("btn-outline-danger");
-        closeForceDiv.style.display = "block";
+        if(closeForceDiv){
+            closeForceDiv.style.display = "block";
+        }
     }
 }
 
@@ -219,30 +223,32 @@ function isTablet() {
     }
     return false;
 }
-
-closeForceBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    swal({
-        title: "Sei sicuro di voler chiudere in maniera forzata questo noleggio?",
-        text: "La chiusura forzata deve essere utilizzata unicamente in caso di smarrimento di prodotti",
-        icon: "warning",
-        buttons: {
-          cancel: "Annulla",
-          confirm: {
-            text: "Si",
-            value: "yes",
-            className: "confirm-btn"
-          }
-        },
-      })
-      .then((value) => {
-        if (value === "yes") {
-            form.action = form.action.replace("chiudi", "chiudi-force");
-            hiddenInput.value = JSON.stringify(scannedProducts);
-            form.submit();
-        }
+if(closeForceBtn){
+    closeForceBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        swal({
+            title: "Sei sicuro di voler chiudere in maniera forzata questo noleggio?",
+            text: "La chiusura forzata deve essere utilizzata unicamente in caso di smarrimento di prodotti",
+            icon: "warning",
+            buttons: {
+              cancel: "Annulla",
+              confirm: {
+                text: "Si",
+                value: "yes",
+                className: "confirm-btn"
+              }
+            },
+          })
+          .then((value) => {
+            if (value === "yes") {
+                form.action = form.action.replace("chiudi", "chiudi-force");
+                hiddenInput.value = JSON.stringify(scannedProducts);
+                form.submit();
+            }
+        });
     });
-});
+}
+
 
 document.getElementById("btnCloseModal").addEventListener("click", () => {
     html5QrCode.stop();

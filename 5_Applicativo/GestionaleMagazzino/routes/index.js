@@ -5,6 +5,7 @@ const noleggiRoutes = require("./noleggiRoutes");
 const archivioRoutes = require("./archivioRoutes");
 const categorieRoutes = require("./categorieRoute");
 const utentiRoutes = require("./utentiRoute");
+const manualeRoutes = require("./manualeRoutes");
 const homeController = require("./../controllers/homeController");
 const authMiddleware = require('../middlewares/authMiddleware');
 
@@ -17,6 +18,7 @@ router.use(noleggiRoutes);
 router.use(archivioRoutes);
 router.use(categorieRoutes);
 router.use(utentiRoutes);
+router.use(manualeRoutes);
 
 router.get("/", authMiddleware.isAuthenticated, (req, res) => {
     res.redirect("/home");

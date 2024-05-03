@@ -4,6 +4,7 @@ const noleggioMapper = require('../models/mappers/noleggioMapper');
 const categoriaMapper = require('../models/mappers/categoriaMapper');
 const sanitizer = require('../models/utils/sanitizer');
 const QRGenerator = require("../models/utils/QRGenerator");
+const datastoreManager = require("./../models/utils/datastoreManager");
 
 /**
  * La funzione carica la view che mostra la lista di tutti i prodotti.
@@ -134,11 +135,13 @@ async function addProduct(req, res){
  */
 async function deleteProduct(req, res){
     const codice = sanitizer.sanitizeInput(req.body.codice);
+    const prodotto = await materialeMapper.getByCodice(codice);
 
     const isEliminato = await materialeMapper.deleteMateriale(codice);
     if (!isEliminato) {
         return res.status(500).render("_templates/error.ejs", { error: { status: 500 } });
     }
+    await datastoreManager.deleteDatastoreElement(prodotto.riferimentoFoto); //Elimina foto del prodotto dal datastore
 
     req.session.save(function(){
         req.session.displaySuccessMsg = "Prodotto eliminato con successo!";
@@ -171,22 +174,26 @@ async function editProduct(req, res) {
     const nome = sanitizer.sanitizeInput(req.body.nome);
     const quantita = toInt(sanitizer.sanitizeInput(req.body.quantita));
     const categoria = sanitizer.sanitizeInput(req.body.categoria);
+    const prodotto = await materialeMapper.getByCodice(codice);
 
     // dati per errori
     const data = {
         session: req.session,
-        prodotto: await materialeMapper.getByCodice(codice),
+        prodotto: prodotto,
         categorie: await categoriaMapper.getAll(),
         displayError: true,
         message: "Errore"
     }
-    // controllo se utente ha caricato una foto, altrimenti c'è quella di default
-    let foto = '/datastore/default.jpg';
+
+    // Utilizza riferimento foto già presente nel db per l'update, altrimenti viene modificato se
+    // un altra immagine differente viene caricata
+    let foto = prodotto.riferimentoFoto;
     if(req.body.fileUploadTry){
         if(!req.file){
             data.message = "Formato immagine non valido!";
             return res.status(400).render("prodotto/aggiunta.ejs", data);
         }else{
+            await datastoreManager.deleteDatastoreElement(foto); //Elimina l'immagine vecchia
             foto = req.file.path.replace("public", "");
         }
     }
