@@ -171,8 +171,8 @@ async function editUtente(req, res){
     const cognome = sanitizer.sanitizeInput(req.body.cognome);
     const nascita = sanitizer.sanitizeInput(req.body.dataNascita);
     const ruolo = sanitizer.sanitizeInput(req.body.ruolo);
-    const password = sanitizer.sanitizeInput(req.body.password);
-    const passwordRipetuta = sanitizer.sanitizeInput(req.body.passwordRipetuta);
+    const password = req.body.password;
+    const passwordRipetuta = req.body.passwordRipetuta;
     const email = sanitizer.sanitizeInputTruncate(req.body.email);
 
     // utente che servira per i controlli, sarebbe l'utente che deve essere modificato
@@ -212,7 +212,7 @@ async function editUtente(req, res){
         return res.status(400).render("utente/modificaAmministratore.ejs", data);
     }
     let passwordHashata = password;
-    if (password !== user.password){
+    if (password != user.password){
         passwordHashata = await bcrypt.hash(password, 10);
     }
 
@@ -232,8 +232,7 @@ async function editUtente(req, res){
  * @param {Response} res la risposta
  */
 function loadViewEditProfilo(req, res){
-    const ruoli = ['utente', 'gestore', 'amministratore'];
-    return res.status(200).render("utente/modifica.ejs", { session: req.session, ruoli: ruoli, user: req.session.user });
+    return res.status(200).render("utente/modifica.ejs", { session: req.session, user: req.session.user });
 }
 
 /**
@@ -247,8 +246,8 @@ async function editProfilo(req, res){
     const cognome = sanitizer.sanitizeInput(req.body.cognome);
     const nascita = sanitizer.sanitizeInput(req.body.dataNascita);
     const ruolo = sanitizer.sanitizeInput(req.body.ruolo);
-    const password = sanitizer.sanitizeInput(req.body.password);
-    const passwordRipetuta = sanitizer.sanitizeInput(req.body.passwordRipetuta);
+    const password = req.body.password;
+    const passwordRipetuta = req.body.passwordRipetuta;
     const email = sanitizer.sanitizeInputTruncate(req.body.email);
 
     // utente che servira per i controlli, sarebbe l'utente che deve essere modificato
@@ -281,14 +280,13 @@ async function editProfilo(req, res){
         data.message = "Il cognome dell' utente è troppo lungo. Massimo 64 caratteri!";
         return res.status(400).render("utente/modifica.ejs", data);
     }
-
     // controlli sulle password
-    if (password !== passwordRipetuta){
+    if (password != passwordRipetuta){
         data.message = "Le passowrd non coincidono!";
         return res.status(400).render("utente/modifica.ejs", data);
     }
     let passwordHashata = password;
-    if (password !== user.password){
+    if (password != user.password){
         passwordHashata = await bcrypt.hash(password, 10);
     }
 
